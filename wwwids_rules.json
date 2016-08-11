@@ -1,0 +1,261 @@
+[
+    {
+        "ref": "http://www.frsirt.com/english/advisories/2005/2473",
+        "cve": "CVE-2005-3738",
+        "pat": "index.php?option=com_sef&Itemid=&mosConfig_absolute_path=",
+        "checkurl": -1,
+        "name": "Mambo \"mosConfig_absolute_path\" Remote File Inclusion Vulnerability"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cowedit/class.cowedit.php?ToDo=InsertFunction&DEP=",
+        "checkurl": -1,
+        "name": "CowEdit file include"
+    },
+    {
+        "ref": "http://eromang.zataz.com/2011/08/14/suc027-muieblackcat-setup-php-web-scanner-robot/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/muieblackcat",
+        "checkurl": -1,
+        "name": "muieblackcat script scan"
+    },
+    {
+        "ref": "http://www.phpmyadmin.net/home_page/security/PMASA-2009-3.php",
+        "cve": "CVE-2009-1151",
+        "pat": "/scripts/setup.php",
+        "checkurl": -1,
+        "name": "phpMyAdmin '/scripts/setup.php' PHP Code Injection RCE"
+    },
+    {
+        "ref": "http://www.nessus.org/plugins/index.php?view=single&id=21189",
+        "cve": "CVE-2004-2740",
+        "pat": "/phprojekt/lib/config.inc.php?path_pre=",
+        "checkurl": -1,
+        "name": "PHProjekt path_pre Parameter Remote File Include Vulnerability"
+    },
+    {
+        "ref": "http://www.exploit-db.com/exploits/33803/",
+        "cve": "CVE-2014-4019",
+        "pat": "/rom-0",
+        "checkurl": -1,
+        "name": "ZyNOS ROM-0 Exploit Scan"
+    },
+    {
+        "ref": "http://www.iss.net/security_center/reference/vuln/HTTP_testcgi.htm",
+        "cve": "CVE-1999-0070",
+        "pat": "/cgi-bin/test-cgi",
+        "checkurl": -1,
+        "name": "Test-cgi sample CGI script allows remote retrieval of file listings"
+    },
+    {
+        "ref": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-1823",
+        "cve": "CVE-2012-1823",
+        "pat": "/hndUnblock.cgi",
+        "checkurl": -1,
+        "name": "theMoon malware"
+    },
+    {
+        "cve": "CVE-2014-6271",
+        "pat": "() { :;};",
+        "name": "shellshock exploit",
+        "checkurl": 11,
+        "ref": "https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-6271"
+    },
+    {
+        "ref": "http://osvdb.org/show/osvdb/44453",
+        "cve": "CVE-2008-1893",
+        "pat": "index.php?ilang=",
+        "checkurl": -1,
+        "name": "W2B Online Banking index.php ilang Variable Remote File Inclusion"
+    },
+    {
+        "ref": "http://digital-era.net/plaintext-supermicro-ipmi-credentials-exposed/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/PSBlock",
+        "checkurl": -1,
+        "name": "Supermicro IPMI PSBlock Scan"
+    },
+    {
+        "ref": "http://downloads.securityfocus.com/vulnerabilities/exploits/woltlab_sql_poc.pl",
+        "cve": "CVE-NOMATCH",
+        "pat": "from+bb1_users",
+        "checkurl": -1,
+        "name": "Woltlab Burning Board SQL Injection Vulnerability"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/index.php?error=",
+        "checkurl": -1,
+        "name": "index.php error Parameter Remote File Include Vulnerability"
+    },
+    {
+        "ref": "http://www.securityfocus.com/bid/32051/info",
+        "cve": "CVE-NOMATCH",
+        "pat": "from+netrisk_users+where",
+        "checkurl": -1,
+        "name": "NetRisk SQL Injection Vulnerability"
+    },
+    {
+        "ref": "http://www.tripwire.com/state-of-security/latest-security-news/supermicro-motherboards-broadcast-admin-passwords/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/IPMIdevices.xml",
+        "checkurl": -1,
+        "name": "Supermicro Onboard IPMI Admin Password"
+    },
+    {
+        "ref": "http://blog.imperva.com/2014/03/threat-advisory-php-cgi-at-your-command.html",
+        "cve": "CVE-2012-1823",
+        "pat": "/cgi-bin/php",
+        "checkurl": -1,
+        "name": "PHP CGI command injection"
+    },
+    {
+        "ref": "http://forum.joomla.org/viewtopic.php?f=267&t=552124",
+        "cve": "CVE-NOMATCH",
+        "pat": "/administrator/index.php",
+        "checkurl": -1,
+        "name": "Joomla brute force scan"
+    },
+    {
+        "ref": "https://www.acunetix.com/vulnerabilities/web/jboss-httpadaptor-jmxinvokerservlet",
+        "cve": "CVE-2007-1036",
+        "pat": "/invoker/JMXInvokerServlet",
+        "checkurl": -1,
+        "name": "JBoss HttpAdaptor JMXInvokerServlet WAR deployment exploit"
+    },
+    {
+        "ref": "http://www.securityfocus.com/bid/18327",
+        "cve": "CVE-2006-2644",
+        "pat": "/awstats.pl?logfile=",
+        "checkurl": -1,
+        "name": "AWStats LFI exploit"
+    },
+    {
+        "ref": "http://www.securityfocus.com/bid/12298",
+        "cve": "CVE-2005-0116",
+        "pat": "/awstats.pl?configdir=|",
+        "checkurl": -1,
+        "name": "AWStats command injection exploit"        
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/6368/",
+        "cve": "CVE-2008-3922",
+        "pat": "/awstatstotals.php?sort=%7b%24%7bpassthru",
+        "checkurl": -1,
+        "name": "AWStats Totals (awstatstotals.php sort) Remote Code Execution Exploit"
+    },
+    {
+        "ref": "http://stackoverflow.com/questions/12367317/tomcat-7-security-attempt-to-login",
+        "cve": "CVE-NOMATCH",
+        "pat": "/manager/html",
+        "checkurl": -1,
+        "name": "Tomcat '/manager/html' bruteforce login"
+    },
+    {
+        "ref": "https://www.saotn.org/joomla-websites-abused-open-proxy-denial-service-attacks/",
+        "cve": "",
+        "pat": "plugin_googlemap2/plugin_googlemap2_proxy.php?url=http://",
+        "checkurl": 6,
+        "name": "Joomla! Googlemaps plugin proxy abuse"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/27048/",
+        "cve": "CVE-2006-0125",
+        "pat": "/appserv/main.php?appserv_root=http://",
+        "checkurl": 6,
+        "name": "AppServ Open Project Remote File Include exploit"
+    },
+    {
+        "ref": "https://cwe.mitre.org/data/definitions/23.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/../",
+        "checkurl": -1,
+        "name": "Generic directory traversal attack"
+    },
+    {
+        "ref": "https://ensourced.wordpress.com/2011/02/25/zmeu-attacks-some-basic-forensic/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/w00tw00t.at.blackhats.romanian.anti-sec:)",
+        "checkurl": -1,
+        "name": "Generic /w00tw00t.at.blackhats.romanian.anti-sec:) ZmEu probe"
+    },
+    {
+        "ref": "http://www.securityfocus.com/bid/36002/info",
+        "cve": "CVE-NOMATCH",
+        "pat": "/sqlite/main.php",
+        "checkurl": -1,
+        "name": "SQLiteManager 'main.php' Cross Site Scripting Vulnerability"
+    },
+    {
+        "ref": "https://jenkins.io/blog/2015/11/06/mitigating-unauthenticated-remote-code-execution-0-day-in-jenkins-cli/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/hudson/script",
+        "checkurl": -1,
+        "name": "Jenkins CLI RCE probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/18775/",
+        "cve": "CVE-2012-1495",
+        "pat": "/webcalendar/install/index.php",
+        "checkurl": -1,
+        "name": "WebCalendar <= 1.2.4 - (install/index.php) Remote Code Execution"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "login.cgi?uri=/",
+        "checkurl": -1,
+        "name": "AirOS login bypass"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/nagiosxi/login.php?redirect=/nagiosxi/index.php0.000000&noauth=1",
+        "checkurl": -1,
+        "name": "Nagios XI login bypass"
+    },
+    {
+        "ref": "http://plugins.openvas.org/nasl.php?oid=803720",
+        "cve": "CVE-NOMATCH",
+        "pat": "/stssys.htm",
+        "checkurl": -1,
+        "name": "TRENDnet IP camera probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/27755/",
+        "cve": "CVE-2013-0632",
+        "pat": "/CFIDE/administrator/",
+        "checkurl": -1,
+        "name": "Adobe ColdFusion 9 - Administrative Login Bypass"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/31173/",
+        "cve": "CVE-NOMATCH",
+        "pat": "pChart2/examples/index.php?Action=View&Script=",
+        "checkurl": -1,
+        "name": "pChart 2.1.3 Directory Traversal"
+    },
+    {
+        "ref": "http://www.idiot-attacker.com/2015/09/wordpress-themes-purevision-file-upload.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/themes/purevision",
+        "checkurl": -1,
+        "name": "Wordpress Themes Purevision File Upload Vulnerability",
+    },
+    {
+        "ref": "https://www.pluginvulnerabilities.com/2016/07/14/local-file-inclusion-lfi-vulnerability-in-mailpress/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/mailpress/mp-includes/action.php",
+        "checkurl": -1,
+        "name": "Local File Inclusion (LFI) Vulnerability in MailPress"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/39501/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/centreon/index.php",
+        "checkurl": -1,
+        "name": "Unauthenticated Remote Command Execution in Centreon Web Interface"
+    }
+]
