@@ -4,7 +4,7 @@ Tool to create OTX Pulse entries from honeypot logs
 
 ## Supported honeypots
 
-BurningDogs reads honeypot logs and determines attacking client IPs, malicious URLs, and hashes of downloaded files, and then uploads that to (AlienVault OTX)[https://otx.alienvault.com/browse/pulses/].   
+BurningDogs reads honeypot logs and determines attacking client IPs, malicious URLs, and hashes of downloaded files, and then uploads that to [AlienVault OTX](https://otx.alienvault.com/browse/pulses/).   
 
 ### SSH honeypots
 
@@ -12,7 +12,7 @@ BurningDogs supports Kippo and Cowrie logfiles to detect malicious client IPs, d
 
 ### Apache 
 
-BurningDogs uses the "wwwids" logfile analyzer to detect signs of web application abuse attempts. This is based in part on the principles in the SANS paper (Detecting Attacks on Web Applications from Log Files)[https://www.sans.org/reading-room/whitepapers/logging/detecting-attacks-web-applications-log-files-2074]. 
+BurningDogs uses the "wwwids" logfile analyzer to detect signs of web application abuse attempts. This is based in part on the principles in the SANS paper [Detecting Attacks on Web Applications from Log Files](https://www.sans.org/reading-room/whitepapers/logging/detecting-attacks-web-applications-log-files-2074). 
 
 ### phpMySqlAdmin
 
