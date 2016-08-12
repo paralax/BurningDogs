@@ -24,6 +24,8 @@ BurningDogs uses a custom set of PHP scripts (not included here) to detect abuse
 
 # Dependencies
 
+You'll need to [sign up at OTX](https://otx.alienvault.com/api/) to get an API key to upload pulses.
+
 BurningDogs depends on FAKE to build and NewtonSoft.Json for serialization. Use Paket to manage those via the `paket.dependencies` file.
 
 # Building
