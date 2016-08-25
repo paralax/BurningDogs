@@ -248,7 +248,7 @@ let storeMalware(data : byte []) : string =
     let a = h.ToCharArray()
     let dir = createDir(String.Format("{0}/{1}/{2}/{3}/{4}", config.["malwaredir"], a.[0], a.[1], a.[2], a.[3]))
     let filename = String.Format("{0}/{1}", dir.FullName, h)
-    use f = StreamWriter(filename)
+    use f = new StreamWriter(filename)
     f.Write(data)
     f.Close()
     filename
@@ -454,6 +454,14 @@ let upload (otx: OtxPulse) =
     | :? System.Net.WebException as ex -> log 0 "%A" ex
     ()
 
+let store (otx: OtxPulse) =
+    log 2 "storing ..."
+    let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
+    let today = DateTime.Today.ToString("yyyy-MM-dd")
+    let dir = createDir("/Library/WebServer/Documents/data/" + today)
+    let filename = dir.FullName + "/" + otx.name.Split(' ').[0] + ".json"
+    System.IO.File.WriteAllText(filename, json) 
+
 [<EntryPoint>]
 let main args =
     let results = [kippologs; pmalogs; wordpotlogs; apachelogs;]
@@ -461,4 +469,7 @@ let main args =
     match Array.tryFind (fun x -> x = "-d") args with
     | None    -> List.map (fun x -> upload x) results |> ignore
     | Some(_) -> List.iter (fun x -> printfn "%A" x) results |> ignore
+    results 
+    |> List.iter store 
+    |> ignore
     0
