@@ -248,9 +248,7 @@ let storeMalware(data : byte []) : string =
     let a = h.ToCharArray()
     let dir = createDir(String.Format("{0}/{1}/{2}/{3}/{4}", config.["malwaredir"], a.[0], a.[1], a.[2], a.[3]))
     let filename = String.Format("{0}/{1}", dir.FullName, h)
-    use f = new StreamWriter(filename)
-    f.Write(data)
-    f.Close()
+    File.WriteAllBytes(filename, data)
     filename
 
 let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
