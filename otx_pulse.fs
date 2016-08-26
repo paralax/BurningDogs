@@ -457,7 +457,7 @@ let store (otx: OtxPulse) =
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
     let today = DateTime.Today.ToString("yyyy-MM-dd")
     let dir = createDir("/Library/WebServer/Documents/data/" + today)
-    let filename = dir.FullName + "/" + otx.name.Split(' ').[0] + ".json"
+    let filename = dir.FullName + "/" + otx.name.Split(' ').[0] + ".txt"
     System.IO.File.WriteAllText(filename, json) 
 
 [<EntryPoint>]
