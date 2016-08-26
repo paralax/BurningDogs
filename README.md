@@ -16,11 +16,11 @@ BurningDogs uses the "wwwids" logfile analyzer to detect signs of web applicatio
 
 ### phpMySqlAdmin
 
-BurningDogs uses a custom PHP scipt (not included here) to detect abuse attempts of phpMySqlAdmin. Client IPs, URLs, and files are characterized. 
+BurningDogs uses a custom PHP scipt (see the [ShoppingLeague repository](https://github.com/paralax/ShoppingLeague)) to detect abuse attempts of phpMySqlAdmin. Client IPs, URLs, and files are characterized. 
 
 ### Wordpot
 
-BurningDogs uses a custom set of PHP scripts (not included here) to detect abuse attempts of Wordpress installations, including brute force intrusions and DDoS attempts via `xmlrpc.php` script abuse.
+BurningDogs uses a custom set of PHP scripts (see the [ShoppingLeague repository](https://github.com/paralax/ShoppingLeague)) to detect abuse attempts of Wordpress installations, including brute force intrusions and DDoS attempts via `xmlrpc.php` script abuse.
 
 # Dependencies
 
