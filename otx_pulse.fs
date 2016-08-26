@@ -366,9 +366,9 @@ let upload (otx: OtxPulse) =
 let store (otx: OtxPulse) =
     log 2 "storing ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
-    let today = DateTime.Today.ToString("yyyy-MM-dd")
-    let dir = createDir("/Library/WebServer/Documents/data/" + today)
-    let filename = dir.FullName + "/" + otx.name.Split(' ').[0] + ".txt"
+    let today = DateTime.Today.ToString("yyyyMMdd")
+    let dir = createDir("/Library/WebServer/Documents/data/" + otx.name.Split(' ').[0])
+    let filename = dir.FullName + "/" + today + ".txt"
     System.IO.File.WriteAllText(filename, json) 
 
 [<EntryPoint>]
