@@ -188,6 +188,7 @@ let kippologs : OtxPulse =
               |> Set.map(fun x -> ipToIndicator x "SSH bruteforce client IP")
               |> Set.toList
     let urls = lines
+               |> Array.filter(fun x -> x.Contains("[HTTPPageDownloader,client] Downloaded URL"))
                |> Array.map getUrl 
                |> Seq.concat 
                |> Set.ofSeq
