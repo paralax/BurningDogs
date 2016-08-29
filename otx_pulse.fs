@@ -364,6 +364,16 @@ let upload (otx: OtxPulse) =
     | :? System.Net.WebException as ex -> log 0 "%A" ex
     ()
 
+let symlink (source:string) (dest:string) = 
+    let p = new Diagnostics.Process()
+    p.StartInfo.FileName <- "/bin/ln"
+    p.StartInfo.Arguments <- String.Format("-s {0} {1}", source, dest)
+    p.StartInfo.RedirectStandardOutput <- true
+    p.StartInfo.UseShellExecute <- false
+    p.Start() |> ignore
+    p.StandardOutput.ReadToEnd() |> ignore
+    ()
+
 let store (otx: OtxPulse) =
     log 2 "storing ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
@@ -371,6 +381,7 @@ let store (otx: OtxPulse) =
     let dir = createDir("/Library/WebServer/Documents/data/" + otx.name.Split(' ').[0])
     let filename = dir.FullName + "/" + today + ".txt"
     System.IO.File.WriteAllText(filename, json) 
+    symlink filename (dir.FullName + "/" + "latest.txt")
 
 [<EntryPoint>]
 let main args =
