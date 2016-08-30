@@ -179,7 +179,13 @@ let kippologs : OtxPulse =
             |> Array.filter(fun x -> x.StartsWith(today))
     let b = File.ReadAllLines(config.["kippolog1"]) 
             |> Array.filter(fun x -> x.StartsWith(today))
-    let lines = [a;b] |> Array.concat
+    let c = File.ReadAllLines(config.["kippolog2"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let d = File.ReadAllLines(config.["kippolog3"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let e = File.ReadAllLines(config.["kippolog4"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let lines = [a;b;c;d;e] |> Array.concat
     let ips = lines
               |> Array.filter(fun x -> x.Contains("cowrie.ssh.transport.HoneyPotSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
