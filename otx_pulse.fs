@@ -390,7 +390,7 @@ let store (otx: OtxPulse) =
     let dir = createDir("/Library/WebServer/Documents/data/" + otx.name.Split(' ').[0])
     let filename = dir.FullName + "/" + today + ".txt"
     System.IO.File.WriteAllText(filename, json) 
-    symlink filename (dir.FullName + "/" + "latest.txt")
+    symlink (FileInfo(filename).Name) (dir.FullName + "/" + "latest.txt")
 
 [<EntryPoint>]
 let main args =
