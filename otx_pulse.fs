@@ -163,14 +163,17 @@ let storeMalware(data : byte []) : string =
     filename
 
 let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
-    let url = new Uri(urlstr)
-    let domainToIndicator (uri: Uri) : OtxIndicator list =
-        { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> List.ofArray)
-    let netlocToIndicator (uri: Uri) : OtxIndicator list = 
-        match uri.HostNameType.ToString() with
-        | "Dns" -> domainToIndicator uri
-        | _     -> [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
-    {Type = "URL"; indicator = url.ToString(); description = description}::(netlocToIndicator url)
+    try 
+        let url = new Uri(urlstr)
+        let domainToIndicator (uri: Uri) : OtxIndicator list =
+            { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> List.ofArray)
+        let netlocToIndicator (uri: Uri) : OtxIndicator list = 
+            match uri.HostNameType.ToString() with
+            | "Dns" -> domainToIndicator uri
+            | _     -> [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
+        {Type = "URL"; indicator = url.ToString(); description = description}::(netlocToIndicator url)
+    with
+    | :? System.UriFormatException as ex -> []
 
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
