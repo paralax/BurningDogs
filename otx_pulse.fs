@@ -177,7 +177,7 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
 
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
-    // 2016-06-17 13:29:13-0400 [kippo.core.honeypot.HoneyPotSSHFactory] New connection: 211.94.188.90:9224 (192.168.1.144:2222) [session: 4159]
+    // 2016-08-30T19:17:35-0400 [cowrie.ssh.transport.HoneyPotSSHFactory] New connection: 121.18.238.20:56045 (::ffff:192.168.1.144:2222) [session: cc6d7620]
     let a = File.ReadAllLines(config.["kippolog"])
             |> Array.filter(fun x -> x.StartsWith(today))
     let b = File.ReadAllLines(config.["kippolog1"]) 
