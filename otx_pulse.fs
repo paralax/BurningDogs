@@ -181,7 +181,7 @@ let kippologs : OtxPulse =
             |> Array.filter(fun x -> x.StartsWith(today))
     let lines = [a;b] |> Array.concat
     let ips = lines
-              |> Array.filter(fun x -> x.Contains("New connection"))
+              |> Array.filter(fun x -> x.Contains("cowrie.ssh.transport.HoneyPotSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
               |> Array.map(fun x -> x.Split(':').[0])
               |> Set.ofArray
