@@ -175,6 +175,35 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
     with
     | :? System.UriFormatException as ex -> []
 
+let telnetlogs : OtxPulse = 
+    let today = DateTime.Today.ToString("yyyy-MM-dd")
+    // 2016-08-31T08:31:10-0400 [cowrie.telnet.transport.HoneyPotTelnetFactory] New connection: ::ffff:192.168.1.126:52034 (::ffff:192.168.1.144:2223) [session: 1]
+    let a = File.ReadAllLines(config.["kippolog"])
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let b = File.ReadAllLines(config.["kippolog1"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let c = File.ReadAllLines(config.["kippolog2"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let d = File.ReadAllLines(config.["kippolog3"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let e = File.ReadAllLines(config.["kippolog4"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let lines = [a;b;c;d;e] |> Array.concat
+    let ips = lines
+              |> Array.filter(fun x -> x.Contains("HoneyPotTelnetFactory] New connection"))
+              |> Array.map(fun x -> x.Split(' ').[4])
+              |> Array.map(fun x -> x.Split(':').[3])
+              |> Set.ofArray
+              |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
+              |> Set.toList
+    {name = "Telnet honeypot logs for " + today; 
+     Public = true; 
+     tags = ["Telnet"; "bruteforce"; "honeypot"]; 
+     references = []; 
+     TLP = "green"; 
+     description = "Telnet honeypot logs for brute force attackers from a US /32";
+     indicators = ips}
+
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
     // 2016-08-30T19:17:35-0400 [cowrie.ssh.transport.HoneyPotSSHFactory] New connection: 121.18.238.20:56045 (::ffff:192.168.1.144:2222) [session: cc6d7620]
@@ -394,7 +423,7 @@ let store (otx: OtxPulse) =
 
 [<EntryPoint>]
 let main args =
-    let results = [kippologs; pmalogs; wordpotlogs; apachelogs;]
+    let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs;]
                   |> List.filter (fun x -> List.length (x.indicators) > 0)
     match Array.tryFind (fun x -> x = "-d") args with
     | None    -> List.map (fun x -> upload x) results |> ignore
