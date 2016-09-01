@@ -188,7 +188,15 @@ let telnetlogs : OtxPulse =
             |> Array.filter(fun x -> x.StartsWith(today))
     let e = File.ReadAllLines(config.["kippolog4"]) 
             |> Array.filter(fun x -> x.StartsWith(today))    
-    let lines = [a;b;c;d;e] |> Array.concat
+    let f = File.ReadAllLines(config.["kippolog5"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let g = File.ReadAllLines(config.["kippolog6"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let h = File.ReadAllLines(config.["kippolog7"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let i = File.ReadAllLines(config.["kippolog8"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let lines = [a;b;c;d;e;f;g;h;i] |> Array.concat
     let ips = lines
               |> Array.filter(fun x -> x.Contains("HoneyPotTelnetFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -196,13 +204,23 @@ let telnetlogs : OtxPulse =
               |> Set.ofArray
               |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
               |> Set.toList
+    let urls = lines
+               |> Array.filter(fun x -> x.Contains("StripCrTelnetTransport"))
+               |> Array.map getUrl
+               |> Seq.concat
+               |> Set.ofSeq
+               |> Set.toSeq
+               |> Seq.map (fun x -> urlToIndicators x "URL injected into Telnet honeypot") 
+               |> List.concat
+               |> Set.ofList
+               |> Set.toList
     {name = "Telnet honeypot logs for " + today; 
      Public = true; 
      tags = ["Telnet"; "bruteforce"; "honeypot"]; 
      references = []; 
      TLP = "green"; 
      description = "Telnet honeypot logs for brute force attackers from a US /32";
-     indicators = ips}
+     indicators = ips @ urls}
 
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
@@ -217,7 +235,15 @@ let kippologs : OtxPulse =
             |> Array.filter(fun x -> x.StartsWith(today))
     let e = File.ReadAllLines(config.["kippolog4"]) 
             |> Array.filter(fun x -> x.StartsWith(today))    
-    let lines = [a;b;c;d;e] |> Array.concat
+    let f = File.ReadAllLines(config.["kippolog5"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let g = File.ReadAllLines(config.["kippolog6"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let h = File.ReadAllLines(config.["kippolog7"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let i = File.ReadAllLines(config.["kippolog8"]) 
+            |> Array.filter(fun x -> x.StartsWith(today))    
+    let lines = [a;b;c;d;e;f;g;h;i] |> Array.concat
     let ips = lines
               |> Array.filter(fun x -> x.Contains("cowrie.ssh.transport.HoneyPotSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -226,12 +252,12 @@ let kippologs : OtxPulse =
               |> Set.map(fun x -> ipToIndicator x "SSH bruteforce client IP")
               |> Set.toList
     let urls = lines
-               |> Array.filter(fun x -> x.Contains("[HTTPPageDownloader,client] Downloaded URL"))
-               |> Array.map getUrl 
-               |> Seq.concat 
+               |> Array.filter(fun x -> x.Contains("SSHChannel session "))
+               |> Array.map getUrl
+               |> Seq.concat
                |> Set.ofSeq
-               |> Seq.toList
-               |> List.map (fun x -> urlToIndicators x "URL injected into SSH honeypot") 
+               |> Set.toSeq
+               |> Seq.map (fun x -> urlToIndicators x "URL injected into SSH honeypot") 
                |> List.concat
                |> Set.ofList
                |> Set.toList
