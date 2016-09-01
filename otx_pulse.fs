@@ -175,28 +175,30 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
     with
     | :? System.UriFormatException as ex -> []
 
+let gatherKippoLogs (today:string) (n:int) : string [] =
+    let a = File.ReadAllLines(config.["kippolog"])
+            |> Array.filter(fun x -> x.StartsWith(today))
+    let b = [1..n] 
+            |> List.map (fun x -> System.IO.File.ReadAllLines(config.["kippolog"] + "." + string(x))) 
+            |> Array.concat
+    [a;b] |> Array.concat
+
+let getKippoUrls (marker:string) (description:string) (lines:string []) : OtxIndicator list = 
+    lines
+    |> Array.filter(fun x -> x.Contains(marker))
+    |> Array.map getUrl
+    |> Seq.concat
+    |> Set.ofSeq
+    |> Set.toSeq
+    |> Seq.map (fun x -> urlToIndicators x description) 
+    |> List.concat
+    |> Set.ofList
+    |> Set.toList
+
 let telnetlogs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
     // 2016-08-31T08:31:10-0400 [cowrie.telnet.transport.HoneyPotTelnetFactory] New connection: ::ffff:192.168.1.126:52034 (::ffff:192.168.1.144:2223) [session: 1]
-    let a = File.ReadAllLines(config.["kippolog"])
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let b = File.ReadAllLines(config.["kippolog1"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let c = File.ReadAllLines(config.["kippolog2"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let d = File.ReadAllLines(config.["kippolog3"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let e = File.ReadAllLines(config.["kippolog4"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let f = File.ReadAllLines(config.["kippolog5"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let g = File.ReadAllLines(config.["kippolog6"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let h = File.ReadAllLines(config.["kippolog7"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let i = File.ReadAllLines(config.["kippolog8"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let lines = [a;b;c;d;e;f;g;h;i] |> Array.concat
+    let lines = gatherKippoLogs today 15
     let ips = lines
               |> Array.filter(fun x -> x.Contains("HoneyPotTelnetFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -204,16 +206,7 @@ let telnetlogs : OtxPulse =
               |> Set.ofArray
               |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
               |> Set.toList
-    let urls = lines
-               |> Array.filter(fun x -> x.Contains("StripCrTelnetTransport"))
-               |> Array.map getUrl
-               |> Seq.concat
-               |> Set.ofSeq
-               |> Set.toSeq
-               |> Seq.map (fun x -> urlToIndicators x "URL injected into Telnet honeypot") 
-               |> List.concat
-               |> Set.ofList
-               |> Set.toList
+    let urls = getKippoUrls "StripCrTelnetTransport" "URL injected into Telnet honeypot" lines
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
                  |> List.choose id
@@ -238,25 +231,7 @@ let telnetlogs : OtxPulse =
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
     // 2016-08-30T19:17:35-0400 [cowrie.ssh.transport.HoneyPotSSHFactory] New connection: 121.18.238.20:56045 (::ffff:192.168.1.144:2222) [session: cc6d7620]
-    let a = File.ReadAllLines(config.["kippolog"])
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let b = File.ReadAllLines(config.["kippolog1"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let c = File.ReadAllLines(config.["kippolog2"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let d = File.ReadAllLines(config.["kippolog3"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))
-    let e = File.ReadAllLines(config.["kippolog4"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let f = File.ReadAllLines(config.["kippolog5"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let g = File.ReadAllLines(config.["kippolog6"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let h = File.ReadAllLines(config.["kippolog7"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let i = File.ReadAllLines(config.["kippolog8"]) 
-            |> Array.filter(fun x -> x.StartsWith(today))    
-    let lines = [a;b;c;d;e;f;g;h;i] |> Array.concat
+    let lines = gatherKippoLogs today 15
     let ips = lines
               |> Array.filter(fun x -> x.Contains("cowrie.ssh.transport.HoneyPotSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -264,16 +239,7 @@ let kippologs : OtxPulse =
               |> Set.ofArray
               |> Set.map(fun x -> ipToIndicator x "SSH bruteforce client IP")
               |> Set.toList
-    let urls = lines
-               |> Array.filter(fun x -> x.Contains("SSHChannel session "))
-               |> Array.map getUrl
-               |> Seq.concat
-               |> Set.ofSeq
-               |> Set.toSeq
-               |> Seq.map (fun x -> urlToIndicators x "URL injected into SSH honeypot") 
-               |> List.concat
-               |> Set.ofList
-               |> Set.toList
+    let urls = getKippoUrls "SSHChannel session " "URL injected into SSH honeypot" lines
     let dir = new DirectoryInfo(config.["kippodldir"])
     let today = DateTime.Today.ToString("M/d/yyyy")
     let files  = dir.GetFiles() 
