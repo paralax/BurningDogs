@@ -411,7 +411,7 @@ let upload (otx: OtxPulse) =
 let symlink (source:string) (dest:string) = 
     let p = new Diagnostics.Process()
     p.StartInfo.FileName <- "/bin/ln"
-    p.StartInfo.Arguments <- String.Format("-s {0} {1}", source, dest)
+    p.StartInfo.Arguments <- String.Format("-fs {0} {1}", source, dest)
     p.StartInfo.RedirectStandardOutput <- true
     p.StartInfo.UseShellExecute <- false
     p.Start() |> ignore
