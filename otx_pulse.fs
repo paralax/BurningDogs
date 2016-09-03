@@ -164,7 +164,7 @@ let storeMalware(data : byte []) : string =
 
 let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
     try 
-        let url = new Uri(urlstr)
+        let url = new Uri(urlstr.Split('\n').[0])
         let domainToIndicator (uri: Uri) : OtxIndicator list =
             { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> List.ofArray)
         let netlocToIndicator (uri: Uri) : OtxIndicator list = 
