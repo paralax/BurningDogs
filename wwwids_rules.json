@@ -257,5 +257,12 @@
         "pat": "/centreon/index.php",
         "checkurl": -1,
         "name": "Unauthenticated Remote Command Execution in Centreon Web Interface"
+    },
+    {
+        "ref":"http://code.freepbx.org/changelog/FreePBX_SVN/freepbx/branches/2.4/amp_conf/htdocs/admin/i18n/readme.txt",
+        "cve": "CVE-NOMATCH",
+        "pat": "/admin/i18n/readme.txt",
+        "checkurl": -1,
+        "name": "FreePBX install marker"
     }
 ]
