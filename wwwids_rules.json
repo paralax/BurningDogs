@@ -264,5 +264,12 @@
         "pat": "/admin/i18n/readme.txt",
         "checkurl": -1,
         "name": "FreePBX install marker"
-    }
+    },
+    {
+        "ref": "https://www.cvedetails.com/vulnerability-list/vendor_id-5667/Zabbix.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/zabbix/",
+        "checkurl": -1,
+        "name": "Zabbix probe"
+    }    
 ]
