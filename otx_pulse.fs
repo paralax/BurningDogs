@@ -409,9 +409,10 @@ let upload (otx: OtxPulse) =
         log 3 "%A" reply
     with
     | :? System.Net.WebException as ex -> log 0 "%A" ex
-    ()
+    otx
 
 let symlink (source:string) (dest:string) = 
+    log 2 "symlinking ..."
     let p = new Diagnostics.Process()
     p.StartInfo.FileName <- "/bin/ln"
     p.StartInfo.Arguments <- String.Format("-fs {0} {1}", source, dest)
@@ -421,23 +422,27 @@ let symlink (source:string) (dest:string) =
     p.StandardOutput.ReadToEnd() |> ignore
     ()
 
-let store (otx: OtxPulse) =
+let store (doSymlink: bool) (otx: OtxPulse) =
     log 2 "storing ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
     let today = DateTime.Today.ToString("yyyyMMdd")
     let dir = createDir("/Library/WebServer/Documents/data/" + otx.name.Split(' ').[0])
     let filename = dir.FullName + "/" + today + ".txt"
-    System.IO.File.WriteAllText(filename, json) 
-    symlink (FileInfo(filename).Name) (dir.FullName + "/" + "latest.txt")
+    System.IO.File.WriteAllText(filename, json)
+    match doSymlink with 
+    | true -> symlink (FileInfo(filename).Name) (dir.FullName + "/" + "latest.txt")
+    | _    -> ()
 
 [<EntryPoint>]
 let main args =
     let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs;]
                   |> List.filter (fun x -> List.length (x.indicators) > 0)
     match Array.tryFind (fun x -> x = "-d") args with
-    | None    -> List.map (fun x -> upload x) results |> ignore
+    | None    -> List.map (fun x -> upload x) results 
+                 |> List.iter (fun x -> store true x) 
+                 |> ignore
     | Some(_) -> List.iter (fun x -> printfn "%A" x) results |> ignore
-    results 
-    |> List.iter store 
-    |> ignore
+                 results 
+                 |> List.iter (fun x -> store false x) 
+                 |> ignore
     0
