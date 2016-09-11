@@ -221,6 +221,14 @@ let telnetlogs : OtxPulse =
                     |> Set.toSeq
                     |> Seq.map (fun x -> urlToIndicators x "URL injected into Telnet honeypot") 
                     |> List.concat
+    let filehashes = extraurls
+                     |> List.map(fun x -> tryDownload x.indicator)
+                     |> List.choose id
+                     |> List.map(fun x -> fileToIndicator x "Telnet honeypot downloaded file")
+                     |> Seq.concat
+                     |> Seq.toList
+                     |> Set.ofList
+                     |> Set.toList                  
     let allurls = urls @ extraurls
                   |> Set.ofList
                   |> Set.toList                  
@@ -230,7 +238,7 @@ let telnetlogs : OtxPulse =
      references = []; 
      TLP = "green"; 
      description = "Telnet honeypot logs for brute force attackers from a US /32";
-     indicators = ips @ allurls}
+     indicators = ips @ allurls @ filehashes}
 
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
