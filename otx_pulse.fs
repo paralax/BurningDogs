@@ -221,9 +221,12 @@ let telnetlogs : OtxPulse =
                     |> Set.toSeq
                     |> Seq.map (fun x -> urlToIndicators x "URL injected into Telnet honeypot") 
                     |> List.concat
-    let filehashes = extraurls
+    let contents = extraurls
                      |> List.map(fun x -> tryDownload x.indicator)
-                     |> List.choose id
+                     |> List.choose id 
+    let _ = contents 
+            |> List.map storeMalware
+    let filehashes = contents
                      |> List.map(fun x -> fileToIndicator x "Telnet honeypot downloaded file")
                      |> Seq.concat
                      |> Seq.toList
