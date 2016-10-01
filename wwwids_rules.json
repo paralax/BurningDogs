@@ -271,5 +271,26 @@
         "pat": "/zabbix/",
         "checkurl": -1,
         "name": "Zabbix probe"
-    }    
+    },
+    {
+        "ref": "http://www.cvedetails.com/vulnerability-list/vendor_id-9865/Dedecms.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/templets/default/style/dedecms.css",
+        "checkurl": -1,
+        "name": "Dedecms fingerprint probe"
+    }, 
+    {
+        "ref": "http://www.error418.org/2013/03/fun-with-logs-hackers.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/user/soapCaller.bs",
+        "checkurl": -1,
+        "name": "Drupal fingerprint probe"
+    },
+    {
+        "ref": "http://www.error418.org/2013/03/fun-with-logs-hackers.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/w00tw00t.at.ISC.SANS.DFind:)",
+        "checkurl": -1,
+        "name": "Generic DFind scanner probe"        
+    }
 ]
