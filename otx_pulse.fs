@@ -100,10 +100,15 @@ let getUrl (row : string) : seq<string> =
     Seq.map matchToUrl (Seq.cast matches)
 
 let ippat = RegularExpressions.Regex("[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}")
-let matchToIp (ipMatch: RegularExpressions.Match) = ipMatch.Value.Trim()
+let getMatches (ipMatch: RegularExpressions.Match) = ipMatch.Value.Trim()
 let getIp (code : string) : seq<string> =
     let matches = ippat.Matches(code)
-    Seq.map matchToIp (Seq.cast matches)
+    Seq.map getMatches (Seq.cast matches)
+
+let ipportpat = RegularExpressions.Regex("([0-9]{1,3}\.){3}[0-9]{1,3}:\d+")
+let getIpPort (code: byte []) : seq<string> = 
+    let matches = ipportpat.Matches(Encoding.ASCII.GetString(code))
+    Seq.map getMatches (Seq.cast matches)
 
 let ipToIndicator (ipstr: string) (description: string) : OtxIndicator =
     let ip = Net.IPAddress.Parse(ipstr)
@@ -231,7 +236,15 @@ let telnetlogs : OtxPulse =
                      |> Seq.concat
                      |> Seq.toList
                      |> Set.ofList
-                     |> Set.toList                  
+                     |> Set.toList    
+    let c2indicators = contents 
+                       |> List.map getIpPort
+                       |> Seq.concat
+                       |> Seq.toList
+                       |> Set.ofList
+                       |> Set.toList
+                       |> List.map (fun x -> x.Split(':'))
+                       |> List.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))            
     let allurls = urls @ extraurls
                   |> Set.ofList
                   |> Set.toList                  
@@ -241,7 +254,7 @@ let telnetlogs : OtxPulse =
      references = []; 
      TLP = "green"; 
      description = "Telnet honeypot logs for brute force attackers from a US /32";
-     indicators = ips @ allurls @ filehashes}
+     indicators = ips @ allurls @ filehashes @ c2indicators}
 
 let kippologs : OtxPulse = 
     let today = DateTime.Today.ToString("yyyy-MM-dd")
