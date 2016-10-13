@@ -278,19 +278,19 @@
         "pat": "/templets/default/style/dedecms.css",
         "checkurl": -1,
         "name": "Dedecms fingerprint probe"
-    }, 
-    {
-        "ref": "http://www.error418.org/2013/03/fun-with-logs-hackers.html",
-        "cve": "CVE-NOMATCH",
-        "pat": "/user/soapCaller.bs",
-        "checkurl": -1,
-        "name": "Drupal fingerprint probe"
     },
     {
-        "ref": "http://www.error418.org/2013/03/fun-with-logs-hackers.html",
+        "ref": "https://www.exploit-db.com/exploits/11218/",
         "cve": "CVE-NOMATCH",
-        "pat": "/w00tw00t.at.ISC.SANS.DFind:)",
+        "pat": "/uploadify.css",
         "checkurl": -1,
-        "name": "Generic DFind scanner probe"        
+        "name": "Uploadify fingerprint probe"
+    },
+    {
+        "ref": "http://www.securityfocus.com/bid/13793/info",
+        "cve": "CVE-NOMATCH",
+        "pat": "/console/login/LoginForm.jsp",
+        "checkurl": -1,
+        "name": "BEA WebLogic Administration Console LoginForm.jsp Cross-Site Scripting Vulnerability probe"
     }
 ]
