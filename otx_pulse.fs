@@ -110,11 +110,14 @@ let getIpPort (code: byte []) : seq<string> =
     let matches = ipportpat.Matches(Encoding.ASCII.GetString(code))
     Seq.map getMatches (Seq.cast matches)
 
-let ipToIndicator (ipstr: string) (description: string) : OtxIndicator =
-    let ip = Net.IPAddress.Parse(ipstr)
-    match ip.AddressFamily.ToString() with
-    | "InterNetworkV6" -> {Type = "IPv6"; indicator = ip.ToString(); description = description}
-    | "InterNetwork"   -> {Type = "IPv4"; indicator = ip.ToString(); description = description}
+let ipToIndicator (ipstr: string) (description: string) : OtxIndicator option =
+    try
+        let ip = Net.IPAddress.Parse(ipstr)
+        match ip.AddressFamily.ToString() with
+        | "InterNetworkV6" -> Some({Type = "IPv6"; indicator = ip.ToString(); description = description})
+        | "InterNetwork"   -> Some({Type = "IPv4"; indicator = ip.ToString(); description = description})
+    with
+    | :? System.FormatException as ex -> None
 
 let isIrcBot(code: string) : bool =
     code.Contains("NICK") && code.Contains("JOIN")
@@ -135,6 +138,7 @@ let botToIndicator(code: byte array) : OtxIndicator list =
     | true  -> Encoding.ASCII.GetString code 
                |> botToServer 
                |> Seq.map(fun x -> ipToIndicator x ("Possible IRC server for " + (md5 code))) 
+               |> Seq.choose id
                |> List.ofSeq
 
 let fileToIndicator (data: byte array) (description: string) : OtxIndicator list =
@@ -172,13 +176,13 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
         let url = new Uri(urlstr.Split('\n').[0])
         let domainToIndicator (uri: Uri) : OtxIndicator list =
             try
-                { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> List.ofArray)
+                { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> Array.choose id |> List.ofArray)
             with
             | :? System.Net.Sockets.SocketException as ex -> [{ Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}]
         let netlocToIndicator (uri: Uri) : OtxIndicator list = 
             match uri.HostNameType.ToString() with
             | "Dns" -> domainToIndicator uri
-            | _     -> [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
+            | _     -> List.choose id [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
         {Type = "URL"; indicator = url.ToString(); description = description}::(netlocToIndicator url)
     with
     | :? System.UriFormatException as ex -> []
@@ -203,8 +207,8 @@ let getKippoUrls (marker:string) (description:string) (lines:string []) : OtxInd
     |> Set.ofList
     |> Set.toList
 
-let telnetlogs : OtxPulse = 
-    let today = DateTime.Today.ToString("yyyy-MM-dd")
+let telnetlogs (today:DateTime): OtxPulse = 
+    let today = today.ToString("yyyy-MM-dd")
     // 2016-08-31T08:31:10-0400 [cowrie.telnet.transport.HoneyPotTelnetFactory] New connection: ::ffff:192.168.1.126:52034 (::ffff:192.168.1.144:2223) [session: 1]
     let lines = gatherKippoLogs today 40
     let ips = lines
@@ -214,6 +218,7 @@ let telnetlogs : OtxPulse =
               |> Set.ofArray
               |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
               |> Set.toList
+              |> List.choose id
     let urls = getKippoUrls "StripCrTelnetTransport" "URL injected into Telnet honeypot" lines
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
@@ -244,7 +249,8 @@ let telnetlogs : OtxPulse =
                        |> Set.ofList
                        |> Set.toList
                        |> List.map (fun x -> x.Split(':'))
-                       |> List.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))            
+                       |> List.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))
+                       |> List.choose id            
     let allurls = urls @ extraurls
                   |> Set.ofList
                   |> Set.toList                  
@@ -256,8 +262,8 @@ let telnetlogs : OtxPulse =
      description = "Telnet honeypot logs for brute force attackers from a US /32";
      indicators = ips @ allurls @ filehashes @ c2indicators}
 
-let kippologs : OtxPulse = 
-    let today = DateTime.Today.ToString("yyyy-MM-dd")
+let kippologs (today:DateTime): OtxPulse = 
+    let today = today.ToString("yyyy-MM-dd")
     // 2016-08-30T19:17:35-0400 [cowrie.ssh.transport.HoneyPotSSHFactory] New connection: 121.18.238.20:56045 (::ffff:192.168.1.144:2222) [session: cc6d7620]
     let lines = gatherKippoLogs today 40
     let ips = lines
@@ -265,8 +271,9 @@ let kippologs : OtxPulse =
               |> Array.map(fun x -> x.Split(' ').[4])
               |> Array.map(fun x -> x.Split(':').[0])
               |> Set.ofArray
-              |> Set.map(fun x -> ipToIndicator x "SSH bruteforce client IP")
               |> Set.toList
+              |> List.map(fun x -> ipToIndicator x "SSH bruteforce client IP")
+              |> List.choose id 
     let urls = getKippoUrls "SSHChannel session " "URL injected into SSH honeypot" lines
     let dir = new DirectoryInfo(config.["kippodldir"])
     let today = DateTime.Today.ToString("M/d/yyyy")
@@ -292,8 +299,8 @@ let kippologs : OtxPulse =
      description = "SSH honeypot logs for brute force attackers from a US /32";
      indicators = ips @ filehashes @ urls @ ircservers}
 
-let pmalogs : OtxPulse = 
-    let today = DateTime.Today.ToString("yyyy-MM-dd")
+let pmalogs (today:DateTime): OtxPulse = 
+    let today = today.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["phpmyadminlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
                 |> Array.filter(fun x -> x.Length > 100)
@@ -301,8 +308,9 @@ let pmalogs : OtxPulse =
     let ips  = lines
                |> Array.map(fun x -> x.Split(' ').[1])
                |> Set.ofArray
-               |> Set.map(fun x -> ipToIndicator x "phpMyAdmin attacker client IP")
                |> Set.toList
+               |> List.map(fun x -> ipToIndicator x "phpMyAdmin attacker client IP")
+               |> List.choose id
     let urls = lines
                |> Array.map(fun x -> getUrl x)
                |> Seq.concat
@@ -333,22 +341,24 @@ let pmalogs : OtxPulse =
      description = "phpMyAdmin honeypot logs from a US /32";
      indicators = ips @ urls @ filehashes @ ircservers}                
 
-let wordpotlogs : OtxPulse = 
-    let today = DateTime.Today.ToString("yyyy-MM-dd")
+let wordpotlogs (today:DateTime): OtxPulse = 
+    let today = today.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["wordpotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
     let ips = lines 
               |> Array.map(fun x -> x.Split(' ').[1])
               |> Set.ofArray
-              |> Set.map(fun x -> ipToIndicator x "WordPress bruteforce login client IP")
               |> Set.toList
+              |> List.map(fun x -> ipToIndicator x "WordPress bruteforce login client IP")
+              |> List.choose id
     let lines = File.ReadAllLines(config.["xmlrpc_ddoslog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
     let ddosips = lines 
                   |> Array.map(fun x -> x.Split(' ').[1])
                   |> Set.ofArray
-                  |> Set.map(fun x -> ipToIndicator x "WordPress xmlrpc.php DDoS client IP")
                   |> Set.toList
+                  |> List.map(fun x -> ipToIndicator x "WordPress xmlrpc.php DDoS client IP")
+                  |> List.choose id
     let ddosvictims = lines
                       |> Array.map(fun x -> x.Split(' ').[4])
                       |> Array.map(fun x -> urlToIndicators x "Wordpress xmlrpc.php DDoS victim" )
@@ -363,8 +373,8 @@ let wordpotlogs : OtxPulse =
      description = "WordPress honeypot logs for DDoS tracking and authentcation brute force from a US /32";
      indicators = ips @ ddosips @ ddosvictims}     
 
-let apachelogs : OtxPulse =     
-    let today = DateTime.Today.ToString("dd/MMM/yyyy")
+let apachelogs (today:DateTime): OtxPulse =     
+    let today = today.ToString("dd/MMM/yyyy")
     let lines = File.ReadAllLines(config.["accesslog"])
                 |> Array.filter(fun x -> x.Contains("[" + today))
     let rules_json = File.ReadAllText(config.["wwwids_rules"])
@@ -376,7 +386,10 @@ let apachelogs : OtxPulse =
     let checkRules (rules:WwwidsRule list) (row:string []) : (WwwidsRule * string []) option list =
         List.map(fun x -> checkOneRule x row) rules
     let checkedRowToIndicator(rule:WwwidsRule, row:string []) : OtxIndicator =
-        ipToIndicator row.[0] (rule.name + " attempt client IP")
+        let ip = Net.IPAddress.Parse(row.[0])
+        match ip.AddressFamily.ToString() with
+        | "InterNetworkV6" -> {Type = "IPv6"; indicator = ip.ToString(); description = (rule.name + " attempt client IP")}
+        | "InterNetwork"   -> {Type = "IPv4"; indicator = ip.ToString(); description = (rule.name + " attempt client IP")}
     let rulehits = lines
                    |> Array.map(fun x -> x.Split([|' '|], 12)) 
                    |> Array.filter (fun x -> x.[8].StartsWith("40"))
@@ -459,7 +472,9 @@ let store (doSymlink: bool) (otx: OtxPulse) =
 
 [<EntryPoint>]
 let main args =
+    let today = DateTime.Today
     let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs;]
+                  |> List.map (fun fn -> fn today)
                   |> List.filter (fun x -> List.length (x.indicators) > 0)
     match Array.tryFind (fun x -> x = "-d") args with
     | None    -> List.map (fun x -> upload x) results 
