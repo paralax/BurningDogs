@@ -2,4 +2,4 @@ application.config
 paket.lock
 otx_pulse.exe
 packages
-paket-file
+paket-files
