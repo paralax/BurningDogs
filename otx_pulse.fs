@@ -207,8 +207,8 @@ let getKippoUrls (marker:string) (description:string) (lines:string []) : OtxInd
     |> Set.ofList
     |> Set.toList
 
-let telnetlogs (today:DateTime): OtxPulse = 
-    let today = today.ToString("yyyy-MM-dd")
+let telnetlogs (date:DateTime): OtxPulse = 
+    let today = date.ToString("yyyy-MM-dd")
     // 2016-08-31T08:31:10-0400 [cowrie.telnet.transport.HoneyPotTelnetFactory] New connection: ::ffff:192.168.1.126:52034 (::ffff:192.168.1.144:2223) [session: 1]
     let lines = gatherKippoLogs today 40
     let ips = lines
@@ -262,8 +262,8 @@ let telnetlogs (today:DateTime): OtxPulse =
      description = "Telnet honeypot logs for brute force attackers from a US /32";
      indicators = ips @ allurls @ filehashes @ c2indicators}
 
-let kippologs (today:DateTime): OtxPulse = 
-    let today = today.ToString("yyyy-MM-dd")
+let kippologs (date:DateTime): OtxPulse = 
+    let today = date.ToString("yyyy-MM-dd")
     // 2016-08-30T19:17:35-0400 [cowrie.ssh.transport.HoneyPotSSHFactory] New connection: 121.18.238.20:56045 (::ffff:192.168.1.144:2222) [session: cc6d7620]
     let lines = gatherKippoLogs today 40
     let ips = lines
@@ -276,7 +276,7 @@ let kippologs (today:DateTime): OtxPulse =
               |> List.choose id 
     let urls = getKippoUrls "SSHChannel session " "URL injected into SSH honeypot" lines
     let dir = new DirectoryInfo(config.["kippodldir"])
-    let today = DateTime.Today.ToString("M/d/yyyy")
+    let today = date.ToString("M/d/yyyy")
     let files  = dir.GetFiles() 
                  |> Array.filter(fun x -> x.LastWriteTime.ToString().StartsWith(today))
                  |> Array.map(fun x -> System.IO.File.ReadAllBytes(x.FullName))
@@ -299,8 +299,8 @@ let kippologs (today:DateTime): OtxPulse =
      description = "SSH honeypot logs for brute force attackers from a US /32";
      indicators = ips @ filehashes @ urls @ ircservers}
 
-let pmalogs (today:DateTime): OtxPulse = 
-    let today = today.ToString("yyyy-MM-dd")
+let pmalogs (date:DateTime): OtxPulse = 
+    let today = date.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["phpmyadminlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
                 |> Array.filter(fun x -> x.Length > 100)
@@ -341,8 +341,8 @@ let pmalogs (today:DateTime): OtxPulse =
      description = "phpMyAdmin honeypot logs from a US /32";
      indicators = ips @ urls @ filehashes @ ircservers}                
 
-let wordpotlogs (today:DateTime): OtxPulse = 
-    let today = today.ToString("yyyy-MM-dd")
+let wordpotlogs (date:DateTime): OtxPulse = 
+    let today = date.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["wordpotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
     let ips = lines 
@@ -373,8 +373,8 @@ let wordpotlogs (today:DateTime): OtxPulse =
      description = "WordPress honeypot logs for DDoS tracking and authentcation brute force from a US /32";
      indicators = ips @ ddosips @ ddosvictims}     
 
-let apachelogs (today:DateTime): OtxPulse =     
-    let today = today.ToString("dd/MMM/yyyy")
+let apachelogs (date:DateTime): OtxPulse =     
+    let today = date.ToString("dd/MMM/yyyy")
     let lines = File.ReadAllLines(config.["accesslog"])
                 |> Array.filter(fun x -> x.Contains("[" + today))
     let rules_json = File.ReadAllText(config.["wwwids_rules"])
@@ -459,10 +459,10 @@ let symlink (source:string) (dest:string) =
     p.StandardOutput.ReadToEnd() |> ignore
     ()
 
-let store (doSymlink: bool) (otx: OtxPulse) =
+let store (date:DateTime) (doSymlink: bool) (otx: OtxPulse) =
     log 2 "storing ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
-    let today = DateTime.Today.ToString("yyyyMMdd")
+    let today = date.ToString("yyyyMMdd")
     let dir = createDir("/Library/WebServer/Documents/data/" + otx.name.Split(' ').[0])
     let filename = dir.FullName + "/" + today + ".txt"
     System.IO.File.WriteAllText(filename, json)
@@ -478,10 +478,10 @@ let main args =
                   |> List.filter (fun x -> List.length (x.indicators) > 0)
     match Array.tryFind (fun x -> x = "-d") args with
     | None    -> List.map (fun x -> upload x) results 
-                 |> List.iter (fun x -> store true x) 
+                 |> List.iter (fun x -> store today true x) 
                  |> ignore
     | Some(_) -> List.iter (fun x -> printfn "%A" x) results |> ignore
                  results 
-                 |> List.iter (fun x -> store false x) 
+                 |> List.iter (fun x -> store today false x) 
                  |> ignore
     0
