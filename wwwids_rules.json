@@ -292,5 +292,12 @@
         "pat": "/console/login/LoginForm.jsp",
         "checkurl": -1,
         "name": "BEA WebLogic Administration Console LoginForm.jsp Cross-Site Scripting Vulnerability probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/10448/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/OA_HTML/OA.jsp",
+        "checkurl": -1,
+        "name": "Oracle E-Business Suite authentication bypass probe"
     }
 ]
