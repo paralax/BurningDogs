@@ -315,8 +315,9 @@ let pmalogs (date:DateTime): OtxPulse =
                |> Array.map(fun x -> getUrl x)
                |> Seq.concat
                |> Set.ofSeq
-               |> Set.map(fun x -> {Type = "URL"; indicator = x; description = "phpMyAdmin injected URL"})
                |> Set.toList
+               |> List.map(fun x -> urlToIndicators x "URL injected into phpMyAdmin page")
+               |> List.concat
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
                  |> List.choose id
