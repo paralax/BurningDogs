@@ -299,5 +299,19 @@
         "pat": "/OA_HTML/OA.jsp",
         "checkurl": -1,
         "name": "Oracle E-Business Suite authentication bypass probe"
+    },
+    {
+        "ref": "https://www.cvedetails.com/vulnerability-list/vendor_id-2724/Fckeditor.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/fckeditor/fckeditor.js",
+        "checkurl": -1,
+        "name": "FCKEditor fingerprint probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi_bin/user_network_connection.asp",
+        "checkurl": -1,
+        "name": "Router fingerprint probe"
     }
 ]
