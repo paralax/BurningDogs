@@ -375,8 +375,11 @@ let wordpotlogs (date:DateTime): OtxPulse =
 
 let apachelogs (date:DateTime): OtxPulse =     
     let today = date.ToString("dd/MMM/yyyy")
-    let lines = File.ReadAllLines(config.["accesslog"])
-                |> Array.filter(fun x -> x.Contains("[" + today))
+    let a = File.ReadAllLines(config.["accesslog"])
+            |> Array.filter(fun x -> x.Contains("[" + today))
+    let b = File.ReadAllLines(config.["accesslog"] + ".0")
+            |> Array.filter(fun x -> x.Contains("[" + today))
+    let lines = [| a; b |] |> Array.concat
     let rules_json = File.ReadAllText(config.["wwwids_rules"])
     let rules = JsonConvert.DeserializeObject<WwwidsRule list>(rules_json)
     let checkOneRule(rule:WwwidsRule) (row:string []) : (WwwidsRule * string []) option = 
