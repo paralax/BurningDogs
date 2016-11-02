@@ -320,5 +320,12 @@
         "pat": "/.git",
         "checkurl": -1,
         "name": "Backup file discovery probe"
+    },
+    {
+        "ref": "http://www.securiteam.com/unixfocus/6Z00L1F00K.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/phpinfo.php",
+        "checkurl": -1,
+        "name": "phpinfo probe"
     }
 ]
