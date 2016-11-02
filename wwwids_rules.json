@@ -313,5 +313,12 @@
         "pat": "/cgi_bin/user_network_connection.asp",
         "checkurl": -1,
         "name": "Router fingerprint probe"
+    },
+    {
+        "ref": "https://perishablepress.com/scanning-for-backup-files/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/.git",
+        "checkurl": -1,
+        "name": "Backup file discovery probe"
     }
 ]
