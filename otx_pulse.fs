@@ -219,7 +219,7 @@ let telnetlogs (date:DateTime): OtxPulse =
               |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
               |> Set.toList
               |> List.choose id
-    let urls = getKippoUrls "StripCrTelnetTransport" "URL injected into Telnet honeypot" lines
+    let urls = getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
                  |> List.choose id
@@ -274,7 +274,16 @@ let kippologs (date:DateTime): OtxPulse =
               |> Set.toList
               |> List.map(fun x -> ipToIndicator x "SSH bruteforce client IP")
               |> List.choose id 
-    let urls = getKippoUrls "SSHChannel session " "URL injected into SSH honeypot" lines
+    let urls = getKippoUrls "SSHChannel session" "URL injected into SSH honeypot" lines
+    let contents = urls
+                    |> List.map(fun x -> tryDownload x.indicator)
+                    |> List.choose id 
+    let dlfilehashes = contents
+                        |> List.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
+                        |> Seq.concat
+                        |> Seq.toList
+                        |> Set.ofList
+                        |> Set.toList  
     let dir = new DirectoryInfo(config.["kippodldir"])
     let today = date.ToString("M/d/yyyy")
     let files  = dir.GetFiles() 
@@ -297,7 +306,7 @@ let kippologs (date:DateTime): OtxPulse =
      references = []; 
      TLP = "green"; 
      description = "SSH honeypot logs for brute force attackers from a US /32";
-     indicators = ips @ filehashes @ urls @ ircservers}
+     indicators = ips @ filehashes @ dlfilehashes @ urls @ ircservers}
 
 let pmalogs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
