@@ -264,10 +264,10 @@ let telnetlogs (date:DateTime): OtxPulse =
 
 let kippologs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
-    // 2016-08-30T19:17:35-0400 [cowrie.ssh.transport.HoneyPotSSHFactory] New connection: 121.18.238.20:56045 (::ffff:192.168.1.144:2222) [session: cc6d7620]
+    // 2016-11-03T09:21:29-0400 [cowrie.ssh.factory.CowrieSSHFactory] New connection: 42.114.236.213:63526 (::ffff:192.168.1.50:2222) [session: a4f8ed71]
     let lines = gatherKippoLogs today 40
     let ips = lines
-              |> Array.filter(fun x -> x.Contains("cowrie.ssh.transport.HoneyPotSSHFactory] New connection"))
+              |> Array.filter(fun x -> x.Contains(".CowrieSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
               |> Array.map(fun x -> x.Split(':').[0])
               |> Set.ofArray
