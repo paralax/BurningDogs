@@ -327,5 +327,12 @@
         "pat": "/phpinfo.php",
         "checkurl": -1,
         "name": "phpinfo probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/shell",
+        "checkurl": -1,
+        "name": "/shell probe"
     }
 ]
