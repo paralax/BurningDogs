@@ -334,5 +334,12 @@
         "pat": "/shell",
         "checkurl": -1,
         "name": "/shell probe"
+    },
+    {
+        "ref": "http://www.securityfocus.com/archive/1/539567",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Config.cgi?.cab&action=get&category=Account.*",
+        "checkurl": -1,
+        "name": "AVTech Authentication bypass attempt"
     }
 ]
