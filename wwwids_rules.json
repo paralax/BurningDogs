@@ -44,7 +44,7 @@
     {
         "ref": "http://www.iss.net/security_center/reference/vuln/HTTP_testcgi.htm",
         "cve": "CVE-1999-0070",
-        "pat": "/cgi-bin/test-cgi",
+        "pat": "/cgi-bin/test",
         "checkurl": -1,
         "name": "Test-cgi sample CGI script allows remote retrieval of file listings"
     },
@@ -242,7 +242,7 @@
         "cve": "CVE-NOMATCH",
         "pat": "/wp-content/themes/purevision",
         "checkurl": -1,
-        "name": "Wordpress Themes Purevision File Upload Vulnerability"
+        "name": "Wordpress Themes Purevision File Upload Vulnerability",
     },
     {
         "ref": "https://www.pluginvulnerabilities.com/2016/07/14/local-file-inclusion-lfi-vulnerability-in-mailpress/",
@@ -334,5 +334,19 @@
         "pat": "/shell",
         "checkurl": -1,
         "name": "/shell probe"
+    },
+    {
+        "ref": "http://www.securityfocus.com/archive/1/539567",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Config.cgi?.cab&action=get&category=Account.*",
+        "checkurl": -1,
+        "name": "AVTech Authentication bypass attempt"
+    },
+    {   
+        "ref": "http://www.phpmyadmin.net/home_page/security/PMASA-2009-3.php",
+        "cve": "CVE-2009-1151",
+        "pat": "/phpmyadmin/",
+        "checkurl": -1,
+        "name": "phpMyAdmin PHP Code Injection RCE"
     }
 ]
