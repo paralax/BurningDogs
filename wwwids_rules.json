@@ -242,7 +242,7 @@
         "cve": "CVE-NOMATCH",
         "pat": "/wp-content/themes/purevision",
         "checkurl": -1,
-        "name": "Wordpress Themes Purevision File Upload Vulnerability",
+        "name": "Wordpress Themes Purevision File Upload Vulnerability"
     },
     {
         "ref": "https://www.pluginvulnerabilities.com/2016/07/14/local-file-inclusion-lfi-vulnerability-in-mailpress/",
