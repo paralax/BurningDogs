@@ -348,5 +348,19 @@
         "pat": "/phpmyadmin/",
         "checkurl": -1,
         "name": "phpMyAdmin PHP Code Injection RCE"
+    },
+    {
+        "ref": "http://www.exploit-id.com/web-applications/joomla-component-com_ccboard-multiple-vulnerabilities",
+        "cve": "CVE-NOMATCH",
+        "pat": "/index.php?option=com_user&task=register",
+        "checkurl": -1,
+        "name": "Joomla File/Shell Upload Check"
+    },
+    {
+        "ref": "http://www.kerneronsec.com/2016/02/remote-code-execution-in-cctv-dvrs-of.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/language/Swedish${IFS}&&echo${IFS}",
+        "checkurl": -1,
+        "name": "Remote Code Execution in CCTV-DVR"
     }
 ]
