@@ -362,5 +362,12 @@
         "pat": "/language/Swedish${IFS}&&echo${IFS}",
         "checkurl": -1,
         "name": "Remote Code Execution in CCTV-DVR"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/34507/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/nagiosxi/login.php",
+        "checkurl": -1,
+        "name": "Nagios XI vulnerability probe"
     }
 ]
