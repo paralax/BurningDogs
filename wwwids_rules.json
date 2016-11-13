@@ -369,5 +369,12 @@
         "pat": "/nagiosxi/login.php",
         "checkurl": -1,
         "name": "Nagios XI vulnerability probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Http/DataLayCfg.xml",
+        "checkurl": -1,
+        "name": "/Http/DataLayCfg.xml probe"
     }
 ]
