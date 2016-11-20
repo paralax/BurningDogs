@@ -3,7 +3,7 @@
         "ref": "http://www.frsirt.com/english/advisories/2005/2473",
         "cve": "CVE-2005-3738",
         "pat": "index.php?option=com_sef&Itemid=&mosConfig_absolute_path=",
-        "checkurl": -1,
+        "checkurl": 6,
         "name": "Mambo \"mosConfig_absolute_path\" Remote File Inclusion Vulnerability"
     },
     {
@@ -31,7 +31,7 @@
         "ref": "http://www.nessus.org/plugins/index.php?view=single&id=21189",
         "cve": "CVE-2004-2740",
         "pat": "/phprojekt/lib/config.inc.php?path_pre=",
-        "checkurl": -1,
+        "checkurl": 6,
         "name": "PHProjekt path_pre Parameter Remote File Include Vulnerability"
     },
     {
@@ -87,7 +87,7 @@
         "ref": "",
         "cve": "CVE-NOMATCH",
         "pat": "/index.php?error=",
-        "checkurl": -1,
+        "checkurl": 6,
         "name": "index.php error Parameter Remote File Include Vulnerability"
     },
     {
@@ -163,7 +163,7 @@
     {
         "ref": "https://www.exploit-db.com/exploits/27048/",
         "cve": "CVE-2006-0125",
-        "pat": "/appserv/main.php?appserv_root=http://",
+        "pat": "/appserv/main.php?appserv_root=",
         "checkurl": 6,
         "name": "AppServ Open Project Remote File Include exploit"
     },
