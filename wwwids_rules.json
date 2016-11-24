@@ -376,5 +376,26 @@
         "pat": "/Http/DataLayCfg.xml",
         "checkurl": -1,
         "name": "/Http/DataLayCfg.xml probe"
+    },
+    {   
+        "ref": "https://wpvulndb.com/vulnerabilities/8198",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-cache.php",
+        "checkurl": -1,
+        "name": "WP Cache PHP object injection attempt"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-login.php",
+        "checkurl": -1,
+        "name": "WordPress login probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/36575/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/jmx-console/HtmlAdaptor?action=inspectMBean",
+        "checkurl": -1,
+        "name": "JBoss AS 3/4/5/6 - Remote Command Execution attempt"
     }
 ]
