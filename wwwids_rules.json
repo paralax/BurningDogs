@@ -156,7 +156,7 @@
     {
         "ref": "https://www.saotn.org/joomla-websites-abused-open-proxy-denial-service-attacks/",
         "cve": "",
-        "pat": "plugin_googlemap2/plugin_googlemap2_proxy.php?url=http://",
+        "pat": "/plugin_googlemap2/plugin_googlemap2_proxy.php?url=",
         "checkurl": 6,
         "name": "Joomla! Googlemaps plugin proxy abuse"
     },
