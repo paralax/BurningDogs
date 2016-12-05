@@ -403,6 +403,6 @@
         "cve": "CVE-2014-2840",
         "pat": "/UD/act?1",
         "checkurl": -1,
-        "name": "Exploit – TR-069 SOAP RCE NewNTPServer exploit attempt"
+        "name": "Exploi - TR-069 SOAP RCE NewNTPServer exploit attempt"
     }
 ]
