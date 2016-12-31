@@ -213,7 +213,7 @@ let getKippoUrls (marker:string) (description:string) (lines:string []) : OtxInd
 let telnetlogs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
     // 2016-08-31T08:31:10-0400 [cowrie.telnet.transport.HoneyPotTelnetFactory] New connection: ::ffff:192.168.1.126:52034 (::ffff:192.168.1.144:2223) [session: 1]
-    let lines = gatherKippoLogs today 40
+    let lines = gatherKippoLogs today 120
     let ips = lines
               |> Array.filter(fun x -> x.Contains("HoneyPotTelnetFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -268,7 +268,7 @@ let telnetlogs (date:DateTime): OtxPulse =
 let kippologs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
     // 2016-11-03T09:21:29-0400 [cowrie.ssh.factory.CowrieSSHFactory] New connection: 42.114.236.213:63526 (::ffff:192.168.1.50:2222) [session: a4f8ed71]
-    let lines = gatherKippoLogs today 40
+    let lines = gatherKippoLogs today 120
     let ips = lines
               |> Array.filter(fun x -> x.Contains(".CowrieSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
