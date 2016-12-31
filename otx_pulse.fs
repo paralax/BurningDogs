@@ -263,7 +263,7 @@ let telnetlogs (date:DateTime): OtxPulse =
      references = []; 
      TLP = "green"; 
      description = "Telnet honeypot logs for brute force attackers from a US /32";
-     indicators = List.filter (fun x -> Set.contains x exemptions <> true) (ips @ allurls @ filehashes @ c2indicators)}
+     indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ allurls @ filehashes @ c2indicators)}
 
 let kippologs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
@@ -309,7 +309,7 @@ let kippologs (date:DateTime): OtxPulse =
      references = []; 
      TLP = "green"; 
      description = "SSH honeypot logs for brute force attackers from a US /32";
-     indicators = List.filter (fun x -> Set.contains x exemptions <> true) (ips @ filehashes @ dlfilehashes @ urls @ ircservers)}
+     indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ filehashes @ dlfilehashes @ urls @ ircservers)}
 
 let pmalogs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
@@ -352,7 +352,7 @@ let pmalogs (date:DateTime): OtxPulse =
      references = [];
      TLP = "green";
      description = "phpMyAdmin honeypot logs from a US /32";
-     indicators = List.filter (fun x -> Set.contains x exemptions <> true) (ips @ urls @ filehashes @ ircservers)}                
+     indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ urls @ filehashes @ ircservers)}                
 
 let wordpotlogs (date:DateTime): OtxPulse = 
     let today = date.ToString("yyyy-MM-dd")
@@ -384,7 +384,7 @@ let wordpotlogs (date:DateTime): OtxPulse =
      references = [];
      TLP = "green";
      description = "WordPress honeypot logs for DDoS tracking and authentcation brute force from a US /32";
-     indicators = List.filter (fun x -> Set.contains x exemptions <> true) (ips @ ddosips @ ddosvictims)}     
+     indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ ddosips @ ddosvictims)}     
 
 let apachelogs (date:DateTime): OtxPulse =     
     let today = date.ToString("dd/MMM/yyyy")
@@ -447,7 +447,7 @@ let apachelogs (date:DateTime): OtxPulse =
      references = [];
      TLP = "green";
      description = "Apache honeypot logs for common exploit attempts from a US /32";
-     indicators = List.filter (fun x -> Set.contains x exemptions <> true) (indicators @ fileindicators @ ircservers @ urls)}
+     indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (indicators @ fileindicators @ ircservers @ urls)}
 
 let upload (otx: OtxPulse) = 
     log 2 "uploading ..."
