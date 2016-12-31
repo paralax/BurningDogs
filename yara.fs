@@ -51,7 +51,7 @@ let yarascan (rulefile: string) (filename: string) : YaraMatches =
             let [|offset;name;data|] = line.Split([|':'|])
             {Offset=offset |> int;
             Name=name;
-            Data=data.Trim()}
+            Data=System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(data.Trim()))}
         input |> Array.map splitLine |> List.ofArray
 
     let yaraMeta(input: string) : YaraMeta =
