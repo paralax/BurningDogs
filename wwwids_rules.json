@@ -403,6 +403,41 @@
         "cve": "CVE-2014-2840",
         "pat": "/UD/act?1",
         "checkurl": -1,
-        "name": "Exploi - TR-069 SOAP RCE NewNTPServer exploit attempt"
+        "name": "Exploit - TR-069 SOAP RCE NewNTPServer exploit attempt"
+    },
+    {   
+        "checkurl": -1,
+        "cve": "CVE-2015-7991",
+        "name": "SAP HANA password retrieval probe",
+        "pat": "/sap/hana/xs/wdisp/admin/",
+        "ref": "https://www.troopers.de/media/filer_public/b2/22/b222b93e-49d3-4e89-8926-c78c0a47ecd2/troopers_2016_-_onapsis_presentation_final.pdf"
+    },
+    {   
+        "checkurl": -1,
+        "cve": "CVE-2014-8356",
+        "name": "ZHONE Insecure Direct Object Reference probe",
+        "pat": "/menuBcm.js",
+        "ref": "https://www.exploit-db.com/exploits/38453/"
+    },
+    {   
+        "checkurl": -1,
+        "cve": "CVE-2014-8357",
+        "name": "ZHONE Admin Password Disclosure probe",
+        "pat": "/backupsettings.html",
+        "ref": "https://www.exploit-db.com/exploits/38453/"
+    },
+    {   
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Phpcms authkey leak vulnerability probe",
+        "pat": "/api.php?op=get_menu&act=ajax_getlist&callback=aaaaa&parentid=0&key=authkey&cachefile=..\\..\\..\\phpsso_server\\caches\\caches_admin\\caches_data\\applist&path=admin",
+        "ref": "http://longscan.com/#!/n/1197"
+    },
+    {   
+        "checkurl": -1,
+        "cve": "CVE-2009-1151",
+        "name": "PHP phpMyAdmin PHP code injection probe",
+        "pat": "?session_to_unset=123&token=&_SESSION",
+        "ref": "https://www.exploit-db.com/exploits/8921/"
     }
 ]
