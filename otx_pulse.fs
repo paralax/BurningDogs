@@ -396,7 +396,7 @@ let apachelogs (date:DateTime): OtxPulse =
     let rules_json = File.ReadAllText(config.["wwwids_rules"])
     let rules = JsonConvert.DeserializeObject<WwwidsRule list>(rules_json)
     let checkOneRule(rule:WwwidsRule) (row:string []) : (WwwidsRule * string []) option = 
-        match row.[6].Contains(rule.pat) || row.[11].Contains(rule.pat) with
+        match System.Web.HttpUtility.UrlDecode(row.[6]).Contains(rule.pat) || System.Web.HttpUtility.UrlDecode(row.[11]).Contains(rule.pat) with
         | true  -> Some(rule, row)
         | false -> None
     let checkRules (rules:WwwidsRule list) (row:string []) : (WwwidsRule * string []) option list =
