@@ -444,14 +444,14 @@ let apachelogs (date:DateTime): OtxPulse =
     let errorclients = lines 
                        |> Array.map(fun x -> x.Split([|' '|], 12)) 
                        |> Array.filter (fun x -> x.[8].StartsWith("20") <> true)
-                       |> Array.map x.[0]
+                       |> Array.map (fun x -> x.[0])
                        |> Array.sort 
                        |> Seq.groupBy (fun x -> x) 
                        |> Map.ofSeq 
-                       |> Map.map (fun k v -> Seq.length v)
-                       |> Map.filter (fun k v -> v > 3)
+                       |> Map.map (fun _ v -> Seq.length v)
+                       |> Map.filter (fun _ v -> v > 3)
                        |> Map.toList
-                       |> List.map (fun x y -> ipToIndicator x "Excessive errors - possible probe activity" )
+                       |> List.map (fun (x,_) -> ipToIndicator x "Excessive errors - possible probe activity" )
                        |> List.choose id
     {name = "Apache honeypot logs for " + today;
      Public = true;
