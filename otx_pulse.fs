@@ -242,14 +242,12 @@ let telnetlogs (date:DateTime): OtxPulse =
     let filehashes = contents
                      |> List.map(fun x -> fileToIndicator x "Telnet honeypot downloaded file")
                      |> Seq.concat
-                     |> Seq.toList
-                     |> Set.ofList
+                     |> Set.ofSeq
                      |> Set.toList    
     let c2indicators = contents 
                        |> List.map getIpPort
                        |> Seq.concat
-                       |> Seq.toList
-                       |> Set.ofList
+                       |> Set.ofSeq
                        |> Set.toList
                        |> List.map (fun x -> x.Split(':'))
                        |> List.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))
@@ -284,8 +282,7 @@ let kippologs (date:DateTime): OtxPulse =
     let dlfilehashes = contents
                         |> List.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
                         |> Seq.concat
-                        |> Seq.toList
-                        |> Set.ofList
+                        |> Set.ofSeq
                         |> Set.toList  
     let dir = new DirectoryInfo(config.["kippodldir"])
     let today = date.ToString("M/d/yyyy")
@@ -295,8 +292,7 @@ let kippologs (date:DateTime): OtxPulse =
     let filehashes = files 
                      |> Array.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
                      |> Seq.concat
-                     |> Seq.toList
-                     |> Set.ofList
+                     |> Set.ofSeq
                      |> Set.toList
     let ircservers = files 
                      |> Array.map botToIndicator 
@@ -338,8 +334,7 @@ let pmalogs (date:DateTime): OtxPulse =
     let filehashes = contents 
                      |> List.map(fun x -> fileToIndicator x "phpMyAdmin injected malware hash")
                      |> Seq.concat
-                     |> Seq.toList
-                     |> Set.ofList
+                     |> Set.ofSeq
                      |> Set.toList
     let ircservers = contents 
                      |> List.map botToIndicator 
@@ -449,7 +444,7 @@ let apachelogs (date:DateTime): OtxPulse =
                        |> Seq.groupBy (fun x -> x) 
                        |> Map.ofSeq 
                        |> Map.map (fun _ v -> Seq.length v)
-                       |> Map.filter (fun _ v -> v > 3)
+                       |> Map.filter (fun _ v -> v > int(config.["httperrorrate"]))
                        |> Map.toList
                        |> List.map (fun (x,_) -> ipToIndicator x "Excessive errors - possible probe activity" )
                        |> List.choose id
