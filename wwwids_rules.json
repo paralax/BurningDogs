@@ -439,5 +439,19 @@
         "name": "PHP phpMyAdmin PHP code injection probe",
         "pat": "?session_to_unset=123&token=&_SESSION",
         "ref": "https://www.exploit-db.com/exploits/8921/"
+    },
+    {   
+        "checkurl": -1,
+        "cve": "CVE-2012-4870",
+        "name": "FreePBX 2.9 cross site scripting probe",
+        "pat": "/recordings/index.php",
+        "ref": "https://vuldb.com/?id.4906"
+    },
+    {   
+        "ref": "https://github.com/arall/JoomlaVulnScanner/blob/master/joomlaVulnScanner.php",
+        "cve": "CVE-NOMATCH",
+        "pat": "/language/en-GB/en-GB.xml",
+        "checkurl": -1,
+        "name": "Joomla! version probe"
     }
 ]
