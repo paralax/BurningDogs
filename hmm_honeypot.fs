@@ -14,35 +14,6 @@ open Accord.Statistics.Models.Markov.Learning
 open Accord.Statistics.Models.Markov
 
 (*
-let sequences = [|
-    [| 0;5;3;2;5;2|];
-    [| 0;5;4;2;5;2|];
-    [| 0;5;2;3;5;2|];
-    [| 0;5;2;2;5;3|];
-    [| 0;1;1;1;1;0;1;1;1;1 |];
-    [| 0;1;1;1;0;1;1;1;1;1 |];
-    [| 0;1;1;1;1;1;1;1;1;1 |];
-    [| 0;1;1;1;1;1 |];
-    [| 0;1;1;1;1;1;1 |];
-    [| 0;1;1;1;1;1;1;1;1;1 |];
-    [| 0;1;1;1;1;1;1;1;1;1 |];
-|]
-
-let hmm = new HiddenMarkovModel(7,6)
-let teacher = new BaumWelchLearning(hmm)
-teacher.Tolerance = 0.0001
-teacher.Iterations = 0 
-teacher.Learn(sequences)
-
-let l1 = Math.Exp(hmm.LogLikelihood([|0;1|]))
-let l2 = Math.Exp(hmm.LogLikelihood([|0;1;1;1|]))
-let l3 = Math.Exp(hmm.LogLikelihood([|1;1|]))
-let l4 = Math.Exp(hmm.LogLikelihood([|1;0;0;0;|]))
-let l5 = Math.Exp(hmm.LogLikelihood([|0; 1; 0; 1; 1; 1; 1; 0; 1 |]))
-let l6 = Math.Exp(hmm.LogLikelihood([|0; 1; 1; 1; 1; 1; 1; 1; 1 |]))
-*)
-
-(*
     idea
     - train on a batch of honeypot log files, look for the sequence of commands
         - first build a set of commands
@@ -65,8 +36,6 @@ let parse_one(logfile: string) : (string [] * Map<string, string list>) =
         | true  -> Map.add sessionid (sessions.[sessionid] @ [cmd]) sessions
         | false -> Map.add sessionid [cmd] sessions
     let rec parselines (cmds: Set<string>) (sessions: Map<string, string list>) (lines: string list) = 
-        // returns an array of unique commands
-        // needs a map of string -> array, where string is the session id and 
         match lines with
         | h::t -> parselines (Set.add (getcmd h) cmds) (addcmd (getsessionid h) (getcmd h) sessions) t
         | []   -> (cmds |> Set.toArray, sessions)
@@ -93,6 +62,8 @@ let parse(logfiles: string list): (string [] * int [] []) =
                                                 |> Array.map (fun x -> Array.findIndex (fun y -> x = y) cmds ))
     (cmds, sequences)
 
+(* build the HMM model based on previous data
+*)
 let train(logfiles: string list) : (string [] * HiddenMarkovModel) = 
     let cmds, sequences = parse logfiles
     let states = Array.max (Array.map (fun x -> Array.length x) sequences)
