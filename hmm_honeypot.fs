@@ -1,10 +1,3 @@
-(*
-    #I "/Users/jose/code/fsharp/ML/Accord.NET-3.3.0/"
-#r "Debug/Accord.dll"
-#r "Debug/Accord.Statistics.dll"
-#r "Debug/Accord.Math.dll"
-    *)
-
 // http://accord-framework.net/docs/html/T_Accord_Statistics_Models_Markov_Learning_BaumWelchLearning.htm
 
 open System
