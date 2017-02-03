@@ -12,4 +12,15 @@ Target "otx_pulse.exe" (fun _ ->
     ) 
 )
 
+Target "hmm_honeypot.exe" (fun _ ->
+    ["hmm_honeypot.fs"]
+    |> Fsc (fun p -> 
+        {p with References = 
+            ["packages/Accord/lib/net40/Accord.dll"; 
+             "packages/Accord.Statistics/lib/net40/Accord.Statistics.dll";
+             "packages/Accord.Math/lib/net40/Accord.Math.dll"
+            ]}
+    )
+)
+
 RunTargetOrDefault "otx_pulse.exe"

@@ -1,5 +1,7 @@
 source http://nuget.org/api/v2
 
+nuget Accord = 3.4.0
+nuget Accord.Extensions.Math = 3.0.1
 nuget Newtonsoft.Json = 8.0.3
 nuget FAKE ~> 3.4
 
