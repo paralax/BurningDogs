@@ -89,7 +89,9 @@ let unusual (hmm: HiddenMarkovModel) (cmds: string []) (threshold: float) (logfi
 
 [<EntryPoint>]
 let main args =
-    let cmds, hmm = train (List.ofArray (System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.??")))
+    let cmds, hmm = System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.??")
+                    |> List.ofArray
+                    |> train
     System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.?")
     |> Array.map (fun x -> unusual hmm cmds 0.001 x)
     |> Array.iter (fun x -> printfn "%A" x)
