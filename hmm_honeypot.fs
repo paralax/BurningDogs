@@ -59,7 +59,8 @@ let parse(logfiles: string list): (string [] * int [] []) =
 *)
 let train(logfiles: string list) : (string [] * HiddenMarkovModel) = 
     let cmds, sequences = parse logfiles
-    let states = Array.max (Array.map (fun x -> Array.length x) sequences)
+    let states =  Array.map (fun x -> Array.length x) sequences
+                  |> Array.max
     let symbols = 1 + (Array.concat sequences |> Array.max)
     let hmm = new HiddenMarkovModel(states, symbols)
     let teacher = new BaumWelchLearning(hmm)
