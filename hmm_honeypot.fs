@@ -72,7 +72,6 @@ let train(logfiles: string list) : (string [] * HiddenMarkovModel) =
    yields a map of interesting sessions keyed by session ID -> sequence of commands
 *)
 let unusual (hmm: HiddenMarkovModel) (cmds: string []) (threshold: float) (logfile: string) : Map<string,string list> = 
-    let _, sessions = parse_one logfile
     let tryFindCmd (cmds : string []) (cmd : string) : int = 
         let res = Array.tryFindIndex (fun x -> x = cmd) cmds
         match res with
@@ -82,7 +81,9 @@ let unusual (hmm: HiddenMarkovModel) (cmds: string []) (threshold: float) (logfi
         List.map (fun x -> tryFindCmd cmds x) session |> Array.ofList
     let probability (sequence : int []) : float =
         Math.Exp(hmm.LogLikelihood(sequence))
-    Map.map (fun _ v -> (v, probability (session_to_sequence cmds v))) sessions
+    parse_one logfile
+    |> snd 
+    |> Map.map (fun _ v -> (v, probability (session_to_sequence cmds v))) 
     |> Map.filter (fun _ (_,p) -> p < threshold)
     |> Map.map (fun _ (v,_) -> v)
 
