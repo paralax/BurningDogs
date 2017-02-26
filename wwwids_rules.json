@@ -453,5 +453,33 @@
         "pat": "/language/en-GB/en-GB.xml",
         "checkurl": -1,
         "name": "Joomla! version probe"
+    },
+        {
+        "ref": "https://github.com/bikashdash/Axis_Vuln_Webcam/blob/master/Axis_vuln_webcam.nse",
+        "cve": "CVE-NOMATCH",
+        "pat": "/axis-cgi/",
+        "checkurl": -1,
+        "name": "Axis IP Camera probe"
+    },
+    {
+        "ref": "https://wiki.apache.org/httpd/ProxyAbuse",
+        "cve": "CVE-NOMATCH",
+        "pat": "/check_proxy",
+        "checkurl": -1,
+        "name": "Open proxy probe"
+    },
+    {
+        "ref": "https://labs.detectify.com/2012/11/16/local-file-inclusions-in-perlcgi/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/",
+        "checkurl": 6,
+        "name": "cgi-bin RFI attempt"
+    },
+        {
+        "ref": "https://translate.google.com/translate?hl=en&sl=zh-CN&u=https://www.meipian.cn/c7xz4ci&prev=search",
+        "cve": "CVE-NOMATCH",
+        "pat": "/MJKCustomer/CLogin.aspx",
+        "checkurl": -1,
+        "name": "MagicLife login probe"
     }
 ]
