@@ -481,5 +481,12 @@
         "pat": "/MJKCustomer/CLogin.aspx",
         "checkurl": -1,
         "name": "MagicLife login probe"
+    },
+    {   
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/mainAction.action",
+        "checkurl": -1,
+        "name": "Apache Struts exploit probe"
     }
 ]
