@@ -175,6 +175,7 @@ let storeMalware(data : byte []) : string =
     filename
 
 let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
+    log 3 ">>>> urlToIndicators - %s" urlstr
     try 
         let url = new Uri(urlstr.Split('\n').[0])
         let domainToIndicator (uri: Uri) : OtxIndicator list =
@@ -182,6 +183,7 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
                 { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> Array.choose id |> List.ofArray)
             with
             | :? System.Net.Sockets.SocketException as ex -> [{ Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}]
+            | :? System.StackOverflowException as ex -> []
         let netlocToIndicator (uri: Uri) : OtxIndicator list = 
             match uri.HostNameType.ToString() with
             | "Dns" -> domainToIndicator uri
@@ -189,12 +191,15 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
         {Type = "URL"; indicator = url.ToString(); description = description}::(netlocToIndicator url)
     with
     | :? System.UriFormatException as ex -> []
+    | :? System.StackOverflowException as ex -> []
 
 let gatherKippoLogs (today:string) (n:int) : string [] =
     let a = File.ReadAllLines(config.["kippolog"])
             |> Array.filter(fun x -> x.StartsWith(today))
     let b = [1..n] 
-            |> List.map (fun x -> System.IO.File.ReadAllLines(config.["kippolog"] + "." + string(x))) 
+            |> List.map (fun x -> System.IO.File.ReadAllLines(config.["kippolog"] + "." + string(x))
+                                  |> Array.filter(fun x -> x.StartsWith(today))
+                         ) 
             |> Array.concat
     [a;b] |> Array.concat
 
@@ -211,9 +216,11 @@ let getKippoUrls (marker:string) (description:string) (lines:string []) : OtxInd
     |> Set.toList
 
 let telnetlogs (date:DateTime): OtxPulse = 
+    log 3 ">>> telnetlogs"
     let today = date.ToString("yyyy-MM-dd")
     // 2016-08-31T08:31:10-0400 [cowrie.telnet.transport.HoneyPotTelnetFactory] New connection: ::ffff:192.168.1.126:52034 (::ffff:192.168.1.144:2223) [session: 1]
-    let lines = gatherKippoLogs today 120
+    let lines = gatherKippoLogs today 30
+    log 3 ">>> read lines"
     let ips = lines
               |> Array.filter(fun x -> x.Contains("HoneyPotTelnetFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -222,10 +229,20 @@ let telnetlogs (date:DateTime): OtxPulse =
               |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
               |> Set.toList
               |> List.choose id
+    log 3 ">>> read IPs"
+    let urls = seq [0..1000..(Array.length lines) ] 
+               |> Seq.windowed 2 
+               |> Seq.map (fun [|x;y|] -> getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines.[x..y]) 
+               |> Seq.concat 
+               |> Seq.toList
+               |> Set.ofList
+               |> Set.toList
     let urls = getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines
+    log 3 ">>> read urls"
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
                  |> List.choose id
+    log 3 ">>> read contents"
     let extraurls = contents
                     |> List.map (fun x -> Encoding.ASCII.GetString x)
                     |> List.map getUrl
@@ -234,16 +251,20 @@ let telnetlogs (date:DateTime): OtxPulse =
                     |> Set.toSeq
                     |> Seq.map (fun x -> urlToIndicators x "URL injected into Telnet honeypot") 
                     |> List.concat
+    log 3 ">>> read extraurls"
     let contents = extraurls
                      |> List.map(fun x -> tryDownload x.indicator)
                      |> List.choose id 
+    log 3 ">>> read contents"
     let _ = contents 
             |> List.map storeMalware
+    log 3 ">>> stored contents"
     let filehashes = contents
                      |> List.map(fun x -> fileToIndicator x "Telnet honeypot downloaded file")
                      |> Seq.concat
                      |> Set.ofSeq
                      |> Set.toList    
+    log 3 ">>> hashed files"
     let c2indicators = contents 
                        |> List.map getIpPort
                        |> Seq.concat
@@ -251,10 +272,12 @@ let telnetlogs (date:DateTime): OtxPulse =
                        |> Set.toList
                        |> List.map (fun x -> x.Split(':'))
                        |> List.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))
-                       |> List.choose id            
+                       |> List.choose id    
+    log 3 ">>> got c2 indicators"        
     let allurls = urls @ extraurls
                   |> Set.ofList
-                  |> Set.toList                  
+                  |> Set.toList         
+    GC.Collect()         
     {name = "Telnet honeypot logs for " + today; 
      Public = true; 
      tags = ["Telnet"; "bruteforce"; "honeypot"]; 
@@ -264,9 +287,10 @@ let telnetlogs (date:DateTime): OtxPulse =
      indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ allurls @ filehashes @ c2indicators)}
 
 let kippologs (date:DateTime): OtxPulse = 
+    log 3 ">>> kippologs"
     let today = date.ToString("yyyy-MM-dd")
     // 2016-11-03T09:21:29-0400 [cowrie.ssh.factory.CowrieSSHFactory] New connection: 42.114.236.213:63526 (::ffff:192.168.1.50:2222) [session: a4f8ed71]
-    let lines = gatherKippoLogs today 120
+    let lines = gatherKippoLogs today 30
     let ips = lines
               |> Array.filter(fun x -> x.Contains(".CowrieSSHFactory] New connection"))
               |> Array.map(fun x -> x.Split(' ').[4])
@@ -299,6 +323,7 @@ let kippologs (date:DateTime): OtxPulse =
                      |> Seq.concat
                      |> Set.ofSeq
                      |> Set.toList
+    GC.Collect()         
     {name = "SSH honeypot logs for " + today; 
      Public = true; 
      tags = ["SSH"; "bruteforce"; "honeypot"]; 
@@ -308,6 +333,7 @@ let kippologs (date:DateTime): OtxPulse =
      indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ filehashes @ dlfilehashes @ urls @ ircservers)}
 
 let pmalogs (date:DateTime): OtxPulse = 
+    log 3 ">>> pmalogs"
     let today = date.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["phpmyadminlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
@@ -341,6 +367,7 @@ let pmalogs (date:DateTime): OtxPulse =
                      |> List.concat
                      |> Set.ofList
                      |> Set.toList
+    GC.Collect()         
     {name = "phpMyAdmin honeypot logs for " + today;
      Public = true;
      tags = ["phpMyAdmin"; "honeypot"];
@@ -350,6 +377,7 @@ let pmalogs (date:DateTime): OtxPulse =
      indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ urls @ filehashes @ ircservers)}                
 
 let wordpotlogs (date:DateTime): OtxPulse = 
+    log 3 ">>> wordpotlogs"
     let today = date.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["wordpotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
@@ -373,6 +401,7 @@ let wordpotlogs (date:DateTime): OtxPulse =
                       |> List.concat
                       |> Set.ofList
                       |> Set.toList
+    GC.Collect()         
     {name = "WordPress honeypot logs for " + today;
      Public = true;
      tags = ["wordpress"; "honeypot"; "bruteforce"];
@@ -382,6 +411,7 @@ let wordpotlogs (date:DateTime): OtxPulse =
      indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (ips @ ddosips @ ddosvictims)}     
 
 let apachelogs (date:DateTime): OtxPulse =     
+    log 3 ">>> apachelogs"
     let today = date.ToString("dd/MMM/yyyy")
     let a = File.ReadAllLines(config.["accesslog"])
             |> Array.filter(fun x -> x.Contains("[" + today))
@@ -396,11 +426,17 @@ let apachelogs (date:DateTime): OtxPulse =
         | false -> None
     let checkRules (rules:WwwidsRule list) (row:string []) : (WwwidsRule * string []) option list =
         List.map(fun x -> checkOneRule x row) rules
-    let checkedRowToIndicator(rule:WwwidsRule, row:string []) : OtxIndicator =
-        let ip = Net.IPAddress.Parse(row.[0])
+    let checkedRowToIndicator(rule:WwwidsRule, row:string []) : OtxIndicator option =
+        try
+            let ip = Net.IPAddress.Parse(row.[0])
+            ipToIndicator (ip.ToString()) (rule.name + " attempt client IP")
+        with
+        | :? System.StackOverflowException as ex -> None
+        (* 
         match ip.AddressFamily.ToString() with
         | "InterNetworkV6" -> {Type = "IPv6"; indicator = ip.ToString(); description = (rule.name + " attempt client IP")}
         | "InterNetwork"   -> {Type = "IPv4"; indicator = ip.ToString(); description = (rule.name + " attempt client IP")}
+        *)
     let rulehits = lines
                    |> Array.map(fun x -> x.Split([|' '|], 12)) 
                    |> Array.filter (fun x -> x.[8].StartsWith("40"))
@@ -409,6 +445,7 @@ let apachelogs (date:DateTime): OtxPulse =
                    |> Seq.choose id
     let indicators = rulehits
                      |> Seq.map checkedRowToIndicator
+                     |> Seq.choose id
                      |> Set.ofSeq
                      |> Set.toList
     let unwind rule urls = Seq.map (fun x -> (rule, x)) urls                      
@@ -448,6 +485,7 @@ let apachelogs (date:DateTime): OtxPulse =
                        |> Map.toList
                        |> List.map (fun (x,_) -> ipToIndicator x "Excessive errors - possible probe activity" )
                        |> List.choose id
+    GC.Collect()         
     {name = "Apache honeypot logs for " + today;
      Public = true;
      tags = ["apache"; "honeypot"; "exploits"];
@@ -503,7 +541,7 @@ let main args =
     | None    -> List.map (fun x -> upload x) results 
                  |> List.iter (fun x -> store today true x) 
                  |> ignore
-    | Some(_) -> List.iter (fun x -> printfn "%A" x) results |> ignore
+    | Some(_) -> List.iter (fun x -> log 3 "%A" x) results |> ignore
                  results 
                  |> List.iter (fun x -> store today false x) 
                  |> ignore
