@@ -488,5 +488,12 @@
         "pat": "/mainAction.action",
         "checkurl": -1,
         "name": "Apache Struts exploit probe"
+    },
+    {
+        "ref": "http://www.voidcn.com/blog/nixawk/article/p-6515010.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/current_config/",
+        "checkurl": -1,
+        "name": "Dahua camera backdoor probe"
     }
 ]
