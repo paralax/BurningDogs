@@ -495,5 +495,19 @@
         "pat": "/current_config/",
         "checkurl": -1,
         "name": "Dahua camera backdoor probe"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2015-0002",
+        "name": "D-Link Onvif service camera stack overflow probe",
+        "pat": "/onvif/device_service",
+        "ref": "https://github.com/ud2/advisories/tree/master/embedded/dlink/nocve-2015-0002"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "FreePBX directory probe",
+        "pat": "/recordings/theme/",
+        "ref": "https://community.freepbx.org/t/whats-going-on-with-this-alleged-security-exploit-in-fpbx/13637"
     }
 ]
