@@ -230,12 +230,14 @@ let telnetlogs (date:DateTime): OtxPulse =
               |> Set.toList
               |> List.choose id
     log 3 ">>> read IPs"
+    (* 
     let urls = seq [0..1000..(Array.length lines) ] 
                |> Seq.windowed 2 
                |> Seq.collect (fun [|x;y|] -> getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines.[x..y]) 
                |> Seq.toList
                |> Set.ofList
                |> Set.toList
+               *)
     let urls = getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines
     log 3 ">>> read urls"
     let contents = urls
