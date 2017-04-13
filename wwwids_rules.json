@@ -509,5 +509,12 @@
         "name": "FreePBX directory probe",
         "pat": "/recordings/theme/",
         "ref": "https://community.freepbx.org/t/whats-going-on-with-this-alleged-security-exploit-in-fpbx/13637"
+    },
+    {
+        "ref": "https://gist.github.com/gerry/d977490319a474b9d777538452018b54",
+        "cve": "CVE-2013-2618",
+        "pat": "/plugins/weathermap/editor.php",
+        "checkurl": -1,
+        "name": "Weathermap Editor (cacti plugin) Arbitrary Code Execution probe"
     }
 ]
