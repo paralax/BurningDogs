@@ -232,8 +232,7 @@ let telnetlogs (date:DateTime): OtxPulse =
     log 3 ">>> read IPs"
     let urls = seq [0..1000..(Array.length lines) ] 
                |> Seq.windowed 2 
-               |> Seq.map (fun [|x;y|] -> getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines.[x..y]) 
-               |> Seq.concat 
+               |> Seq.collect (fun [|x;y|] -> getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines.[x..y]) 
                |> Seq.toList
                |> Set.ofList
                |> Set.toList
@@ -363,8 +362,7 @@ let pmalogs (date:DateTime): OtxPulse =
                      |> Set.ofSeq
                      |> Set.toList
     let ircservers = contents 
-                     |> List.map botToIndicator 
-                     |> List.concat
+                     |> List.collect botToIndicator 
                      |> Set.ofList
                      |> Set.toList
     GC.Collect()         
@@ -452,12 +450,10 @@ let apachelogs (date:DateTime): OtxPulse =
     let urls = rulehits
                 |> Seq.filter(fun (rule, _) -> rule.checkurl > -1)
                 |> Seq.map(fun (rule, row) -> (rule, getUrl row.[rule.checkurl])) 
-                |> Seq.map(fun (rule, urls) -> unwind rule urls) 
-                |> Seq.concat 
+                |> Seq.collect (fun (rule, urls) -> unwind rule urls) 
                 |> Set.ofSeq                 
                 |> Set.toList
-                |> List.map(fun (rule, x) ->  urlToIndicators x ("Injected URL - " + rule.name))
-                |> List.concat
+                |> List.collect (fun (rule, x) ->  urlToIndicators x ("Injected URL - " + rule.name))
                 |> Set.ofList
                 |> Seq.toList
     let contents = urls
@@ -466,13 +462,11 @@ let apachelogs (date:DateTime): OtxPulse =
     let _ = contents 
             |> List.map storeMalware
     let fileindicators = contents
-                         |> Seq.map(fun x -> fileToIndicator x "Injected URL file hash")
-                         |> Seq.concat
+                         |> Seq.collect (fun x -> fileToIndicator x "Injected URL file hash")
                          |> Set.ofSeq
                          |> Set.toList
     let ircservers = contents 
-                     |> List.map botToIndicator 
-                     |> List.concat
+                     |> List.collect botToIndicator 
     let errorclients = lines 
                        |> Array.map(fun x -> x.Split([|' '|], 12)) 
                        |> Array.filter (fun x -> x.[8].StartsWith("20") <> true)
@@ -536,7 +530,7 @@ let main args =
     let today = DateTime.Today
     let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs;]
                   |> List.map (fun fn -> fn today)
-                  |> List.filter (fun x -> List.length (x.indicators) > 0)
+                  |> List.filter (fun x -> not (List.isEmpty (x.indicators)))
     match Array.tryFind (fun x -> x = "-d") args with
     | None    -> List.map (fun x -> upload x) results 
                  |> List.iter (fun x -> store today true x) 
