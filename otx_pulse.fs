@@ -205,7 +205,7 @@ let gatherKippoLogs (today:string) (n:int) : string [] =
 
 let getKippoUrls (marker:string) (description:string) (lines:string []) : OtxIndicator list = 
     lines
-    |> Array.filter(fun x -> x.Contains(marker))
+    |> Array.filter(fun x -> x.Contains(marker) && x.Contains("Command found:"))
     |> Array.map getUrl
     |> Seq.concat
     |> Set.ofSeq
