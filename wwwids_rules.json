@@ -516,5 +516,12 @@
         "pat": "/plugins/weathermap/editor.php",
         "checkurl": -1,
         "name": "Weathermap Editor (cacti plugin) Arbitrary Code Execution probe"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2015-2825",
+        "name": "Wordpress plugin Simple Ads Manager - Arbitrary File Upload",
+        "pat": "/wp-content/plugins/simple-ads-manager/sam-ajax-admin.php",
+        "ref": "https://www.exploit-db.com/exploits/36614/"
     }
 ]
