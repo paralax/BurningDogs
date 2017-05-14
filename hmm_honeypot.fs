@@ -65,7 +65,7 @@ let train(logfiles: string list) : (string [] * HiddenMarkovModel) =
     let hmm = new HiddenMarkovModel(states, symbols)
     let teacher = new BaumWelchLearning(hmm)
     teacher.Tolerance <- 0.0001
-    teacher.Iterations <- 10 
+    teacher.Iterations <- 0 
     teacher.Learn(sequences) |> ignore
     (cmds, hmm)
 
