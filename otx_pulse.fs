@@ -223,21 +223,12 @@ let telnetlogs (date:DateTime): OtxPulse =
     log 3 ">>> read lines"
     let ips = lines
               |> Array.filter(fun x -> x.Contains("HoneyPotTelnetFactory] New connection"))
-              |> Array.map(fun x -> x.Split(' ').[4])
-              |> Array.map(fun x -> x.Split(':').[3])
+              |> Array.map(fun x -> x.Split(' ').[4].Split(':').[3])
               |> Set.ofArray
               |> Set.map(fun x -> ipToIndicator x "Telnet bruteforce client IP")
               |> Set.toList
               |> List.choose id
     log 3 ">>> read IPs"
-    (* 
-    let urls = seq [0..1000..(Array.length lines) ] 
-               |> Seq.windowed 2 
-               |> Seq.collect (fun [|x;y|] -> getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines.[x..y]) 
-               |> Seq.toList
-               |> Set.ofList
-               |> Set.toList
-               *)
     let urls = getKippoUrls "CowrieTelnetTransport" "URL injected into Telnet honeypot" lines
     log 3 ">>> read urls"
     let contents = urls
@@ -269,10 +260,10 @@ let telnetlogs (date:DateTime): OtxPulse =
     let c2indicators = contents 
                        |> List.map getIpPort
                        |> Seq.concat
-                       |> Set.ofSeq
-                       |> Set.toList
-                       |> List.map (fun x -> x.Split(':'))
-                       |> List.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))
+                       |> Seq.distinct
+                       |> Seq.map (fun x -> x.Split(':'))
+                       |> Seq.map (fun [|x; y|] -> ipToIndicator x ("Suspected malware C2 on port " + y))
+                       |> Seq.toList
                        |> List.choose id    
     log 3 ">>> got c2 indicators"        
     let allurls = urls @ extraurls
@@ -347,11 +338,11 @@ let pmalogs (date:DateTime): OtxPulse =
                |> List.map(fun x -> ipToIndicator x "phpMyAdmin attacker client IP")
                |> List.choose id
     let urls = lines
-               |> Array.map(fun x -> getUrl x)
+               |> Array.map getUrl
                |> Seq.concat
-               |> Set.ofSeq
-               |> Set.toList
-               |> List.map(fun x -> urlToIndicators x "URL injected into phpMyAdmin page")
+               |> Seq.distinct
+               |> Seq.map(fun x -> urlToIndicators x "URL injected into phpMyAdmin page")
+               |> Seq.toList 
                |> List.concat
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
@@ -361,8 +352,8 @@ let pmalogs (date:DateTime): OtxPulse =
     let filehashes = contents 
                      |> List.map(fun x -> fileToIndicator x "phpMyAdmin injected malware hash")
                      |> Seq.concat
-                     |> Set.ofSeq
-                     |> Set.toList
+                     |> Seq.distinct
+                     |> Seq.toList
     let ircservers = contents 
                      |> List.collect botToIndicator 
                      |> Set.ofList
@@ -432,11 +423,6 @@ let apachelogs (date:DateTime): OtxPulse =
             ipToIndicator (ip.ToString()) (rule.name + " attempt client IP")
         with
         | :? System.StackOverflowException as ex -> None
-        (* 
-        match ip.AddressFamily.ToString() with
-        | "InterNetworkV6" -> {Type = "IPv6"; indicator = ip.ToString(); description = (rule.name + " attempt client IP")}
-        | "InterNetwork"   -> {Type = "IPv4"; indicator = ip.ToString(); description = (rule.name + " attempt client IP")}
-        *)
     let rulehits = lines
                    |> Array.map(fun x -> x.Split([|' '|], 12)) 
                    |> Array.filter (fun x -> x.[8].StartsWith("40"))
