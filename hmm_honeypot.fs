@@ -88,12 +88,42 @@ let unusual (hmm: HiddenMarkovModel) (cmds: string []) (threshold: float) (logfi
     |> Map.filter (fun _ (_,p) -> p < threshold)
     |> Map.map (fun _ (v,_) -> v)
 
+type CommandLineOptions = {
+    threshold: float        // -t F
+}
+let defaultOptions = {
+    threshold= 0.001
+}
+
+let usage =
+    printfn "hmm_honeypot.exe ARGS"
+    printfn "arguments and options:"
+    printfn "  -t F    set the threshold for reporting to F (default:%f)" defaultOptions.threshold
+    printfn "  -h      this text"
+
+// inspired via https://fsharpforfunandprofit.com/posts/pattern-matching-command-line/
+let rec parseCommandLine args soFar : CommandLineOptions = 
+    match args with
+    | [] -> soFar    
+    | "-t"::xs ->
+        let t = float (List.head xs)
+        let rem = List.tail xs
+        parseCommandLine rem { soFar with threshold=t}
+    | "-h"::xs -> 
+        usage
+        failwith ""
+    | x::xs ->
+        printfn "WARNING option %s is not understood" x
+        parseCommandLine xs soFar
+
+
 [<EntryPoint>]
-let main args =
+let main args = 
+    let options = parseCommandLine (List.ofArray args) defaultOptions
     let cmds, hmm = System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.??")
                     |> List.ofArray
                     |> train
     System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.?")
-    |> Array.map (fun x -> unusual hmm cmds 0.001 x)
+    |> Array.map (fun x -> unusual hmm cmds options.threshold x)
     |> Array.iter (fun x -> printfn "%A" x)
     0
