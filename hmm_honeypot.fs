@@ -116,7 +116,6 @@ let rec parseCommandLine args soFar : CommandLineOptions =
         printfn "WARNING option %s is not understood" x
         parseCommandLine xs soFar
 
-
 [<EntryPoint>]
 let main args = 
     let options = parseCommandLine (List.ofArray args) defaultOptions
