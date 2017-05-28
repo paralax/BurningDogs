@@ -95,7 +95,7 @@ let defaultOptions = {
     threshold= 0.001
 }
 
-let usage =
+let usage args =
     printfn "hmm_honeypot.exe ARGS"
     printfn "arguments and options:"
     printfn "  -t F    set the threshold for reporting to F (default:%f)" defaultOptions.threshold
@@ -110,8 +110,8 @@ let rec parseCommandLine args soFar : CommandLineOptions =
         let rem = List.tail xs
         parseCommandLine rem { soFar with threshold=t}
     | "-h"::xs -> 
-        usage
-        failwith ""
+        usage args
+        exit 0
     | x::xs ->
         printfn "WARNING option %s is not understood" x
         parseCommandLine xs soFar
