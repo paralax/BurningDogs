@@ -77,8 +77,10 @@ let yarascan (rulefile: string) (filename: string) : YaraMatches =
     p.StartInfo.FileName <- "/usr/local/bin/yara"
     p.StartInfo.Arguments <- String.Format("-sgm {0} {1}", rulefile, filename)
     p.StartInfo.UseShellExecute <- false
+    p.StartInfo.RedirectStandardOutput <- true
     p.Start() |> ignore
     let output = p.StandardOutput.ReadToEnd().Split([|'\n'|]) // parse
+    p.Close()
     let paren = System.Text.RegularExpressions.Regex("\[[^]]*\]")
     let matches = paren.Matches(output.[0])
     let matchToValue (m : System.Text.RegularExpressions.Match) = m.Value.TrimStart('[').TrimEnd(']')
