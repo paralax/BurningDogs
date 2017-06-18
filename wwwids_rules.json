@@ -530,5 +530,12 @@
         "pat": "/userlogin!default.action",
         "checkurl": -1,
         "name": "Bamboo redirect probe"
+    },
+    {
+        "ref": "https://cxsecurity.com/issue/WLB-2011100126",
+        "cve": "CVE-2010-4859",
+        "pat": "/wbsadmin/html/scripts/",
+        "checkurl": -1,
+        "name": "webAsyst installation probe"
     }
 ]
