@@ -537,5 +537,26 @@
         "pat": "/wbsadmin/html/scripts/",
         "checkurl": -1,
         "name": "webAsyst installation probe"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Proxy CONNECT probe",
+        "pat": "CONNECT",
+        "ref": "https://www.kb.cert.org/vuls/id/150227"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Netgear router probe",
+        "pat": "/currentsetting.htm",
+        "ref": "https://superuser.com/questions/939644/strange-http-requests-from-computer-running-netgear-genie"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2012-5469",
+        "name": "WordPress Portable phpMyAdmin Plugin 'wp-pma-mod' Security Bypass Vulnerability",
+        "pat": "/wp-content/plugins/portable-phpmyadmin/wp-pma-mod",
+        "ref": "WordPress Portable phpMyAdmin Plugin 'wp-pma-mod' Security Bypass Vulnerability"
     }
 ]
