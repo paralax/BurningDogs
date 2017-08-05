@@ -557,6 +557,13 @@
         "cve": "CVE-2012-5469",
         "name": "WordPress Portable phpMyAdmin Plugin 'wp-pma-mod' Security Bypass Vulnerability",
         "pat": "/wp-content/plugins/portable-phpmyadmin/wp-pma-mod",
-        "ref": "WordPress Portable phpMyAdmin Plugin 'wp-pma-mod' Security Bypass Vulnerability"
+        "ref": "https://www.acunetix.com/vulnerabilities/network/vulnerability/wordpress-portable-phpmyadmin-plugin-wp-pma-mod-security-bypass-vulnerability/"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "WordPress Plugin Viper's Video Quicktags Unspecified Vulnerability probe",
+        "pat": "/wp-includes/js/quicktags.js",
+        "ref": "https://www.acunetix.com/vulnerabilities/web/wordpress-plugin-viper-s-video-quicktags-unspecified-vulnerability-6-4-4"
     }
 ]
