@@ -565,5 +565,12 @@
         "name": "WordPress Plugin Viper's Video Quicktags Unspecified Vulnerability probe",
         "pat": "/wp-includes/js/quicktags.js",
         "ref": "https://www.acunetix.com/vulnerabilities/web/wordpress-plugin-viper-s-video-quicktags-unspecified-vulnerability-6-4-4"
+    },
+    {
+        "ref": "https://bitsonline.com/jaxx-vulnerability-bitcoin-risk/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wallet.dat",
+        "checkurl": -1,
+        "name": "Crypto currency wallat.dat probe"
     }
 ]
