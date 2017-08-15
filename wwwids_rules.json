@@ -572,5 +572,12 @@
         "pat": "/wallet.dat",
         "checkurl": -1,
         "name": "Crypto currency wallat.dat probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/SnapshotJPEG",
+        "checkurl": -1,
+        "name": "SmartThings SmartApps probe"
     }
 ]
