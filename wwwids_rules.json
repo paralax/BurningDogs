@@ -579,5 +579,12 @@
         "pat": "/SnapshotJPEG",
         "checkurl": -1,
         "name": "SmartThings SmartApps probe"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Old Nmap service detection probe",
+        "pat": "/nice%20ports%2C/Tri%6Eity.txt%2ebak",
+        "ref": "http://seclists.org/nmap-dev/2006/q2/207"
     }
 ]
