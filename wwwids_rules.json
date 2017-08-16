@@ -586,5 +586,12 @@
         "name": "Old Nmap service detection probe",
         "pat": "/nice%20ports%2C/Tri%6Eity.txt%2ebak",
         "ref": "http://seclists.org/nmap-dev/2006/q2/207"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/26256/",
+        "cve": "CVE-2005-2953",
+        "pat": "/m5/merchant.mvc",
+        "checkurl": -1,
+        "name": "MIVA Merchant 5 - Merchant.MVC Cross-Site Scripting probe"
     }
 ]
