@@ -593,5 +593,26 @@
         "pat": "/m5/merchant.mvc",
         "checkurl": -1,
         "name": "MIVA Merchant 5 - Merchant.MVC Cross-Site Scripting probe"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Jenkins Hudson probe",
+        "pat": "/hudson/script",
+        "ref": "http://www.cvedetails.com/cve/CVE-2014-2067/"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "JBoss login and status probe",
+        "pat": "/servlet?p=login&q=loginForm&jumpto=status",
+        "ref": "https://www.rapid7.com/db/modules/auxiliary/scanner/http/jboss_status"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Joomla backup extraction attack",
+        "pat": "/com_joomlaupdate/restore.php?task=stepRestore&factory",
+        "ref": "https://www.akeebabackup.com/news/1605-security-update-sep-2014.html"
     }
 ]
