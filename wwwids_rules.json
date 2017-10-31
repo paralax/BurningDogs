@@ -614,5 +614,33 @@
         "name": "Joomla backup extraction attack",
         "pat": "/com_joomlaupdate/restore.php?task=stepRestore&factory",
         "ref": "https://www.akeebabackup.com/news/1605-security-update-sep-2014.html"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2017-9717",
+        "name": "Apache Struts 2 Showcase Remote Code Execution probe",
+        "pat": "/struts2-showcase/index.action",
+        "ref": "https://devcentral.f5.com/articles/apache-struts-2-showcase-remote-code-execution-cve-2017-9791-27368"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Axis05 root setuid .CGI scripts and binaries present",
+        "pat": "/axis-cgi/admin/param.cgi",
+        "ref": "http://seclists.org/fulldisclosure/2017/Mar/41"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "JBoss Information Leakage",
+        "pat": "/status?full=true",
+        "ref": "http://seclists.org/fulldisclosure/2011/Sep/139"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2017-9841",
+        "name": "PHP Unit arbitrary RCE via stdin",
+        "pat": "/Util/PHP/eval-stdin.php",
+        "ref": "http://www.cvedetails.com/cve/CVE-2017-9841/"
     }
 ]
