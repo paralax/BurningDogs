@@ -642,5 +642,40 @@
         "name": "PHP Unit arbitrary RCE via stdin",
         "pat": "/Util/PHP/eval-stdin.php",
         "ref": "http://www.cvedetails.com/cve/CVE-2017-9841/"
+    },
+    {
+        "ref": "https://vuldb.com/?id.7843",
+        "cve": "CVE-NOMATCH",
+        "pat": "/getcfg.php",
+        "checkurl": -1,
+        "name": "D-Link DIR-645 getcfg.php Direct Request Cleartext Admin Password Disclosure"
+    },
+    {
+        "ref": "https://www.tkreiner.com/intelligence-404-errors/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/js/mage/",
+        "checkurl": -1,
+        "name": "Magento probe"
+    },
+    {
+        "ref": "https://gist.github.com/avelardi/1338d9d7be0344ab7f4280618930cd0d",
+        "cve": "CVE-NOMATCH",
+        "pat": "/current_config/passwd",
+        "checkurl": -1,
+        "name": "Dahua backdoor probe"
+    },
+    {
+        "ref": "http://www.expku.com/web/5655.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/modules/attributewizardpro/file_upload.php",
+        "checkurl": -1,
+        "name": "Prestashop attributewizardpro module Arbitrary File Upload exploit probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/40500/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/user/Config.cgi?.cab&action=get&category=Account.*",
+        "checkurl": -1,
+        "name": "Avtech Device Authentication bypass probe"
     }
 ]
