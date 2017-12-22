@@ -684,5 +684,12 @@
         "pat": "/app/etc/local.xml",
         "checkurl": -1,
         "name": "Magento fingerprint probe"
+    },
+    {
+        "ref": "http://www.newrocktech.com/down/667.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/hx4e/N0000P1.cfg",
+        "checkurl": -1,
+        "name": "New Rock IP PBX probe"
     }
 ]
