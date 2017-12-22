@@ -677,5 +677,12 @@
         "pat": "/cgi-bin/user/Config.cgi?.cab&action=get&category=Account.*",
         "checkurl": -1,
         "name": "Avtech Device Authentication bypass probe"
+    },
+    {
+        "ref": "https://tomrobertshaw.net/2012/11/magento-security-check-your-appetclocal-xml-file/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/app/etc/local.xml",
+        "checkurl": -1,
+        "name": "Magento fingerprint probe"
     }
 ]
