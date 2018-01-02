@@ -691,5 +691,12 @@
         "pat": "/hx4e/N0000P1.cfg",
         "checkurl": -1,
         "name": "New Rock IP PBX probe"
+    },
+    {
+        "ref": "https://community.polycom.com/t5/VoIP-SIP-Phones/Using-the-00000000-cfg-file/td-p/91454",
+        "cve": "CVE-NOMATCH",
+        "pat": "/000000000000",
+        "checkurl": -1,
+        "name": "Polycom configuration file probe"
     }
 ]
