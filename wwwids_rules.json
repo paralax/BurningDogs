@@ -698,5 +698,12 @@
         "pat": "/000000000000",
         "checkurl": -1,
         "name": "Polycom configuration file probe"
+    },
+    {
+        "ref": "https://digwp.com/2009/06/xmlrpc-php-security/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wlwmanifest.xml",
+        "checkurl": -1,
+        "name": "Wordpress WLWManifest XML file probe"
     }
 ]
