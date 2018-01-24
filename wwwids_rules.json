@@ -705,5 +705,12 @@
         "pat": "/wlwmanifest.xml",
         "checkurl": -1,
         "name": "Wordpress WLWManifest XML file probe"
+    },
+    {
+        "ref": "https://www.cisco.com/c/dam/en/us/td/docs/voice_ip_comm/csbpvga/spa100-200/provisioning/guide/SPA100-200_Provisioning.pdf",
+        "cve": "CVE-NOMATCH",
+        "pat": "/spa112.cfg",
+        "checkurl": -1,
+        "name": "Cisco Spa112 Configuration file probe"
     }
 ]
