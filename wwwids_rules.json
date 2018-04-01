@@ -712,5 +712,12 @@
         "pat": "/spa112.cfg",
         "checkurl": -1,
         "name": "Cisco Spa112 Configuration file probe"
+    },
+    {
+        "ref": "https://www.alertlogic.com/blog/beware-the-weblogic-wls-wsat-component-deserialization-rce-exploit/",
+        "cve": "CVE-2017-10271",
+        "pat": "/wls-wsat/CoordinatorPortType",
+        "checkurl": -1,
+        "name": "WebLogic WLS-WSAT Component Deserialization RCE probe"
     }
 ]
