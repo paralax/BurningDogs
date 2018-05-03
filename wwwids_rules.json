@@ -719,5 +719,12 @@
         "pat": "/wls-wsat/CoordinatorPortType",
         "checkurl": -1,
         "name": "WebLogic WLS-WSAT Component Deserialization RCE probe"
+    },
+    {
+        "ref": "https://www.alertlogic.com/blog/beware-the-weblogic-wls-wsat-component-deserialization-rce-exploit/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/webfig/roteros.info",
+        "checkurl": -1,
+        "name": "MicroTik RouteOS probe"
     }
 ]
