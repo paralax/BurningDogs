@@ -726,5 +726,26 @@
         "pat": "/webfig/roteros.info",
         "checkurl": -1,
         "name": "MicroTik RouteOS probe"
+    },
+    {
+        "ref": "https://github.com/nixawk/labs/issues/19",
+        "cve": "CVE-2018-7600",
+        "pat": "user/register?element_parents=account/mail/%23value&ajax_form=1&_wrapper_format=drupal_ajax",
+        "checkurl": -1,
+        "name": "Drupal unsanitized requests RCE probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/44576/",
+        "cve": "CVE-2018-10561",
+        "pat": "/GponForm/diag_Form?images/",
+        "checkurl": -1,
+        "name": "GPON Routers - Authentication Bypass / Command Injection probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/16318/",
+        "cve": "CVE-2007-1036",
+        "pat": "/jmx-console/HtmlAdaptor?action=inspectMBean&name=jboss.system%3Aservice%3DMainDeployer",
+        "checkurl": -1,
+        "name": "JBoss JMX - Console Deployer Upload and Execute probe"
     }
 ]
