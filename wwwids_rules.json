@@ -747,5 +747,12 @@
         "pat": "/jmx-console/HtmlAdaptor?action=inspectMBean&name=jboss.system%3Aservice%3DMainDeployer",
         "checkurl": -1,
         "name": "JBoss JMX - Console Deployer Upload and Execute probe"
+    }, 
+    {
+        "ref": "h://www.wordfence.com/blog/2017/07/wpsetup-attack/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-admin/setup-config?step=1",
+        "checkurl": -1,
+        "name": "Wordpress setup-config probe"
     }
 ]
