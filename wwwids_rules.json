@@ -754,5 +754,12 @@
         "pat": "/wp-admin/setup-config?step=1",
         "checkurl": -1,
         "name": "Wordpress setup-config probe"
+    },
+    {
+        "ref": "https://secure.dshield.org/forums/diary/Scanning+for+Apache+Struts+Vulnerability+CVE20175638/23479/",
+        "cve": "CVE-2017-5638",
+        "pat": "/verifylogin.do",
+        "checkurl": -1,
+        "name": "Apache Struts verifylogin probe"
     }
 ]
