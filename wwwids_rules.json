@@ -761,5 +761,12 @@
         "pat": "/verifylogin.do",
         "checkurl": -1,
         "name": "Apache Struts verifylogin probe"
+    },
+    {
+        "ref": "https://github.com/CherryFramework/cherry-plugin/issues/6",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/cherry-plugin",
+        "checkurl": -1,
+        "name": "Wordpress Cherry Plugin Arbitrary File Upload probe"
     }
 ]
