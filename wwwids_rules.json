@@ -768,5 +768,12 @@
         "pat": "/wp-content/plugins/cherry-plugin",
         "checkurl": -1,
         "name": "Wordpress Cherry Plugin Arbitrary File Upload probe"
+    },
+    {
+        "ref": "https://vulners.com/packetstorm/PACKETSTORM:145644",
+        "cve": "CVE-NOMATCH",
+        "pat": "/ubus",
+        "checkurl": -1,
+        "name": "Iopsys Router /ubus probe"
     }
 ]
