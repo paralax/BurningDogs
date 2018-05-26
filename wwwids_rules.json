@@ -775,5 +775,33 @@
         "pat": "/ubus",
         "checkurl": -1,
         "name": "Iopsys Router /ubus probe"
+    },
+    {
+        "ref": "https://github.com/provisioner/Provisioner/blob/master/endpoint/aastra/aap9xxx6xxx/aastra.cfg",
+        "cve": "CVE-NOMATCH",
+        "pat": "/aastra.cfg",
+        "checkurl": -1,
+        "name": "Provisioner PBX Aastra config probe"
+    },
+    {
+        "ref": "https://github.com/WordPress/WordPress/blob/master/wp-admin/ms-upgrade-network.php",
+        "cve": "CVE-NOMATCH",
+        "pat": "/upgrade-network.php",
+        "checkurl": -1,
+        "name": "WordPress upgrade config probe"
+    },
+    {
+        "ref": "https://github.com/orthes/marvin",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Marvins.php",
+        "checkurl": -1,
+        "name": "Marvins.php probe"
+    },
+    {
+        "ref": "https://www.acunetix.com/vulnerabilities/web/wordpress-plugin-wp-super-cache-php-code-injection-1-2",
+        "cve": "CVE-2013-2009",
+        "pat": "/Marvins.php",
+        "checkurl": -1,
+        "name": "WordPress cache probe"
     }
 ]
