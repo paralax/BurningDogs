@@ -803,5 +803,19 @@
         "pat": "/Marvins.php",
         "checkurl": -1,
         "name": "WordPress cache probe"
+    },
+    {
+        "ref": "https://blog.netlab.360.com/botnets-never-die-satori-refuses-to-fade-away-en/",
+        "cve": "CVE-2018-10561",
+        "pat": "/login.cgi?cli=",
+        "checkurl": -1,
+        "name": "Satori /login.cgi RCE probe"
+    },
+    {
+        "ref": "https://github.com/kkirsche/CVE-2017-10271",
+        "cve": "CVE-2017-10271",
+        "pat": "/wls-wsat/RegistrationRequesterPortType",
+        "checkurl": -1,
+        "name": "Oracle WebLogic < 10.3.6 - 'wls-wsat' Component Deserialisation RCE probe"
     }
 ]
