@@ -480,11 +480,12 @@ let redislogs (date:DateTime): OtxPulse =
     let today = date.ToString("yyyy-MM-dd")
     let clients = File.ReadAllLines(config.["redispotlog"])
                   |> Array.filter(fun x -> x.StartsWith(today))
-                  |> Array.filter(fun x -> x.Contains("RedisServer"))
+                  |> Array.filter(fun x -> x.Contains("[RedisServer"))
                   |> Array.map(fun x -> x.Split().[2].Split(',').[2].Replace("]", ""))
                   |> Set.ofArray
                   |> Set.toList
-                  |> List.map (fun x -> ipToIndicator x "Brute force authentication activity")
+                  |> List.map (fun x -> ipToIndicator x "Redis brute force authentication activity")
+                  |> List.choose id 
             
     {name = "Redis honeypot logs for " + today;
      Public = true;
