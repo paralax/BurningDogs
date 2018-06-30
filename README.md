@@ -22,6 +22,10 @@ BurningDogs uses a custom PHP scipt (see the [ShoppingLeague repository](https:/
 
 BurningDogs uses a custom set of PHP scripts (see the [ShoppingLeague repository](https://github.com/paralax/ShoppingLeague)) to detect abuse attempts of Wordpress installations, including brute force intrusions and DDoS attempts via `xmlrpc.php` script abuse.
 
+### Redispot
+
+Burningdogs uses the Redis honeypot from [NoSQLpot](https://github.com/torque59/nosqlpot) to detect brute force authentication abuse attempts. 
+
 # Dependencies
 
 You'll need to [sign up at OTX](https://otx.alienvault.com/api/) to get an API key to upload pulses.
