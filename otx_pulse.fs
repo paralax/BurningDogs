@@ -477,15 +477,25 @@ let apachelogs (date:DateTime): OtxPulse =
      indicators = List.filter (fun x -> Set.contains x.indicator exemptions <> true) (indicators @ fileindicators @ ircservers @ urls @ errorclients)}
 
 let redislogs (date:DateTime): OtxPulse =
+    log 3 ">>> redislogs"
     let today = date.ToString("yyyy-MM-dd")
-    let clients = File.ReadAllLines(config.["redispotlog"])
-                  |> Array.filter(fun x -> x.StartsWith(today))
-                  |> Array.filter(fun x -> x.Contains("[RedisServer"))
-                  |> Array.map(fun x -> x.Split().[2].Split(',').[2].Replace("]", ""))
+    let lines = File.ReadAllLines(config.["redispotlog"])
+                |> Array.filter(fun x -> x.StartsWith(today))
+    let clients = lines 
+                  |> Array.filter(fun x -> x.Contains("[redispot.redisdeploy.RedisServerFactory] New connection"))
+                  |> Array.map(fun x -> x.Split() |> Array.rev |> Array.toList |> List.head)
                   |> Set.ofArray
+                  |> Set.map (fun x -> ipToIndicator x "Redis brute force authentication activity")
                   |> Set.toList
-                  |> List.map (fun x -> ipToIndicator x "Redis brute force authentication activity")
                   |> List.choose id 
+    let urls = lines 
+               |> Array.filter(fun x -> x.Contains("[RedisServer"))
+               |> Array.map getUrl
+               |> Seq.concat               
+               |> Seq.map (fun x -> urlToIndicators x "URL injected into Redis honeypot")
+               |> Seq.concat
+               |> Set.ofSeq
+               |> Set.toList
             
     {name = "Redis honeypot logs for " + today;
      Public = true;
@@ -493,7 +503,7 @@ let redislogs (date:DateTime): OtxPulse =
      references = [];
      TLP = "green";
      description = "Redis honeypot authentication attempts from a US /32";
-     indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}
+     indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) (clients @ urls)}
 let upload (otx: OtxPulse) = 
     log 2 "uploading ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
