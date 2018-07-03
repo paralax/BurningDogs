@@ -496,7 +496,7 @@ let redislogs (date:DateTime): OtxPulse =
                |> Seq.concat
                |> Set.ofSeq
                |> Set.toList
-            
+
     {name = "Redis honeypot logs for " + today;
      Public = true;
      tags = ["redis"; "honeypot"];
@@ -504,6 +504,47 @@ let redislogs (date:DateTime): OtxPulse =
      TLP = "green";
      description = "Redis honeypot authentication attempts from a US /32";
      indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) (clients @ urls)}
+
+let vnclogs (date:DateTime): OtxPulse =
+    log 3 ">>> vnclogs"
+    let today = date.ToString("yyyy/MM/dd")
+    let lines = File.ReadAllLines(config.["vncpotlog"])
+                |> Array.filter(fun x -> x.StartsWith(today))
+    let clients = lines 
+                  |> Array.filter (fun x -> x.Contains("Received"))
+                  |> Array.map (fun x -> x.Split().[2].Split(':').[0])
+                  |> Set.ofArray
+                  |> Set.map (fun x -> ipToIndicator x "VNC brute force authentication activity")
+                  |> Set.toList
+                  |> List.choose id
+    {name = "VNC honeypot logs for " + today;
+     Public = true;
+     tags = ["vnc"; "honeypot"];
+     references = [];
+     TLP = "green";
+     description = "VNC honeypot authentication attempts from a US /32";
+     indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}    
+
+let psqllogs (date:DateTime): OtxPulse = 
+    log 3 ">>> psqllogs"
+    let today = date.ToString("yyyy-MM-dd")
+    let lines = File.ReadAllLines(config.["pghoneylog"])
+                |> Array.filter(fun x -> x.StartsWith(today))
+    let clients = lines 
+                  |> Array.filter (fun x -> x.StartsWith("""{"level":"info","msg":"""))
+                  |> Array.map (fun x -> x.Split(',').[2].Split(':').[1].Replace("\"", ""))
+                  |> Set.ofArray
+                  |> Set.map (fun x -> ipToIndicator x "PostgresQL brute force authentication activity")
+                  |> Set.toList
+                  |> List.choose id
+    {name = "PostgresQL honeypot logs for " + today;
+     Public = true;
+     tags = ["postgres"; "honeypot"];
+     references = [];
+     TLP = "green";
+     description = "PostgresQL honeypot authentication attempts from a US /32";
+     indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}    
+
 let upload (otx: OtxPulse) = 
     log 2 "uploading ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
@@ -544,7 +585,7 @@ let store (date:DateTime) (doSymlink: bool) (otx: OtxPulse) =
 [<EntryPoint>]
 let main args =
     let today = DateTime.Today
-    let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs; redislogs;]
+    let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs; redislogs; vnclogs; psqllogs;]
                   |> List.map (fun fn -> fn today)
                   |> List.filter (fun x -> not (List.isEmpty (x.indicators)))
     match Array.tryFind (fun x -> x = "-d") args with
