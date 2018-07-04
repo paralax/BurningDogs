@@ -529,7 +529,7 @@ let psqllogs (date:DateTime): OtxPulse =
     log 3 ">>> psqllogs"
     let today = date.ToString("yyyy-MM-dd")
     let lines = File.ReadAllLines(config.["pghoneylog"])
-                |> Array.filter(fun x -> x.StartsWith(today))
+                |> Array.filter(fun x -> x.Contains(today))
     let clients = lines 
                   |> Array.filter (fun x -> x.StartsWith("""{"level":"info","msg":"""))
                   |> Array.map (fun x -> x.Split(',').[2].Split(':').[1].Replace("\"", ""))
