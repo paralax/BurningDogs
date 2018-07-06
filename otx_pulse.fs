@@ -57,7 +57,7 @@ type ILogger = abstract Log : int -> Printf.StringFormat<'a,unit> -> 'a
 let ConsoleLogger = { 
   new ILogger with
     member __.Log level format =
-      Printf.kprintf (printfn "[%s][%A] %s" (LevelToString level) System.DateTime.Now) format
+      Printf.kprintf (printfn "[%s][%A] %s" (LevelToString level) DateTime.Now) format
  }
 
 /// Defines which logger to use.
@@ -120,7 +120,7 @@ let ipToIndicator (ipstr: string) (description: string) : OtxIndicator option =
         | "InterNetworkV6" -> Some({Type = "IPv6"; indicator = ip.ToString(); description = description})
         | "InterNetwork"   -> Some({Type = "IPv4"; indicator = ip.ToString(); description = description})
     with
-    | :? System.FormatException as ex -> None
+    | :? FormatException as ex -> None
 
 let isIrcBot(code: string) : bool =
     code.Contains("NICK") && code.Contains("JOIN")
@@ -151,10 +151,10 @@ let fileToIndicator (data: byte array) (description: string) : OtxIndicator list
 
 let tryDownload(url : string) : byte [] option =
     try
-        let client = new System.Net.WebClient()
+        let client = new Net.WebClient()
         Some(client.DownloadData(url))
     with 
-    | :? System.Net.WebException as ex -> None
+    | :? Net.WebException as ex -> None
 
 let createDir(dirname: string) : DirectoryInfo = 
     let p = new Diagnostics.Process()
@@ -182,22 +182,22 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
             try
                 { Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}::( Array.map (fun x -> ipToIndicator (x.ToString()) ("IP address associated with " + description)) (Net.Dns.GetHostAddresses(uri.Host)) |> Array.choose id |> List.ofArray)
             with
-            | :? System.Net.Sockets.SocketException as ex -> [{ Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}]
-            | :? System.StackOverflowException as ex -> []
+            | :? Net.Sockets.SocketException as ex -> [{ Type = "hostname"; indicator = uri.Host; description = ("Hostname associated with " + description)}]
+            | :? StackOverflowException as ex -> []
         let netlocToIndicator (uri: Uri) : OtxIndicator list = 
             match uri.HostNameType.ToString() with
             | "Dns" -> domainToIndicator uri
             | _     -> List.choose id [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
         {Type = "URL"; indicator = url.ToString(); description = description}::(netlocToIndicator url)
     with
-    | :? System.UriFormatException as ex -> []
-    | :? System.StackOverflowException as ex -> []
+    | :? UriFormatException as ex -> []
+    | :? StackOverflowException as ex -> []
 
 let gatherKippoLogs (today:string) (n:int) : string [] =
     let a = File.ReadAllLines(config.["kippolog"])
             |> Array.filter(fun x -> x.StartsWith(today))
     let b = [1..n] 
-            |> List.map (fun x -> System.IO.File.ReadAllLines(config.["kippolog"] + "." + string(x))
+            |> List.map (fun x -> File.ReadAllLines(config.["kippolog"] + "." + string(x))
                                   |> Array.filter(fun x -> x.StartsWith(today))
                          ) 
             |> Array.concat
@@ -304,7 +304,7 @@ let kippologs (date:DateTime): OtxPulse =
     let today = date.ToString("M/d/yyyy")
     let files  = dir.GetFiles() 
                  |> Array.filter(fun x -> x.LastWriteTime.ToString().StartsWith(today))
-                 |> Array.map(fun x -> System.IO.File.ReadAllBytes(x.FullName))
+                 |> Array.map(fun x -> File.ReadAllBytes(x.FullName))
     let filehashes = files 
                      |> Array.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
                      |> Seq.concat
@@ -412,7 +412,7 @@ let apachelogs (date:DateTime): OtxPulse =
     let rules_json = File.ReadAllText(config.["wwwids_rules"])
     let rules = JsonConvert.DeserializeObject<WwwidsRule list>(rules_json)
     let checkOneRule(rule:WwwidsRule) (row:string []) : (WwwidsRule * string []) option = 
-        match System.Web.HttpUtility.UrlDecode(row.[6]).Contains(rule.pat) || System.Web.HttpUtility.UrlDecode(row.[11]).Contains(rule.pat) with
+        match Web.HttpUtility.UrlDecode(row.[6]).Contains(rule.pat) || Web.HttpUtility.UrlDecode(row.[11]).Contains(rule.pat) with
         | true  -> Some(rule, row)
         | false -> None
     let checkRules (rules:WwwidsRule list) (row:string []) : (WwwidsRule * string []) option list =
@@ -422,7 +422,7 @@ let apachelogs (date:DateTime): OtxPulse =
             let ip = Net.IPAddress.Parse(row.[0])
             ipToIndicator (ip.ToString()) (rule.name + " attempt client IP")
         with
-        | :? System.StackOverflowException as ex -> None
+        | :? StackOverflowException as ex -> None
     let rulehits = lines
                    |> Array.map(fun x -> x.Split([|' '|], 12)) 
                    |> Array.filter (fun x -> x.[8].StartsWith("40"))
@@ -557,7 +557,7 @@ let upload (otx: OtxPulse) =
         let reply = wc.UploadString("https://otx.alienvault.com:443/api/v1/pulses/create", json)
         log 3 "%A" reply
     with
-    | :? System.Net.WebException as ex -> log 0 "%A" ex
+    | :? Net.WebException as ex -> log 0 "%A" ex
     otx
 
 let symlink (source:string) (dest:string) = 
@@ -577,7 +577,7 @@ let store (date:DateTime) (doSymlink: bool) (otx: OtxPulse) =
     let today = date.ToString("yyyyMMdd")
     let dir = createDir("/Library/WebServer/Documents/data/" + otx.name.Split(' ').[0])
     let filename = dir.FullName + "/" + today + ".txt"
-    System.IO.File.WriteAllText(filename, json)
+    File.WriteAllText(filename, json)
     match doSymlink with 
     | true -> symlink (FileInfo(filename).Name) (dir.FullName + "/" + "latest.txt")
     | _    -> ()
