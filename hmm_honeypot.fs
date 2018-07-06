@@ -1,6 +1,7 @@
 // http://accord-framework.net/docs/html/T_Accord_Statistics_Models_Markov_Learning_BaumWelchLearning.htm
 
 open System
+open System.IO
 
 open Accord.Math
 open Accord.Statistics.Models.Markov.Learning
@@ -32,7 +33,7 @@ let parse_one(logfile: string) : (string [] * Map<string, string list>) =
         match lines with
         | h::t -> parselines (Set.add (getcmd h) cmds) (addcmd (getsessionid h) (getcmd h) sessions) t
         | []   -> (cmds |> Set.toArray, sessions)
-    System.IO.File.ReadAllLines logfile 
+    File.ReadAllLines logfile 
     |> Array.toList 
     |> List.filter (fun x -> x.Contains("[CowrieTelnetTransport") && x.Contains("CMD: "))
     |> parselines Set.empty Map.empty
@@ -119,10 +120,10 @@ let rec parseCommandLine args soFar : CommandLineOptions =
 [<EntryPoint>]
 let main args = 
     let options = parseCommandLine (List.ofArray args) defaultOptions
-    let cmds, hmm = System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.??")
+    let cmds, hmm = Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.??")
                     |> List.ofArray
                     |> train
-    System.IO.Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.?")
+    Directory.GetFiles("/Users/jose/honeynet/src/third-party/cowrie/log", "*.log.?")
     |> Array.map (fun x -> unusual hmm cmds options.threshold x)
     |> Array.iter (fun x -> printfn "%A" x)
     0
