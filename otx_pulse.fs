@@ -511,7 +511,7 @@ let vnclogs (date:DateTime): OtxPulse =
     let lines = File.ReadAllLines(config.["vncpotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
     let clients = lines 
-                  |> Array.filter (fun x -> x.Contains("Received"))
+                  |> Array.filter (fun x -> x.Contains("Auth response:"))
                   |> Array.map (fun x -> x.Split().[2].Split(':').[0])
                   |> Set.ofArray
                   |> Set.map (fun x -> ipToIndicator x "VNC brute force authentication activity")
