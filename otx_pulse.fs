@@ -32,6 +32,15 @@ type WwwidsRule = {
     name : string;
 }
 
+type PghoneyRecord = {
+  level : string;
+  msg : string;
+  source_ip : string;
+  source_port : int;
+  time : string;
+  username: string;
+}
+
 // from http://www.fssnip.net/8j
 /// Log levels.
 let Error = 0
@@ -511,7 +520,7 @@ let vnclogs (date:DateTime): OtxPulse =
     let lines = File.ReadAllLines(config.["vncpotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
     let clients = lines 
-                  |> Array.filter (fun x -> x.Contains("uth response:"))
+                  |> Array.filter (fun x -> x.Contains("uth response:") || x.Contains("bad version"))
                   |> Array.map (fun x -> x.Split().[2].Split(':').[0])
                   |> Set.ofArray
                   |> Set.map (fun x -> ipToIndicator x "VNC brute force authentication activity")
@@ -528,11 +537,13 @@ let vnclogs (date:DateTime): OtxPulse =
 let psqllogs (date:DateTime): OtxPulse = 
     log 3 ">>> psqllogs"
     let today = date.ToString("yyyy-MM-dd")
+    let convertLine (line:string) : PghoneyRecord =  JsonConvert.DeserializeObject<PghoneyRecord>(line)    
     let lines = File.ReadAllLines(config.["pghoneylog"])
-                |> Array.filter(fun x -> x.Contains(today))
+                |> Array.map convertLine
+                |> Array.filter(fun x -> x.time.StartsWith(today))
     let clients = lines 
-                  |> Array.filter (fun x -> x.StartsWith("""{"level":"info","msg":"""))
-                  |> Array.map (fun x -> x.Split(',').[2].Split(':').[1].Replace("\"", ""))
+                  |> Array.filter (fun x -> x.level = "info")
+                  |> Array.map (fun x -> x.source_ip)
                   |> Set.ofArray
                   |> Set.map (fun x -> ipToIndicator x "PostgresQL brute force authentication activity")
                   |> Set.toList
@@ -544,7 +555,7 @@ let psqllogs (date:DateTime): OtxPulse =
      TLP = "green";
      description = "PostgresQL honeypot authentication attempts from a US /32";
      indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}    
-
+     
 let upload (otx: OtxPulse) = 
     log 2 "uploading ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
