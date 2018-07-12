@@ -130,6 +130,7 @@ let ipToIndicator (ipstr: string) (description: string) : OtxIndicator option =
         | "InterNetwork"   -> Some({Type = "IPv4"; indicator = ip.ToString(); description = description})
     with
     | :? FormatException as ex -> None
+    | :? System.ArgumentNullException as ex -> None
 
 let isIrcBot(code: string) : bool =
     code.Contains("NICK") && code.Contains("JOIN")
@@ -555,7 +556,7 @@ let psqllogs (date:DateTime): OtxPulse =
      TLP = "green";
      description = "PostgresQL honeypot authentication attempts from a US /32";
      indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}    
-     
+
 let upload (otx: OtxPulse) = 
     log 2 "uploading ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
