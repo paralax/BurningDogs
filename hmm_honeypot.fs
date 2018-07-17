@@ -7,6 +7,8 @@ open Accord.Math
 open Accord.Statistics.Models.Markov.Learning
 open Accord.Statistics.Models.Markov
 
+open Log
+
 (*
     idea
     - train on a batch of honeypot log files, look for the sequence of commands

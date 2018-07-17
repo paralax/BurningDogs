@@ -4,7 +4,7 @@ open Fake
 open Fake.FscHelper
 
 Target "otx_pulse.exe" (fun _ ->
-    ["otx_pulse.fs"]
+    ["log.fs"; "otx_pulse.fs"]
     |> Fsc (fun p ->
         {p with References = 
             ["packages/Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
@@ -13,7 +13,7 @@ Target "otx_pulse.exe" (fun _ ->
 )
 
 Target "hmm_honeypot.exe" (fun _ ->
-    ["hmm_honeypot.fs"]
+    ["log.fs"; "hmm_honeypot.fs"]
     |> Fsc (fun p -> 
         {p with References = 
             ["packages/Accord/lib/net40/Accord.dll"; 

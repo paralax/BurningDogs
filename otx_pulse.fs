@@ -8,6 +8,8 @@ open System.Text
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 
+open Log
+
 type OtxIndicator = {
      Type : string; 
      indicator : string; 
@@ -41,6 +43,7 @@ type PghoneyRecord = {
   username: string;
 }
 
+(* 
 // from http://www.fssnip.net/8j
 /// Log levels.
 let Error = 0
@@ -78,7 +81,7 @@ let logUsing (logger: ILogger) = logger.Log
 /// Logs a message using the default logger.
 let log level message = logUsing DefaultLogger level message
 
-
+*)
 let config = File.ReadAllLines("application.config") 
              |> Array.map(fun x -> x.Split(':') |> Array.map (fun y -> y.Trim()))  
              |> Array.map(fun x -> (x.[0], x.[1]))
