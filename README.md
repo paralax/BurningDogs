@@ -24,7 +24,15 @@ BurningDogs uses a custom set of PHP scripts (see the [ShoppingLeague repository
 
 ### Redispot
 
-Burningdogs uses the Redis honeypot from [NoSQLpot](https://github.com/torque59/nosqlpot) to detect brute force authentication abuse attempts. 
+BurningDogs uses the Redis honeypot from [NoSQLpot](https://github.com/torque59/nosqlpot) to detect brute force authentication abuse attempts. Client IPs and URLs are characterized.
+
+### VncLowPot
+
+BurningDogs uses the VNC honeypot from [vnclowpot](https://github.com/magisterquis/vnclowpot) to detect brute force authentication attempts.
+
+### Pghoney
+
+BurningDocs uses the PostgreSQL honeypot from [pghoney](https://github.com/betheroot/pghoney) to detect brute force authentication attempts. 
 
 # Dependencies
 
