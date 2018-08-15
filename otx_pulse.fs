@@ -450,7 +450,7 @@ let apachelogs (date:DateTime): OtxPulse =
     let unwind rule urls = Seq.map (fun x -> (rule, x)) urls                      
     let urls = rulehits
                 |> Seq.filter(fun (rule, _) -> rule.checkurl > -1)
-                |> Seq.map(fun (rule, row) -> (rule, getUrl row.[rule.checkurl])) 
+                |> Seq.map(fun (rule, row) -> (rule, getUrl (Uri.UnescapeDataString(row.[rule.checkurl])))) 
                 |> Seq.collect (fun (rule, urls) -> unwind rule urls) 
                 |> Set.ofSeq                 
                 |> Set.toList
