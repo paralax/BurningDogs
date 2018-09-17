@@ -852,5 +852,12 @@
         "pat": "/cgi-bin/luci/;stok=redacted/expert/maintenance/diagnostic/nslookup",
         "checkurl": 6,
         "name": "Zyxel, EMG2926 < V1.00(AAQT.4)b8 - OS Command Injection Vulnerability"
+    },
+    {
+        "ref": "https://secureyes.net/nw/assets/File-Upload-Vulnerability-in-FCKEditor.pdf",
+        "cve": "CVE-2009-2265",
+        "pat": "/fckeditor/editor/filemanager/connectors/php/upload.php?Type=",
+        "checkurl": -1,
+        "name": "FCKEditor Arbitrary File Upload Vulnerability"
     }
 ]
