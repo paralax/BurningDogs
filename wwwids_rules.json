@@ -873,5 +873,12 @@
         "pat": "/images.php",
         "checkurl": -1,
         "name": "Hello Peppa probe"
+    },
+    {
+        "ref": "https://vulners.com/search?query=yealink",
+        "cve": "CVE-NOMATCH",
+        "pat": "/yealink/y00000",
+        "checkurl": -1,
+        "name": "Yeahlink VoIP Phone config fingerprint probe"
     }
 ]
