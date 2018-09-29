@@ -565,6 +565,7 @@ let rdplogs (date:DateTime): OtxPulse =
     let today = date.ToString("YYYY/MM/dd")
     let clients = File.ReadAllLines(config.["rdppotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
+                |> Array.filter(fun x -> x.Contains("Connection received from"))
                 |> Array.map (fun x -> x.Split().[6].Split(':').[0])
                 |> Set.ofArray
                 |> Set.map (fun x -> ipToIndicator x "RDP brute force authentication activity")
