@@ -562,7 +562,7 @@ let psqllogs (date:DateTime): OtxPulse =
 
 let rdplogs (date:DateTime): OtxPulse = 
     log 3 ">>> rdplogs"
-    let today = date.ToString("YYYY/MM/dd")
+    let today = date.ToString("yyyy/MM/dd")
     let clients = File.ReadAllLines(config.["rdppotlog"])
                 |> Array.filter(fun x -> x.StartsWith(today))
                 |> Array.filter(fun x -> x.Contains("Connection received from"))
