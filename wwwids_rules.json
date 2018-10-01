@@ -880,5 +880,12 @@
         "pat": "/yealink/y00000",
         "checkurl": -1,
         "name": "Yeahlink VoIP Phone config fingerprint probe"
+    },
+    {
+        "ref": "https://stackoverflow.com/questions/9348577/server-side-function-is-called-only-once-in-jqgrid",
+        "cve": "CVE-NOMATCH",
+        "pat": "/publicHandler.ashx",
+        "checkurl": -1,
+        "name": "Jqgrid handler probe"
     }
 ]
