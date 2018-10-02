@@ -887,5 +887,12 @@
         "pat": "/publicHandler.ashx",
         "checkurl": -1,
         "name": "Jqgrid handler probe"
+    },
+    {
+        "ref": "https://httpd.apache.org/docs/2.4/mod/mod_status.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/status?full",
+        "checkurl": -1,
+        "name": "Apache mod-status fullstatus probe"
     }
 ]
