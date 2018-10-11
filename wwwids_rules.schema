@@ -1,0 +1,9 @@
+{
+    "properties" : {
+        "ref": {"type" : "string"},
+        "cve": {"type" : "string"},
+        "pat": {"type" : "string"},
+        "checkurl": {"type": "number"},
+        "name": {"type" : "string"}
+   }
+}
