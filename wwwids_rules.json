@@ -894,5 +894,19 @@
         "pat": "/status?full",
         "checkurl": -1,
         "name": "Apache mod-status fullstatus probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/modules/mod_feed/tmpl/mod_feed.php?ms-load=",
+        "checkurl": -1,
+        "name": "Joomla mod_feed ms-load probe"
+    },
+    {
+        "ref": "https://github.com/cldrn/nmap-nse-scripts/blob/master/nselib/http.lua",
+        "cve": "CVE-NOMATCH",
+        "pat": "/nmaplowercheck",
+        "checkurl": -1,
+        "name": "Nmap HTTP probe"
     }
 ]
