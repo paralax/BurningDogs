@@ -908,5 +908,26 @@
         "pat": "/nmaplowercheck",
         "checkurl": -1,
         "name": "Nmap HTTP probe"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Internal WebLogic applications exposed to the public Internet probe",
+        "pat": "/bea_wls_deployment_internal",
+        "ref": "http://www.security-explorations.com/materials/SE-2013-01-ORACLE.pdf"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2017-17106",
+        "name": "Zivif PR115-204-P-RS V2.3.4.2103 credential disclosure",
+        "pat": "/cgi-bin/hi3510/param.cgi?cmd=",
+        "ref": "https://nvd.nist.gov/vuln/detail/CVE-2017-17106"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "WordPress Twenty Fifteen theme probe",
+        "pat": "/wp-content/themes/twentyfifteen/",
+        "ref": "https://wpvulndb.com/vulnerabilities/7979"
     }
 ]
