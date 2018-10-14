@@ -929,5 +929,12 @@
         "name": "WordPress Twenty Fifteen theme probe",
         "pat": "/wp-content/themes/twentyfifteen/",
         "ref": "https://wpvulndb.com/vulnerabilities/7979"
+    },
+    {
+        "ref": "https://wpvulndb.com/themes/sketch",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/themes/sketch",
+        "checkurl": -1,
+        "name": "WordPress Sketch theme probe"
     }
 ]
