@@ -950,5 +950,12 @@
         "pat": "/cgi-bin/nobody/Search.cgi",
         "checkurl": -1,
         "name": "AVTECH Unauthenticated command injection in DVR devices"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/45025",
+        "cve": "CVE-NOMATCH",
+        "pat": "/ws/v1/cluster/apps/new-application",
+        "checkurl": -1,
+        "name": "Hadoop YARN ResourceManager - Command Execution"
     }
 ]
