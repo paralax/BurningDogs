@@ -957,5 +957,12 @@
         "pat": "/ws/v1/cluster/apps/new-application",
         "checkurl": -1,
         "name": "Hadoop YARN ResourceManager - Command Execution"
+    },
+    {
+        "ref": "https://hydrasky.com/network-security/php-functions-that-can-lead-to-vulnerabilities/",
+        "cve": "CVE-NOMATCH",
+        "pat": "call_user_func_array",
+        "checkurl": -1,
+        "name": "PHP shell command injection"
     }
 ]
