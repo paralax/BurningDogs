@@ -959,6 +959,13 @@
         "name": "Hadoop YARN ResourceManager - Command Execution"
     },
     {
+        "checkurl": 6,
+        "cve": "CVE-NOMATCH",
+        "name": "ThinkPHP5.x version remote code execution",
+        "pat": "think\\\\app",
+        "ref": "https://www.cesafe.com/8433.html"
+    },
+    {
         "ref": "https://hydrasky.com/network-security/php-functions-that-can-lead-to-vulnerabilities/",
         "cve": "CVE-NOMATCH",
         "pat": "call_user_func_array",
