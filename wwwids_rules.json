@@ -971,5 +971,12 @@
         "pat": "call_user_func_array",
         "checkurl": -1,
         "name": "PHP shell command injection"
+    },
+    {
+        "ref": "https://www.symantec.com/content/dam/symantec/docs/security-center/white-papers/increased-use-of-powershell-in-attacks-16-en.pdf",
+        "cve": "CVE-NOMATCH",
+        "pat": "new-object",
+        "checkurl": -1,
+        "name": "PowerShell New-Object script injection"
     }
 ]
