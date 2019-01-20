@@ -978,5 +978,12 @@
         "pat": "new-object",
         "checkurl": -1,
         "name": "PowerShell New-Object script injection"
+    },
+    {
+        "ref": "https://www.alibabacloud.com/blog/threat-alert-multiple-cryptocurrency-miner-botnets-start-to-exploit-the-new-thinkphp-vulnerability_594369",
+        "cve": "CVE-NOMATCH",
+        "pat": "FxCodeShell.jsp",
+        "checkurl": -1,
+        "name": "FxCodeShell backdoor probe"
     }
 ]
