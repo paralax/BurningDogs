@@ -985,5 +985,12 @@
         "pat": "FxCodeShell.jsp",
         "checkurl": -1,
         "name": "FxCodeShell backdoor probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp/wp-login.php;",
+        "checkurl": -1,
+        "name": "Malformed wp-login probe, semicolon"
     }
 ]
