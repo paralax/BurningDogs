@@ -992,5 +992,19 @@
         "pat": "/wp/wp-login.php;",
         "checkurl": -1,
         "name": "Malformed wp-login probe, semicolon"
+    },
+    {
+        "ref": "https://www.wordfence.com/blog/2019/03/hackers-abusing-recently-patched-vulnerability-in-easy-wp-smtp-plugin/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-ajax-hook.php",
+        "checkurl": -1,
+        "name": "WordPress ajax-hook attempt"
+    },
+    {
+        "ref": "https://blogs.oracle.com/security/security-alert-cve-2019-2725-released",
+        "cve": "CVE-2019-2725",
+        "pat": "/_async/AsyncResponseService",
+        "checkurl": -1,
+        "name": "WebLogic AsyncResponseService attack attempt"
     }
 ]
