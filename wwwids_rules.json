@@ -1006,5 +1006,12 @@
         "pat": "/_async/AsyncResponseService",
         "checkurl": -1,
         "name": "WebLogic AsyncResponseService attack attempt"
+    },
+    {
+        "ref": "http://misteralfa-hack.blogspot.com/2018/04/tbk-vision-dvr-login-bypass.html",
+        "cve": "CVE-2018-9995",
+        "pat": "/device.rsp?opt=user&cmd=list",
+        "checkurl": -1,
+        "name": "[TBK Vision] DVR Login Bypass"
     }
 ]
