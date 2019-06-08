@@ -4,3 +4,5 @@ otx_pulse.exe
 hmm_honeypot.exe
 packages
 paket-files
+.fake
+Paket.*
