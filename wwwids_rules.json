@@ -1013,5 +1013,12 @@
         "pat": "/device.rsp?opt=user&cmd=list",
         "checkurl": -1,
         "name": "[TBK Vision] DVR Login Bypass"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/36653",
+        "cve": "CVE-2010-1871",
+        "pat": "/admin-console/login.seam",
+        "checkurl": -1,
+        "name": "JBoss Seam 2 File Upload and Execute"
     }
 ]
