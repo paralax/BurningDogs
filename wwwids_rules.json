@@ -1023,7 +1023,7 @@
     },
     {
         "ref": "https://www.exploit-db.com/exploits/42788",
-        "cve": "CVE-NOMATCH"
+        "cve": "CVE-NOMATCH",
         "pat": "/page/maintenance/lanSettings/dns",
         "checkurl": -1,
         "name": "FLIR Systems FLIR Thermal Camera FC-S/PT Authenticated OS Command Injection",
