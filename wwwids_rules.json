@@ -1027,5 +1027,12 @@
         "pat": "/page/maintenance/lanSettings/dns",
         "checkurl": -1,
         "name": "FLIR Systems FLIR Thermal Camera FC-S/PT Authenticated OS Command Injection"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/40856",
+        "cve": "CVE-NOMATCH",
+        "pat": "/actionHandler/ajax_network_diagnostic_tools.php",
+        "checkurl": -1,
+        "name": "Xfinity Gateway: Remote Code Execution"
     }
 ]
