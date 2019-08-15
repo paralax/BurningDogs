@@ -1034,5 +1034,12 @@
         "pat": "/actionHandler/ajax_network_diagnostic_tools.php",
         "checkurl": -1,
         "name": "Xfinity Gateway: Remote Code Execution"
+    },
+    {
+        "ref": "https://snyk.io/vuln/composer:phpunit%2Fphpunit",
+        "cve": "CVE-NOMATCH",
+        "pat": "/vendor/phpunit/phpunit/composer.json",
+        "checkurl": -1,
+        "name": "PHP Unit Probe"
     }
 ]
