@@ -43,6 +43,23 @@ type PghoneyRecord = {
   username: string;
 }
 
+type BackdoorRecordPayload = {
+  timestamp : string;
+  client_ip : string;
+  user_agent : string;
+  headers : Map<string, string>;
+  payload : Map<string, string>;
+}
+
+/// unused
+type BackdoorRecordNoPayload = {
+  timestamp : string;
+  client_ip : string;
+  user_agent : string;
+  headers : Map<string, string>;
+  payload : string list;
+}
+
 (* 
 // from http://www.fssnip.net/8j
 /// Log levels.
@@ -579,6 +596,37 @@ let rdplogs (date:DateTime): OtxPulse =
      description = "RDP honeypot authentication attempts from a US /32";
      indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}    
 
+
+
+let webshellbackdoorlogs (date:DateTime): OtxPulse = 
+    let today = date.ToString("yyyy/MM/dd")
+
+    let convertLine (line: string) : BackdoorRecordPayload = 
+      try
+        JsonConvert.DeserializeObject<BackdoorRecordPayload>(line)
+      with 
+        | :? Newtonsoft.Json.JsonSerializationException -> JsonConvert.DeserializeObject<BackdoorRecordPayload>(line.Replace(":[]}", ":{}}"))
+        | :? System.InvalidOperationException -> JsonConvert.DeserializeObject<BackdoorRecordPayload>("{}")
+
+    let lines  = File.ReadAllLines(config.["backdoorlog"])
+
+    let clients = lines
+                |> Array.map (fun x -> x.Replace(":[]}", ":{}}"))
+                |> Array.map convertLine
+                |> Array.map (fun x -> x.client_ip)
+                |> Set.ofArray
+                |> Set.map (fun x -> ipToIndicator x "Webshell backdoor injection activity client")
+                |> Set.toList
+                |> List.choose id
+
+    {name = "Webshell backdoor honeypot logs for " + today;
+         Public = true;
+         tags = ["webshell"; "backdoor"; "honeypot"];
+         references = [];
+         TLP = "green";
+         description = "Webshell backdoor injection attempts from a US /32";
+         indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}  
+
 let upload (otx: OtxPulse) = 
     log 2 "uploading ..."
     let json = JsonConvert.SerializeObject(otx).Replace("Type", "type").Replace("Public", "public")
@@ -619,7 +667,7 @@ let store (date:DateTime) (doSymlink: bool) (otx: OtxPulse) =
 [<EntryPoint>]
 let main args =
     let today = DateTime.Today
-    let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs; redislogs; vnclogs; psqllogs; rdplogs;]
+    let results = [kippologs; telnetlogs; pmalogs; wordpotlogs; apachelogs; redislogs; vnclogs; psqllogs; rdplogs; webshellbackdoorlogs;]
                   |> List.map (fun fn -> fn today)
                   |> List.filter (fun x -> not (List.isEmpty (x.indicators)))
     match Array.tryFind (fun x -> x = "-d") args with
