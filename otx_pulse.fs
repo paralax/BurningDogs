@@ -596,9 +596,8 @@ let rdplogs (date:DateTime): OtxPulse =
      description = "RDP honeypot authentication attempts from a US /32";
      indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) clients}    
 
-
-
 let webshellbackdoorlogs (date:DateTime): OtxPulse = 
+    log 3 ">>> webshellbackdoorlogs"
     let today = date.ToString("yyyy/MM/dd")
 
     let convertLine (line: string) : BackdoorRecordPayload = 
