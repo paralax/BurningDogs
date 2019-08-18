@@ -1041,5 +1041,26 @@
         "pat": "/vendor/phpunit/phpunit/composer.json",
         "checkurl": -1,
         "name": "PHP Unit Probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/42293",
+        "cve": "CVE-NOMATCH",
+        "pat": "/webadmin/script?command=",
+        "checkurl": -1,
+        "name": "OpenDreamBox 2.0.0 - Plugin WebAdmin RCE"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/37298",
+        "cve": "CVE-NOMATCH",
+        "pat": "cgi-bin/get_status.cgi",
+        "checkurl": -1,
+        "name": "Apexis IP CAM - Information Disclosure"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/33136",
+        "cve": "CVE-2014-9727",
+        "pat": "/cgi-bin/webcm?getpage=",
+        "checkurl": -1,
+        "name": "Fritz!Box - Remote Command Execution"
     }
 ]
