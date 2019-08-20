@@ -1062,5 +1062,12 @@
         "pat": "/cgi-bin/webcm?getpage=",
         "checkurl": -1,
         "name": "Fritz!Box - Remote Command Execution"
+    },
+    {
+        "ref": "https://medium.com/@ruvlol/rce-in-jira-cve-2019-11581-901b845f0f",
+        "cve": "CVE-2019-11581",
+        "pat": "/secure/ContactAdministrators!default.jspa",
+        "checkurl": -1,
+        "name": "Jira contact Admin RCE"
     }
 ]
