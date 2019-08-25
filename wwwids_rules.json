@@ -1076,5 +1076,12 @@
         "pat": "/elrekt.php",
         "checkurl": -1,
         "name": "Rekt botnet probe"
+    },
+    {
+        "ref": "https://www.cvedetails.com/vulnerability-list/vendor_id-874/opxss-1/Juniper.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/dana-na/",
+        "checkurl": -1,
+        "name": "Juniper Networks Secure Access 2000 probe"
     }
 ]
