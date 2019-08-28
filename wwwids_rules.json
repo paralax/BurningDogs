@@ -1083,5 +1083,12 @@
         "pat": "/dana-na/",
         "checkurl": -1,
         "name": "Juniper Networks Secure Access 2000 probe"
+    },
+    {
+        "ref": "https://pastebin.com/xCB4GCYz",
+        "cve": "CVE-NOMATCH",
+        "pat": "/imgs/ms_check_license",
+        "checkurl": -1,
+        "name": "/imgs/ms_check_license probe, unknown purpose"
     }
 ]
