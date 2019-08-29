@@ -1090,5 +1090,12 @@
         "pat": "/imgs/ms_check_license",
         "checkurl": -1,
         "name": "/imgs/ms_check_license probe, unknown purpose"
+    },
+    {
+        "ref": "https://vulners.com/seebug/SSV:97118",
+        "cve": "CVE-NOMATCH",
+        "pat": "../../mnt/custom/ProductDefinition",
+        "checkurl": -1,
+        "name": "HiSilicon directory traversal"
     }
 ]
