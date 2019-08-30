@@ -1097,5 +1097,12 @@
         "pat": "../../mnt/custom/ProductDefinition",
         "checkurl": -1,
         "name": "HiSilicon directory traversal"
+    },
+    {
+        "ref": "https://dl.packetstormsecurity.net/1505-exploits/hikvisionds7108-xmlinject.txt",
+        "cve": "CVE-NOMATCH",
+        "pat": "/doc/page/login.asp",
+        "checkurl": -1,
+        "name": "Hikvision Backdoor probe"
     }
 ]
