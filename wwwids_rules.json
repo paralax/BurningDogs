@@ -1104,5 +1104,19 @@
         "pat": "/doc/page/login.asp",
         "checkurl": -1,
         "name": "Hikvision Backdoor probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/43055",
+        "cve": "CVE-NOMATCH",
+        "pat": "/setup.cgi?next_file=netgear.cfg",
+        "checkurl": -1,
+        "name": "Netgear DGN1000 Setup.cgi Unauthenticated RCE"
+    },
+    {
+        "ref": "https://ssd-disclosure.com/archives/3590/ssd-advisory-hack2win-cisco-rv132w-multiple-vulnerabilities",
+        "cve": "CVE-2018-0125",
+        "pat": "/dumpmdm.cmd",
+        "checkurl": -1,
+        "name": "Cisco RV132W dumpmdm info disclosure"
     }
 ]
