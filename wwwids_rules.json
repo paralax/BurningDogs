@@ -1118,5 +1118,12 @@
         "pat": "/dumpmdm.cmd",
         "checkurl": -1,
         "name": "Cisco RV132W dumpmdm info disclosure"
+    },
+    {
+        "ref": "http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html#Supported_Manager_Commands",
+        "cve": "CVE-NOMATCH",
+        "pat": "/manager/text/list",
+        "checkurl": -1,
+        "name": "Apache Tomcat 7.0 Manager Commands Probe"
     }
 ]
