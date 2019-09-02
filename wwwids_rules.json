@@ -1125,5 +1125,12 @@
         "pat": "/manager/text/list",
         "checkurl": -1,
         "name": "Apache Tomcat 7.0 Manager Commands Probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/46792",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/webctrl.cgi",
+        "checkurl": -1,
+        "name": "Blue Angel Software Suite RCE Probe"
     }
 ]
