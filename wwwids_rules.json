@@ -7,6 +7,13 @@
         "name": "Mambo \"mosConfig_absolute_path\" Remote File Inclusion Vulnerability"
     },
     {
+        "ref": "https://vulners.com/seebug/SSV:97118",
+        "cve": "CVE-NOMATCH",
+        "pat": "../../mnt/custom/ProductDefinition",
+        "checkurl": -1,
+        "name": "HiSilicon directory traversal"
+    },
+    {
         "ref": "",
         "cve": "CVE-NOMATCH",
         "pat": "/cowedit/class.cowedit.php?ToDo=InsertFunction&DEP=",
@@ -1090,13 +1097,6 @@
         "pat": "/imgs/ms_check_license",
         "checkurl": -1,
         "name": "/imgs/ms_check_license probe, unknown purpose"
-    },
-    {
-        "ref": "https://vulners.com/seebug/SSV:97118",
-        "cve": "CVE-NOMATCH",
-        "pat": "../../mnt/custom/ProductDefinition",
-        "checkurl": -1,
-        "name": "HiSilicon directory traversal"
     },
     {
         "ref": "https://dl.packetstormsecurity.net/1505-exploits/hikvisionds7108-xmlinject.txt",
