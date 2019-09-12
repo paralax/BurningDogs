@@ -1139,5 +1139,12 @@
         "pat": "/v1/agent/self",
         "checkurl": -1,
         "name": "Hashicorp Consul probe"
+    },
+    {
+        "ref": "https://www.ncsc.gov.sa/wps/portal/ncsc/home/Alerts/!ut/p/z1/lVLRboJAEPwaH8kud-cBj2elYKkxYgpyLwYR67VyaEts-_c9apM2aYS6T3PJ3O7szIKEJUidn9Rj3qha53vzziRf2fbYDUmA9zMnGqMYzRe3QxpQMUVIQIIsdHNodpDp4rXYq_UAWzDAXV2VZ7xq4arULflQqA1khBPGiyGxkOWOxYiXW57tEWvLGS9dToi33kD6NR0njIU2I9EsRkRBkzCk7o2NAQX5W5w7cgTOEZOJmER0HvHv_x0E2b1cz3zyv_l4oQReqf-vQNndfmEcvzuTLntoIlZPx6MUJsdaN-V7A8v-INM2yh5z-uRlZj3nZ70g8bjpEDt-Evt0ljBIT6p8gwddv1TmFhdXXk-IcKgql34oU1aQWs_bqU_ZJ0-OxIA!/dz/d5/L2dBISEvZ0FBIS9nQSEh/",
+        "cve": "CVE-2019-0604",
+        "pat": "/Temporary_Listen_Addresses/SMSSERVICE",
+        "checkurl": -1,
+        "name": "Sharepoint SMSSERVICE RCE"
     }
 ]
