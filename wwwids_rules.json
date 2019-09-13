@@ -1146,5 +1146,12 @@
         "pat": "/Temporary_Listen_Addresses/SMSSERVICE",
         "checkurl": -1,
         "name": "Sharepoint SMSSERVICE RCE"
+    },
+    {
+        "ref": "https://www.tenable.com/security/research/tra-2017-33",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/hi3510/getidentify.cgi",
+        "checkurl": -1,
+        "name": "Master IP CAM 01"
     }
 ]
