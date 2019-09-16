@@ -1153,5 +1153,61 @@
         "pat": "/cgi-bin/hi3510/getidentify.cgi",
         "checkurl": -1,
         "name": "Master IP CAM 01"
+    },
+    {
+        "ref": "https://seclists.org/fulldisclosure/2017/Jan/40",
+        "cve": "CVE-NOMATCH",
+        "pat": "/ViewLog.asp",
+        "checkurl": -1,
+        "name": "Zyxel P660HN Remote Command Execution probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/45448",
+        "cve": "CVE-2018-17173",
+        "pat": "/qsrserver/device/getThumbnail?",
+        "checkurl": -1,
+        "name": "LG Supersign TVs Remote Command Execution probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/41935",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/rdfs.cgi",
+        "checkurl": -1,
+        "name": "WePresent WiPG-1000 Command Injection probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/39437",
+        "cve": "CVE-2018-17173",
+        "pat": "/setSystemCommand",
+        "checkurl": -1,
+        "name": "DLink DCS-930L Remote Command Execution probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/24956",
+        "cve": "CVE-NOMATCH",
+        "pat": "/diagnostic.php",
+        "checkurl": -1,
+        "name": "DLink diagnostic.php Remote Command Execution probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/45909",
+        "cve": "CVE-2016-1555",
+        "pat": "/boardDataNA.php?writeData=true",
+        "checkurl": -1,
+        "name": "Netgreat /boardDataNA Remote Command Execution probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/41394",
+        "cve": "CVE-2017-6077",
+        "pat": "/ping.cgi",
+        "checkurl": -1,
+        "name": "/ping.cgi Remote Command Execution probe"
+    },
+    {
+       "ref": "https://github.com/threat9/routersploit/blob/master/routersploit/modules/exploits/routers/netgear/prosafe_rce.py",
+       "cve": "CVE-NOMATCH",
+       "pat": "/login_handler.php",
+       "checkurl": -1,
+       "name": "Netgear Prosafe Remote Command Execution probe"
     }
 ]
