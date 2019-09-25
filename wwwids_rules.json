@@ -1209,5 +1209,12 @@
        "pat": "/login_handler.php",
        "checkurl": -1,
        "name": "Netgear Prosafe Remote Command Execution probe"
+    },
+    {
+       "ref": "https://seclists.org/fulldisclosure/2019/Sep/31",
+       "cve": "CVE-2019-16759",
+       "pat": "/index.php?routestring=ajax/render/widget_php",
+       "checkurl": -1,
+       "name": "vBulletin 5.x 0day pre-auth RCE exploit"
     }
 ]
