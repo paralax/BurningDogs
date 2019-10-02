@@ -1216,5 +1216,12 @@
        "pat": "/index.php?routestring=ajax/render/widget_php",
        "checkurl": -1,
        "name": "vBulletin 5.x 0day pre-auth RCE exploit"
+    },
+    {
+       "ref": "https://github.com/mcw0/PoC/blob/master/TVT_and_OEM_IPC_NVR_DVR_RCE_Backdoor_and_Information_Disclosure.txt",
+       "cve": "CVE-NOMATCH",
+       "pat": "/editBlackAndWhiteList",
+       "checkurl": -1,
+       "name": "Shenzhen TVT Digital Technology Co. Ltd & OEM {DVR/NVR/IPC} API RCE"
     }
 ]
