@@ -1223,5 +1223,12 @@
        "pat": "/editBlackAndWhiteList",
        "checkurl": -1,
        "name": "Shenzhen TVT Digital Technology Co. Ltd & OEM {DVR/NVR/IPC} API RCE"
+    },
+    {
+       "ref": "https://vulners.com/openvas/OPENVAS:1361412562310105500",
+       "cve": "CVE-2016-10106",
+       "pat": "/scgi-bin/platform.cgi",
+       "checkurl": -1,
+       "name": "Multiple Devices '/scgi-bin/platform.cgi' Unauthenticated File Disclosure"
     }
 ]
