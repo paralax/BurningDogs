@@ -1230,5 +1230,19 @@
        "pat": "/scgi-bin/platform.cgi",
        "checkurl": -1,
        "name": "Multiple Devices '/scgi-bin/platform.cgi' Unauthenticated File Disclosure"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-NOMATCH",
+        "name": "Weaver Beanshell code injection 0day",
+        "pat": "/weaver/bsh.servlet.BshServlet",
+        "ref": "https://www.fireeye.com/blog/threat-research/2019/10/certutil-qualms-they-came-to-drop-fombs.html"
+    },
+    {
+        "checkurl": -1,
+        "cve": "CVE-2019-16663",
+        "name": "Unauthenticated remote code execution vulnerabilities in rConfig",
+        "pat": "/install/lib/ajaxHandlers/ajaxServerSettingsChk.php?rootUname",
+        "ref": "https://www.sudokaikan.com/2019/11/cve-2019-16662-cve-2019-16663.html"
     }
 ]
