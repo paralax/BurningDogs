@@ -1244,5 +1244,12 @@
         "name": "Unauthenticated remote code execution vulnerabilities in rConfig",
         "pat": "/install/lib/ajaxHandlers/ajaxServerSettingsChk.php?rootUname",
         "ref": "https://www.sudokaikan.com/2019/11/cve-2019-16662-cve-2019-16663.html"
+    },
+    {
+       "ref": "https://nvd.nist.gov/vuln/detail/CVE-2019-1923?cpeVersion=2.2",
+       "cve": "CVE-2019-1923",
+       "pat": "/dms/cisco",
+       "checkurl": -1,
+       "name": "Ciscp SPA 508/509 IP phone Command Injection"
     }
 ]
