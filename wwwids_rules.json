@@ -1250,6 +1250,13 @@
        "cve": "CVE-2019-1923",
        "pat": "/dms/cisco",
        "checkurl": -1,
-       "name": "Ciscp SPA 508/509 IP phone Command Injection"
+       "name": "Cisco SPA 508/509 IP phone Command Injection"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/47555",
+       "cve": "CVE-2019-16662",
+       "pat": "/ajaxserversettingschk.php?rootuname=",
+       "checkurl": -1,
+       "name": "rConfig 3.9.2 - Remote Code Execution"
     }
 ]
