@@ -1265,5 +1265,12 @@
        "pat": "/hudson/script",
        "checkurl": -1,
        "name": "Jenkins CSRF/Code Injection"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/46073",
+       "cve": "CVE-NOMATCH",
+       "pat": "/v1/agent/self",
+       "checkurl": -1,
+       "name": "Hashicorp Consul - RCE via Rexec"
     }
 ]
