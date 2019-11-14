@@ -1258,5 +1258,12 @@
        "pat": "/ajaxserversettingschk.php?rootuname=",
        "checkurl": -1,
        "name": "rConfig 3.9.2 - Remote Code Execution"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/37999",
+       "cve": "CVE-NOMATCH",
+       "pat": "/hudson/script",
+       "checkurl": -1,
+       "name": "Jenkins CSRF/Code Injection"
     }
 ]
