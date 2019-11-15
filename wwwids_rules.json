@@ -1272,5 +1272,12 @@
        "pat": "/v1/agent/self",
        "checkurl": -1,
        "name": "Hashicorp Consul - RCE via Rexec"
+    },
+    {
+       "ref": "https://packetstormsecurity.com/files/128552/Advanced-Information-Security-Shellshock-Scanner.html",
+       "cve": "CVE-2014-6271",
+       "pat": "/cgi-sys/realsignup.cgi",
+       "checkurl": -1,
+       "name": "Shellchock.c probe"
     }
 ]
