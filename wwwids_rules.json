@@ -1279,5 +1279,12 @@
        "pat": "/cgi-sys/realsignup.cgi",
        "checkurl": -1,
        "name": "Shellchock.c probe"
+    },
+    {
+       "ref": "https://www.paladion.net/blogs/weak-crossdomain-xml-and-its-exploitation-poc",
+       "cve": "CVE-NOMATCH",
+       "pat": "/clientaccesspolicy.xml",
+       "checkurl": -1,
+       "name": "ClientAccessPolicy XML file probe"
     }
 ]
