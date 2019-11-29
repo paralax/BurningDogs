@@ -1286,5 +1286,12 @@
        "pat": "/clientaccesspolicy.xml",
        "checkurl": -1,
        "name": "ClientAccessPolicy XML file probe"
+    },
+    {
+       "ref": "https://www.getastra.com/blog/911/wordpress-files-hacked-wp-config-php-hack/",
+       "cve": "CVE-NOMATCH",
+       "pat": "/wp-config.php",
+       "checkurl": -1,
+       "name": "WordPress wp-config LFI probe"
     }
 ]
