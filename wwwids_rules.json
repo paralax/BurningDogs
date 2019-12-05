@@ -1293,5 +1293,12 @@
        "pat": "/wp-config.php",
        "checkurl": -1,
        "name": "WordPress wp-config LFI probe"
+    },
+    {
+       "ref": "https://www.rcesecurity.com/2019/04/dell-kace-k1000-remote-code-execution-the-story-of-bug-k1-18652/",
+       "cve": "CVE-NOMATCH",
+       "pat": "/service/krashrpt.php",
+       "checkurl": -1,
+       "name": "Dell KACE K1000 Remote Code Execution"
     }
 ]
