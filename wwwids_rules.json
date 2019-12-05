@@ -1300,5 +1300,12 @@
        "pat": "/service/krashrpt.php",
        "checkurl": -1,
        "name": "Dell KACE K1000 Remote Code Execution"
+    },
+    {
+       "ref": "",
+       "cve": "CVE-NOMATCH",
+       "pat": "/upgrade.aspx?a1=",
+       "checkurl": -1,
+       "name": "Unknown upgrade.aspx probe"
     }
 ]
