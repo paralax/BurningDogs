@@ -1314,5 +1314,12 @@
        "pat": "/uapi-cgi/viewer/admin/testaction.cgi",
        "checkurl": 6,
        "name": "Geutebruck testaction.cgi Remote Command Execution"
+    },
+    {
+        "checkurl": 6,
+        "cve": "CVE-NOMATCH",
+        "name": "Netgear DGN1000 1.1.00.48 - 'Setup.cgi' RCE",
+        "pat": "/setup.cgi?next_file=netgear.cfg",
+        "ref": "https://www.exploit-db.com/exploits/43055"
     }
 ]
