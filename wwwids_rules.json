@@ -1307,5 +1307,12 @@
        "pat": "/upgrade.aspx?a1=",
        "checkurl": -1,
        "name": "Unknown upgrade.aspx probe"
+    },
+    {
+       "ref": "https://packetstormsecurity.com/files/141142/Geutebruck-testaction.cgi-Remote-Command-Execution.html",
+       "cve": "CVE-2017-5173",
+       "pat": "/uapi-cgi/viewer/admin/testaction.cgi",
+       "checkurl": 6,
+       "name": "Geutebruck testaction.cgi Remote Command Execution"
     }
 ]
