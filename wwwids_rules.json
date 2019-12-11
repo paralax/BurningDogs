@@ -339,7 +339,7 @@
         "ref": "",
         "cve": "CVE-NOMATCH",
         "pat": "/shell",
-        "checkurl": -1,
+        "checkurl": 6,
         "name": "/shell probe"
     },
     {
