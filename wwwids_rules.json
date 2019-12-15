@@ -1328,5 +1328,12 @@
        "pat": "/Temporary_Listen_Addresses/",
        "checkurl": -1,
        "name": "Microsoft SharePoint Remote Code Execution Vulnerability"
+    },
+    {
+       "ref": "https://pentestlab.blog/2018/05/15/lateral-movement-winrm/",
+       "cve": "CVE-NOMATCH",
+       "pat": "/WSMAN",
+       "checkurl": -1,
+       "name": "Microsoft Windows Remote Shell (WinRS) probe"
     }
 ]
