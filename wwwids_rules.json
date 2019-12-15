@@ -1321,5 +1321,12 @@
         "name": "Netgear DGN1000 1.1.00.48 - 'Setup.cgi' RCE",
         "pat": "/setup.cgi?next_file=netgear.cfg",
         "ref": "https://www.exploit-db.com/exploits/43055"
+    },
+    {
+       "ref": "https://securitynews.sonicwall.com/xmlpost/microsoft-sharepoint-server-flaw-cve-2019-0604-is-actively-being-exploited/",
+       "cve": "CVE-2019-0604",
+       "pat": "/Temporary_Listen_Addresses/",
+       "checkurl": -1,
+       "name": "Microsoft SharePoint Remote Code Execution Vulnerability"
     }
 ]
