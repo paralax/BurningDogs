@@ -1342,5 +1342,12 @@
        "pat": "/external.php",
        "checkurl": 6,
        "name": "Moodle or ArrowChat /external.php probe"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/46085",
+       "cve": "CVE-NOMATCH",
+       "pat": "/fileman",
+       "checkurl": 6,
+       "name": "Roxy Fileman probe"
     }
 ]
