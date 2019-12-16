@@ -1335,5 +1335,12 @@
        "pat": "/WSMAN",
        "checkurl": -1,
        "name": "Microsoft Windows Remote Shell (WinRS) probe"
+    },
+    {
+       "ref": "https://securiteam.com/exploits/5cp391f95w/",
+       "cve": "CVE-NOMATCH",
+       "pat": "/external.php",
+       "checkurl": 6,
+       "name": "Moodle or ArrowChat /external.php probe"
     }
 ]
