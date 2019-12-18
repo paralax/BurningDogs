@@ -1356,5 +1356,12 @@
        "pat": "/system.ini",
        "checkurl": 6,
        "name": "GoAhead System.ini Leak"
+    },
+    {
+       "ref": "https://www.blackhatworld.com/seo/great-little-backlink-exploit-for-you-all.816182/",
+       "cve": "CVE-NOMATCH",
+       "pat": "/js/netsoltrademark.php",
+       "checkurl": -1,
+       "name": "netsoltrademark URL reditrector scraping"
     }
 ]
