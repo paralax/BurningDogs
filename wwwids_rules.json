@@ -1349,5 +1349,12 @@
        "pat": "/fileman",
        "checkurl": 6,
        "name": "Roxy Fileman probe"
+    },
+    {
+       "ref": "https://www.tenable.com/plugins/nessus/102174",
+       "cve": "CVE-2017-8225",
+       "pat": "/system.ini",
+       "checkurl": 6,
+       "name": "GoAhead System.ini Leak"
     }
 ]
