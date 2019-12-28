@@ -1363,5 +1363,19 @@
        "pat": "/js/netsoltrademark.php",
        "checkurl": -1,
        "name": "netsoltrademark URL reditrector scraping"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/38728",
+       "cve": "CVE-NOMATCH",
+       "pat": "/download",
+       "checkurl": 6,
+       "name": "Allegrocart /download LFI/RFI"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/43874",
+       "cve": "CVE-2017-11357",
+       "pat": "/Telerik.Web.UI.WebResource.axd",
+       "checkurl": 6,
+       "name": "Telerik UI for ASP.NET AJAX RadAsyncUpload uploader"
     }
 ]
