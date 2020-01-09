@@ -1381,7 +1381,7 @@
     {
        "ref": "https://isc.sans.edu/diary/A+Quick+Update+on+Scanning+for+CVE-2019-19781+%28Citrix+ADC++Gateway+Vulnerability%29/25686",
        "cve": "CVE-2019-19781",
-       "pat": "/vpn/../vpns/*",
+       "pat": "/vpn/../vpns/",
        "checkurl": -1,
        "name": "Citrix ADC / Gateway Vulnerability"
     }
