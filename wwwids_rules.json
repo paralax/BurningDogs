@@ -1384,5 +1384,26 @@
        "pat": "/vpn/../vpns/",
        "checkurl": -1,
        "name": "Citrix ADC / Gateway Vulnerability"
+    },
+    {
+       "ref": "",
+       "cve": "CVE-NOMATCH",
+       "pat": "/Admin71a29149/Login.php",
+       "checkurl": -1,
+       "name": "Unknown Admin71a29149 probe"
+    },
+    {
+       "ref": "",
+       "cve": "CVE-NOMATCH",
+       "pat": "/VSServices",
+       "checkurl": -1,
+       "name": "Unknown /VSServices probe"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/44956",
+       "cve": "CVE-2018-0296",
+       "pat": "/+CSCOE+/logon.html",
+       "checkurl": -1,
+       "name": "Cisco Adaptive Security Appliance - Path Traversal"
     }
 ]
