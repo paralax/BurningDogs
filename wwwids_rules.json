@@ -1405,5 +1405,12 @@
        "pat": "/+CSCOE+/logon.html",
        "checkurl": -1,
        "name": "Cisco Adaptive Security Appliance - Path Traversal"
+    },
+    {
+       "ref": "https://www.zdnet.com/article/exploit-code-published-for-two-dangerous-apache-solr-remote-code-execution-flaws/",
+       "cve": " CVE-2017-12629",
+       "pat": "/solr",
+       "checkurl": -1,
+       "name": "Solr probe"
     }
 ]
