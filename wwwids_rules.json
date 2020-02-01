@@ -1412,5 +1412,12 @@
        "pat": "/solr",
        "checkurl": -1,
        "name": "Solr probe"
+    },
+    {
+       "ref": "",
+       "cve": " CVE-NOMATCH",
+       "pat": "/.env",
+       "checkurl": -1,
+       "name": ".env probe"
     }
 ]
