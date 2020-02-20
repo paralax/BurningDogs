@@ -1419,5 +1419,26 @@
        "pat": "/.env",
        "checkurl": -1,
        "name": ".env probe"
+    },
+    {
+       "ref": "https://nvd.nist.gov/vuln/detail/CVE-2013-5936",
+       "cve": " CVE-2013-5936",
+       "pat": "/hazelcast/rest/cluster",
+       "checkurl": -1,
+       "name": "Hazelcast cluster API probe"
+    },
+    {
+       "ref": "https://nvd.nist.gov/vuln/detail/CVE-2013-5936",
+       "cve": " CVE-2013-5936",
+       "pat": "< NTP/1.",
+       "checkurl": -1,
+       "name": "Hazelcast cluster API probe"
+    },
+    {
+       "ref": "https://www.mdsec.co.uk/2020/02/cve-2020-0618-rce-in-sql-server-reporting-services-ssrs/",
+       "cve": " CVE-2020-0618",
+       "pat": "/ReportServer",
+       "checkurl": -1,
+       "name": "RCE in MS-SQL Server Reporting Services (SSRS)"
     }
 ]
