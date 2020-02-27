@@ -1440,5 +1440,19 @@
        "pat": "/ReportServer",
        "checkurl": -1,
        "name": "RCE in MS-SQL Server Reporting Services (SSRS)"
+    },
+    {
+       "ref": "https://hackaday.io/project/22162-arduino-fritzbox-login",
+       "cve": " CVE-NOMATCH",
+       "pat": "/login_sid.lua",
+       "checkurl": -1,
+       "name": "Fritzbox Login session ID leak"
+    },
+    {
+       "ref": "https://nvd.nist.gov/vuln/detail/CVE-2018-16793",
+       "cve": "CVE-2018-16793",
+       "pat": "/owa/auth/logon.aspx",
+       "checkurl": -1,
+       "name": "MSFT OWS SSRF on login page"
     }
 ]
