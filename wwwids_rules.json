@@ -1454,5 +1454,12 @@
        "pat": "/owa/auth/logon.aspx",
        "checkurl": -1,
        "name": "MSFT OWS SSRF on login page"
+    },
+    {
+       "ref": "",
+       "cve": "CVE-NOMATCH",
+       "pat": "/hudson",
+       "checkurl": -1,
+       "name": "Hudson probe"
     }
 ]
