@@ -1461,5 +1461,19 @@
        "pat": "/hudson",
        "checkurl": -1,
        "name": "Hudson probe"
+    },
+    {
+       "ref": "",
+       "cve": "CVE-NOMATCH",
+       "pat": "/portal/redlion",
+       "checkurl": -1,
+       "name": "/portal/redlion probe"
+    },
+    {
+       "ref": "https://blog.darwinapps.com/my-site-was-hacked-9640e3986e9e",
+       "cve": "CVE-NOMATCH",
+       "pat": "/wp-admin/plugin-install.php?tab=upload",
+       "checkurl": -1,
+       "name": "Checking for WordPress plugin installations"
     }
 ]
