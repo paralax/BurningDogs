@@ -1475,5 +1475,12 @@
        "pat": "/wp-admin/plugin-install.php?tab=upload",
        "checkurl": -1,
        "name": "Checking for WordPress plugin installations"
+    },
+    {
+       "ref": "https://www.cybersecurity-help.cz/vdb/SB2017032102",
+       "cve": "CVE-NOMATCH",
+       "pat": "/bitrix/admin",
+       "checkurl": -1,
+       "name": "Checking for Bitrix CMS installations"
     }
 ]
