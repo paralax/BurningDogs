@@ -1482,5 +1482,12 @@
        "pat": "/bitrix/admin",
        "checkurl": -1,
        "name": "Checking for Bitrix CMS installations"
+    },
+    {
+       "ref": "https://codewhitesec.blogspot.com/2020/03/liferay-portal-json-vulns.html",
+       "cve": "CVE-2020-7961",
+       "pat": "/api/jsonws/invoke",
+       "checkurl": -1,
+       "name": "Liferay Portal JSON Web Service RCE Vulnerabilities"
     }
 ]
