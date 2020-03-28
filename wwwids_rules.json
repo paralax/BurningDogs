@@ -1489,5 +1489,12 @@
        "pat": "/api/jsonws/invoke",
        "checkurl": -1,
        "name": "Liferay Portal JSON Web Service RCE Vulnerabilities"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/48225",
+       "cve": "CVE-NOMATCH",
+       "pat": "/boaform/admin/formPing",
+       "checkurl": -1,
+       "name": "Netlink GPON Router 1.0.11 - Remote Code Execution"
     }
 ]
