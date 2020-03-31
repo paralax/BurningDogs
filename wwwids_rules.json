@@ -1496,5 +1496,12 @@
        "pat": "/boaform/admin/formPing",
        "checkurl": -1,
        "name": "Netlink GPON Router 1.0.11 - Remote Code Execution"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/43683",
+       "cve": "CVE-2018-5715",
+       "pat": "crm//index.php?action=Login&module=Users",
+       "checkurl": -1,
+       "name": "SugarCRM 3.5.1 - Cross-Site Scripting"
     }
 ]
