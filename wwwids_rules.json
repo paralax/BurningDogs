@@ -1503,5 +1503,26 @@
        "pat": "crm//index.php?action=Login&module=Users",
        "checkurl": -1,
        "name": "SugarCRM 3.5.1 - Cross-Site Scripting"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/48268",
+       "cve": "CVE-2020-8515",
+       "pat": "/cgi-bin/mainfunction.cgi",
+       "checkurl": -1,
+       "name": "Multiple DrayTek Products - Pre-authentication Remote Root Code Execution"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/43414",
+       "cve": "CVE-2017-17215",
+       "pat": "/ctrlt/DeviceUpgrade_1",
+       "checkurl": -1,
+       "name": "Huawei Router HG532 - Arbitrary Command Execution"
+    },
+    {
+       "ref": "https://www.exploit-db.com/exploits/43984",
+       "cve": "CVE-NOMATCH",
+       "pat": "/incl/image_test.shtml?camnbr",
+       "checkurl": -1,
+       "name": "Axis SSI - Remote Command Execution / Read Files"
     }
 ]
