@@ -1524,5 +1524,19 @@
        "pat": "/incl/image_test.shtml?camnbr",
        "checkurl": -1,
        "name": "Axis SSI - Remote Command Execution / Read Files"
+    },
+    {
+       "ref": "",
+       "cve": "CVE-NOMATCH",
+       "pat": "/is-sending",
+       "checkurl": -1,
+       "name": "Unknown /is-sending LFI"
+    },
+    {
+       "ref": "https://github.com/elastic/elasticsearch/issues/27046",
+       "cve": "CVE-NOMATCH",
+       "pat": "/_cat/indices",
+       "checkurl": -1,
+       "name": "elasticsearch probe"
     }
 ]
