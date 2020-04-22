@@ -1538,5 +1538,26 @@
        "pat": "/_cat/indices",
        "checkurl": -1,
        "name": "elasticsearch probe"
+    },
+    {
+       "ref": "https://www.tenable.com/blog/duplicator-wordpress-plugin-vulnerability-exploited-in-the-wild",
+       "cve": "CVE-NOMATCH",
+       "pat": "action=duplicator_download",
+       "checkurl": -1,
+       "name": "Wordpress Duplicator LFI"
+    },
+    {
+       "ref": "https://github.com/bediger4000/php-malware-analysis/tree/master/apikey.php",
+       "cve": "CVE-NOMATCH",
+       "pat": "/wp-content/plugins/apikey/apikey.php",
+       "checkurl": -1,
+       "name": "BabaYaga apikey.php probe"
+    },
+    {
+       "ref": "https://www.zyxel.com/support/remote-code-execution-vulnerability-of-NAS-products.shtml",
+       "cve": "CVE-2020-9054",
+       "pat": "/adv,/cgi-bin/weblogin.cgi?username=admin",
+       "checkurl": 6,
+       "name": "Zyxel NAS RCE Attempt"
     }
 ]
