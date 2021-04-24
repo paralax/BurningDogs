@@ -1,5 +1,6 @@
 open System
 open System.IO
+open System.Net
 open System.Security.Cryptography
 open System.Text
 
@@ -146,13 +147,34 @@ let fileToIndicator (data: byte array) (description: string) : OtxIndicator list
     |> List.map (fun (fn, fntype) -> (fn data, fntype))
     |> List.map (fun (ind, indtype) -> {Type = indtype; indicator = ind; description = description})
 
+(* 
 let tryDownload(url : string) : byte [] option =
     try
         let client = new Net.WebClient()
         Some(client.DownloadData(url))
     with
     | :? Net.WebException as ex -> None
+*)
 
+let tryDownload(url : string) : byte [] option =
+    let doFetch callback url =
+        let req = WebRequest.Create(Uri(url))
+        req.Timeout <- 10000    
+        use resp = req.GetResponse()
+        use stream = resp.GetResponseStream()
+        use reader = new IO.BinaryReader(stream)
+        callback reader url
+
+    let myCallback (reader:IO.BinaryReader) url = reader.ReadBytes(Int32.MaxValue)
+    let fetchUrl = doFetch myCallback
+
+    try
+        Some(fetchUrl url)
+    with
+    | :? Net.WebException as ex -> None  
+    | :? System.UriFormatException as ex -> None  
+    | :? System.ArgumentNullException as ex -> None
+    
 let createDir(dirname: string) : DirectoryInfo =
     let p = new Diagnostics.Process()
     p.StartInfo.FileName <- "/bin/mkdir"
@@ -189,6 +211,7 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
     with
     | :? UriFormatException as ex -> []
     | :? StackOverflowException as ex -> []
+    | :? System.ArgumentNullException as ex -> []
 
     
 let getKippoRecords (system : string): CowrieRecord list =
