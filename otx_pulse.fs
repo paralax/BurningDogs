@@ -114,8 +114,8 @@ let ipToIndicator (ipstr: string) (description: string) : OtxIndicator option =
     try
         let ip = Net.IPAddress.Parse(ipstr)
         match ip.AddressFamily.ToString() with
-        | "InterNetworkV6" -> Some({Type = "IPv6"; indicator = ip.ToString(); description = description})
-        | "InterNetwork"   -> Some({Type = "IPv4"; indicator = ip.ToString(); description = description})
+        | "InterNetworkV6" -> Some({Type = "IPv6"; indicator = ipstr; description = description})
+        | "InterNetwork"   -> Some({Type = "IPv4"; indicator = ipstr; description = description})
     with
     | :? FormatException as ex -> None
     | :? System.ArgumentNullException as ex -> None
@@ -156,17 +156,30 @@ let tryDownload(url : string) : byte [] option =
     | :? Net.WebException as ex -> None
 *)
 
+(* 
+// try this instead http://furuya02.hatenablog.com/entry/20111121/1321834314 
+let myCallback (reader:IO.BinaryReader) url = 
+    let rec loop (sofar: byte []) : byte [] =
+         let data = reader.ReadBytes(1024)
+         match data.Length with
+         | 0 -> data
+         | _ -> loop (Array.append sofar data)
+    loop (reader.ReadBytes(1024))
+*)
+        
 let tryDownload(url : string) : byte [] option =
     let doFetch callback url =
         let req = WebRequest.Create(Uri(url))
-        req.Timeout <- 10000    
+        req.Timeout <- 5000    
         use resp = req.GetResponse()
         use stream = resp.GetResponseStream()
         use reader = new IO.BinaryReader(stream)
-        callback reader url
+        callback reader (resp.ContentLength) url
 
-    let myCallback (reader:IO.BinaryReader) url = reader.ReadBytes(Int32.MaxValue)
+    let myCallback (reader:IO.BinaryReader) len url = reader.ReadBytes(int len)
     let fetchUrl = doFetch myCallback
+    
+    log 3 ">>>> tryDownload %s" url
 
     try
         Some(fetchUrl url)
@@ -207,7 +220,9 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
             match uri.HostNameType.ToString() with
             | "Dns" -> domainToIndicator uri
             | _     -> List.choose id [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
-        {Type = "URL"; indicator = url.ToString(); description = description}::(netlocToIndicator url)
+        match Set.contains (url.Host) exemptions with
+        | true  -> []
+        | false -> {Type = "URL"; indicator = urlstr; description = description}::(netlocToIndicator url)        
     with
     | :? UriFormatException as ex -> []
     | :? StackOverflowException as ex -> []
@@ -266,7 +281,7 @@ let telnetlogs (date:DateTime): OtxPulse =
     let contents = urls
                  |> List.map(fun x -> tryDownload x.indicator)
                  |> List.choose id
-    log 3 ">>> read contents"
+    log 3 ">>> read first contents"
     let extraurls = contents
                     |> List.map (fun x -> Encoding.ASCII.GetString x)
                     |> List.map getUrl
@@ -279,7 +294,7 @@ let telnetlogs (date:DateTime): OtxPulse =
     let contents = extraurls
                      |> List.map(fun x -> tryDownload x.indicator)
                      |> List.choose id
-    log 3 ">>> read contents"
+    log 3 ">>> read second contents"
     let _ = contents
             |> List.map storeMalware
     log 3 ">>> stored contents"
@@ -340,22 +355,29 @@ let kippologs (date:DateTime): OtxPulse =
                         |> Set.ofSeq
                         |> Set.toList
     let dir = new DirectoryInfo(config.["kippodldir"])
-    let today = date.ToString("M/d/yyyy")
-    let files  = dir.GetFiles()
-                 |> Array.filter(fun x -> x.LastWriteTime.ToString().StartsWith(today))
-                 |> Array.map(fun x -> File.ReadAllBytes(x.FullName))
+    (* 
+    let dlfilehashes = records
+                        |> List.filter(fun x -> x.outfile <> null)
+                        |> List.map(fun x -> downloadedFileToIndicator "SSH honeypot downloaded file" (x.outfile.Replace("dl/", "")))
+    *)
+    let todaystr = date.ToString("yyyyMMdd*")
+    log 3 ">>>> gathering today's files for analysis"
+    let files  = dir.EnumerateFiles(todaystr)
+                 |> Seq.toList
+                 |> List.filter(fun x -> x.FullName.Contains("-redir__var") <> true && x.Length > 0L)
+                 |> List.map(fun x -> File.ReadAllBytes(x.FullName))
     let filehashes = files
-                     |> Array.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
+                     |> List.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
                      |> Seq.concat
                      |> Set.ofSeq
                      |> Set.toList
     let ircservers = files
-                     |> Array.map botToIndicator
+                     |> List.map botToIndicator
                      |> Seq.concat
                      |> Set.ofSeq
                      |> Set.toList
     GC.Collect()
-    {name = "SSH honeypot logs for " + today;
+    {name = "SSH honeypot logs for " + date.ToString("yyyy-MM-dd");
      Public = true;
      tags = ["SSH"; "bruteforce"; "honeypot"];
      references = [];
@@ -531,7 +553,9 @@ let redislogs (date:DateTime): OtxPulse =
                |> Array.filter(fun x -> x.Contains("[RedisServer"))
                |> Array.map getUrl
                |> Seq.concat
-               |> Seq.map (fun x -> urlToIndicators x "URL injected into Redis honeypot")
+               |> Set.ofSeq
+               |> Set.map (fun x -> urlToIndicators x "URL injected into Redis honeypot")
+               |> Set.toSeq
                |> Seq.concat
                |> Set.ofSeq
                |> Set.toList
