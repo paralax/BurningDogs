@@ -3,6 +3,7 @@ open System.IO
 open System.Net
 open System.Security.Cryptography
 open System.Text
+open System.Web
 
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
@@ -96,7 +97,7 @@ let sha256 (data : byte array) : string =
 let urlpat = RegularExpressions.Regex("(ftp://[^ ;\"]*[ \"]|http://[^ ;\"]*)[ \";$>)&]?")
 let matchToUrl (urlMatch : RegularExpressions.Match) = urlMatch.Value.Trim().Replace("\"", "").Replace(";", "").Replace(")", "").Replace(">", "")
 let getUrl (row : string) : seq<string> =
-    let matches = urlpat.Matches(row)
+    let matches = urlpat.Matches(HttpUtility.UrlDecode(row))
     Seq.map matchToUrl (Seq.cast matches)
 
 let ippat = RegularExpressions.Regex("[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}")
@@ -187,6 +188,7 @@ let tryDownload(url : string) : byte [] option =
     | :? Net.WebException as ex -> None  
     | :? System.UriFormatException as ex -> None  
     | :? System.ArgumentNullException as ex -> None
+    | :? System.ArgumentOutOfRangeException as ex -> None
     
 let createDir(dirname: string) : DirectoryInfo =
     let p = new Diagnostics.Process()
@@ -349,28 +351,26 @@ let kippologs (date:DateTime): OtxPulse =
     let contents = urls
                     |> List.map(fun x -> tryDownload x.indicator)
                     |> List.choose id
+    log 3 ">>>> now calling fileToIndicator on downloaded content"
     let dlfilehashes = contents
                         |> List.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
                         |> Seq.concat
                         |> Set.ofSeq
                         |> Set.toList
     let dir = new DirectoryInfo(config.["kippodldir"])
-    (* 
-    let dlfilehashes = records
-                        |> List.filter(fun x -> x.outfile <> null)
-                        |> List.map(fun x -> downloadedFileToIndicator "SSH honeypot downloaded file" (x.outfile.Replace("dl/", "")))
-    *)
     let todaystr = date.ToString("yyyyMMdd*")
     log 3 ">>>> gathering today's files for analysis"
     let files  = dir.EnumerateFiles(todaystr)
                  |> Seq.toList
                  |> List.filter(fun x -> x.FullName.Contains("-redir__var") <> true && x.Length > 0L)
                  |> List.map(fun x -> File.ReadAllBytes(x.FullName))
+    log 3 ">>>> now hashing today's files"
     let filehashes = files
                      |> List.map(fun x -> fileToIndicator x "SSH honeypot downloaded file")
                      |> Seq.concat
                      |> Set.ofSeq
                      |> Set.toList
+    log 3 ">>>> now looking for today's IRC servers"
     let ircservers = files
                      |> List.map botToIndicator
                      |> Seq.concat
