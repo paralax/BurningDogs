@@ -476,13 +476,6 @@
         "name": "Open proxy probe"
     },
     {
-        "ref": "https://labs.detectify.com/2012/11/16/local-file-inclusions-in-perlcgi/",
-        "cve": "CVE-NOMATCH",
-        "pat": "/cgi-bin/",
-        "checkurl": 6,
-        "name": "cgi-bin RFI attempt"
-    },
-        {
         "ref": "https://translate.google.com/translate?hl=en&sl=zh-CN&u=https://www.meipian.cn/c7xz4ci&prev=search",
         "cve": "CVE-NOMATCH",
         "pat": "/MJKCustomer/CLogin.aspx",
@@ -1232,18 +1225,18 @@
        "name": "Multiple Devices '/scgi-bin/platform.cgi' Unauthenticated File Disclosure"
     },
     {
-        "checkurl": -1,
-        "cve": "CVE-NOMATCH",
-        "name": "Weaver Beanshell code injection 0day",
-        "pat": "/weaver/bsh.servlet.BshServlet",
-        "ref": "https://www.fireeye.com/blog/threat-research/2019/10/certutil-qualms-they-came-to-drop-fombs.html"
+       "ref": "https://www.fireeye.com/blog/threat-research/2019/10/certutil-qualms-they-came-to-drop-fombs.html",
+       "cve": "CVE-NOMATCH",
+       "pat": "/weaver/bsh.servlet.BshServlet",
+       "checkurl": -1,
+       "name": "Weaver Beanshell code injection 0day"
     },
     {
-        "checkurl": -1,
-        "cve": "CVE-2019-16663",
-        "name": "Unauthenticated remote code execution vulnerabilities in rConfig",
-        "pat": "/install/lib/ajaxHandlers/ajaxServerSettingsChk.php?rootUname",
-        "ref": "https://www.sudokaikan.com/2019/11/cve-2019-16662-cve-2019-16663.html"
+       "ref": "https://www.sudokaikan.com/2019/11/cve-2019-16662-cve-2019-16663.html",
+       "cve": "CVE-2019-16663",
+       "pat": "/install/lib/ajaxHandlers/ajaxServerSettingsChk.php?rootUname",
+       "checkurl": -1,
+       "name": "Unauthenticated remote code execution vulnerabilities in rConfig"
     },
     {
        "ref": "https://nvd.nist.gov/vuln/detail/CVE-2019-1923?cpeVersion=2.2",
@@ -1316,11 +1309,11 @@
        "name": "Geutebruck testaction.cgi Remote Command Execution"
     },
     {
-        "checkurl": 6,
-        "cve": "CVE-NOMATCH",
-        "name": "Netgear DGN1000 1.1.00.48 - 'Setup.cgi' RCE",
-        "pat": "/setup.cgi?next_file=netgear.cfg",
-        "ref": "https://www.exploit-db.com/exploits/43055"
+       "ref": "https://www.exploit-db.com/exploits/43055",
+       "cve": "CVE-NOMATCH",
+       "pat": "/setup.cgi?next_file=netgear.cfg",
+       "checkurl": 6,
+       "name": "Netgear DGN1000 1.1.00.48 - 'Setup.cgi' RCE"
     },
     {
        "ref": "https://securitynews.sonicwall.com/xmlpost/microsoft-sharepoint-server-flaw-cve-2019-0604-is-actively-being-exploited/",
@@ -1388,9 +1381,9 @@
     {
        "ref": "",
        "cve": "CVE-NOMATCH",
-       "pat": "/Admin71a29149/Login.php",
+       "pat": "/Admind5b49149/Login.php",
        "checkurl": -1,
-       "name": "Unknown Admin71a29149 probe"
+       "name": "Unknown AdminHEX probe"
     },
     {
        "ref": "",
@@ -1573,5 +1566,705 @@
        "pat": "/htmlV/welcomeMain.htm",
        "checkurl": -1,
        "name": "GoAhead router default password probe"
+    },
+    {
+       "ref": "https://www.cybersecurity-help.cz/vdb/SB2020042711",
+       "cve": "CVE-NOMATCH",
+       "pat": "/plugins/simple-file-list/ee-upload-engine.php",
+       "checkurl": -1,
+       "name": "WordPress Simple File List File Upload PHP RCE probe"
+    },
+    {
+        "ref": "https://topic.alibabacloud.com/a/axis2-using-gadgets-cataar_8_8_31338697.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/axis2/services/Cat/exec?cmd=",
+        "checkurl": 6,
+        "name": "Apache Axis2 CMD injection"
+    },
+    {
+        "ref": "https://labs.detectify.com/2012/11/16/local-file-inclusions-in-perlcgi/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/",
+        "checkurl": 6,
+        "name": "cgi-bin RFI attempt"
+    },
+    {
+        "ref": "https://www.ispyconnect.com/man.aspx?n=china",
+        "cve": "CVE-NOMATCH",
+        "pat": "/snapshot.cgi?user=&pwd=",
+        "checkurl": 6,
+        "name": "Lorex IP camera password probe"
+    },
+    {
+        "ref": "http://pierrekim.github.io/blog/2015-07-01-poc-with-RCE-against-127-iptime-router-models.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/sess-bin/login_session.cgi",
+        "checkurl": 6,
+        "name": "ipTIME firmware exploit"
+    },
+    {
+        "ref": "https://blog.netlab.360.com/multiple-botnets-are-spreading-using-lilin-dvr-0-day-en/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/dvr/cmd",
+        "checkurl": -1,
+        "name": "LILIN DVR 0-day /dvr/cmd"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/39683",
+        "cve": "CVE-NOMATCH",
+        "pat": "/operator/basic.shtml",
+        "checkurl": -1,
+        "name": "AXIS 206 Network Camera basic.shtml"
+    },
+    {
+        "ref": "https://github.com/rapid7/metasploit-framework/blob/master/modules/auxiliary/scanner/http/axis_login.rb",
+        "cve": "CVE-2010-0219",
+        "pat": "/axis2/axis2-admin/login",
+        "checkurl": -1,
+        "name": "AXIS2 default user and password exploit"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/21220",
+        "cve": "CVE-NOMATCH",
+        "pat": "/vicidial/admin.php?ADD=",
+        "checkurl": -1,
+        "name": "Vicidialer SQLi"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/47626",
+        "cve": "CVE-NOMATCH",
+        "pat": "/card_scan_decoder.php",
+        "checkurl": 6,
+        "name": "eMerge E3 Access Controller 4.6.07 - Remote Code Execution"
+    },
+    {
+        "ref": "https://github.com/kubeflow/kubeflow/commit/f5250b017f126c63cca4c38114860f63b71c66d1",
+        "cve": "CVE-NOMATCH",
+        "pat": "/api/workgroup/exists",
+        "checkurl": -1,
+        "name": "K8s Kubeflow workflow probe"
+    },
+    {
+        "ref": "https://www.f5.com/labs/articles/threat-intelligence/application-protection-report-2019-episode-5-api-breaches-and-the-visibility-problem",
+        "cve": "CVE-NOMATCH",
+        "pat": "/stalker_portal",
+        "checkurl": -1,
+        "name": "Infomir Stalker probe"
+    },
+    {
+        "ref": "https://codegym.cc/groups/posts/51-creating-the-simplest-web-project-in-intellij-idea-enterprise-step-by-step-with-pictures",
+        "cve": "CVE-NOMATCH",
+        "pat": "/.idea/WebServers.xml",
+        "checkurl": -1,
+        "name": "IntelliJ IDEAz IDE WebServers config file probe"
+    },
+    {
+        "ref": "https://stackoverflow.com/questions/3671685/how-to-run-a-specific-phpunit-xml-testsuite",
+        "cve": "CVE-NOMATCH",
+        "pat": "/phpunit.xml",
+        "checkurl": -1,
+        "name": "PHP Unit config file probe"
+    },
+    {
+        "ref": "https://www.wordfence.com/blog/2020/03/zero-day-vulnerability-in-themerex-addons-now-patched/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/trx_addons/v2/get/sc_layout",
+        "checkurl": -1,
+        "name": "ThemeREX RCE in sc_layout"
+    },
+    {
+        "ref": "https://twitter.com/vijithvellora/status/1279632391850455041",
+        "cve": "CVE-2020-5902",
+        "pat": "/tmui/login.jsp/..;/tmui/",
+        "checkurl": 6,
+        "name": "F5 TMUI RCE"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/admin/login.",
+        "checkurl": 6,
+        "name": "Looking for admin login pages"
+    },
+    {
+        "ref": "https://www.techrepublic.com/article/access-cisco-command-output-from-your-web-browser/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/level/15/exec/-/sh/run",
+        "checkurl": 6,
+        "name": "Cisco web /sh/run RCE"
+    },
+    {
+        "ref": "https://www.techrepublic.com/article/access-cisco-command-output-from-your-web-browser/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/goform/webLogin",
+        "checkurl": 6,
+        "name": "goform webLogin brute force attempt"
+    },
+    {
+        "ref": "https://wpvulndb.com/vulnerabilities/10293",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/angwp",
+        "checkurl": -1,
+        "name": "Adning Advertising < 1.5.6 - Unauthenticated Arbitrary File Upload/Deletion"
+    },
+    {
+        "ref": "https://github.com/bediger4000/php-malware-analysis/tree/master/apikey.php/t_file_wp",
+        "cve": "CVE-NOMATCH",
+        "pat": "/t_file_wp.php?test=hello",
+        "checkurl": -1,
+        "name": "PHP backdoor probe"
+    },
+    {
+        "ref": "https://www.securityfocus.com/bid/66443/exploit",
+        "cve": "CVE-NOMATCH",
+        "pat": "/kcfinder//browse.php",
+        "checkurl": -1,
+        "name": "KCFinder 'browse.php' Arbitrary File Upload Vulnerability"
+    },
+    {
+        "ref": "https://www.securityfocus.com/bid/33702/exploit",
+        "cve": "CVE-2009-0545",
+        "pat": "/cgi-bin/kerbynet?",
+        "checkurl": 6,
+        "name": "ZeroShell 'cgi-bin/kerbynet' RCE"
+    },
+    {
+        "ref": "https://qiita.com/hidenorly/items/b251cfb5d3985d7a794b",
+        "cve": "CVE-NOMATCH",
+        "pat": "/tmpfs/auto.jpg",
+        "checkurl": -1,
+        "name": "SV3C IP Camera picture grab"
+    },
+    {
+        "ref": "https://twitter.com/aboul3la/status/1286012324722155525",
+        "cve": "CVE-2020-3452",
+        "pat": "/+CSCOT+/",
+        "checkurl": -1,
+        "name": "Unauthenticated file read in Cisco ASA & Cisco Firepower"
+    },
+    {
+        "ref": "https://srcincite.io/blog/2020/07/20/sharepoint-and-pwn-remote-code-execution-against-sharepoint-server-abusing-dataset.html",
+        "cve": "CVE-2020-1147",
+        "pat": "/quicklinks",
+        "checkurl": -1,
+        "name": "Sharepoint CVE-2020-1147 deserialization RCE"
+    },
+    {
+        "ref": "https://srcincite.io/blog/2020/07/20/sharepoint-and-pwn-remote-code-execution-against-sharepoint-server-abusing-dataset.html",
+        "cve": "CVE-2019-0604",
+        "pat": "/_layouts/15/Picker.aspx",
+        "checkurl": -1,
+        "name": "Sharepoint CVE-2019-0604 deserialization RCE"
+    },
+    {
+        "ref": "https://s3tools.org/kb/item14.htm",
+        "cve": "CVE-NOMATCH",
+        "pat": "/.s3cfg",
+        "checkurl": -1,
+        "name": "Amazon s3cmd .s3cfg file access attempt"
+    },
+    {
+        "ref": "https://nvd.nist.gov/vuln/detail/CVE-2020-13640",
+        "cve": "CVE-2020-13640",
+        "pat": "/wp-content/plugins/wpdiscuz",
+        "checkurl": -1,
+        "name": "wpDiscuz plugin for WordPress fingerprinting"
+    },
+    {
+        "ref": "https://wordpress.org/support/topic/rest-api-exposed-user-data-for-all-users/",
+        "cve": "CVE-2017-5487",
+        "pat": "/wp-json/wp/v2/users",
+        "checkurl": -1,
+        "name": "WordPress expose users through the API"
+    },
+    {
+        "ref": "https://www.tenable.com/blog/do-you-know-where-your-upnp-is",
+        "cve": "CVE-NOMATCH",
+        "pat": "/UPnP/IGD.xml",
+        "checkurl": -1,
+        "name": "Home router UPnP IGD config probe"
+    },
+    {
+        "ref": "https://www.cisco.com/c/en/us/td/docs/ios/12_2/12_2y/12_2yt11/feature/guide/ft_its21.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/telephony-service.html",
+        "checkurl": -1,
+        "name": "Cisco IOS Telephony Service probe"
+    },
+    {
+        "ref": "https://seravo.com/blog/0-day-vulnerability-in-wp-file-manager/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-file-manager/lib/php/connector.minimal.php",
+        "checkurl": -1,
+        "name": "WordPress WP File Manager RCE in connector.minimal"
+    },
+    {
+        "ref": "https://securityaffairs.co/wordpress/107826/hacking/file-manager-wordpress-plugin-flaw.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-file-manager/lib/files/x.php",
+        "checkurl": 6,
+        "name": "WordPress WP File Manager RCE in x.php"
+    },
+    {
+        "ref": "https://www.wordfence.com/blog/2017/07/wpsetup-attack/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-admin/setup-config.php?step=1",
+        "checkurl": -1,
+        "name": "WordPress setup-config probe"
+    },
+    {
+        "ref": "https://pierrekim.github.io/blog/2017-03-08-camera-goahead-0day.html",
+        "cve": "CVE-2017-18377",
+        "pat": "/set_ftp.cgi?loginuse=&loginpas=&next_url=ftp.htm&port=",
+        "checkurl": 6,
+        "name": "Wireless IP Camera (P2P) WIFICAM RCE in /set_ftp.cgi"
+    },
+    {
+        "ref": "https://twitter.com/obsecurus/status/1309490069930217474",
+        "cve": "CVE-NOMATCH",
+        "pat": "/link?url=",
+        "checkurl": 6,
+        "name": "Goblin Panda C2 Crawler"
+    },
+    {
+        "ref": "https://twitter.com/chybeta/status/1316416189527068672",
+        "cve": "CVE-2020-15227",
+        "pat": "/nette.micro?callback=shell_exec",
+        "checkurl": 6,
+        "name": "PHP framework nette callback RCE"
+    },
+    {
+        "ref": "https://codecanyon.net/item/super-interactive-maps-for-wordpress/15712620",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/super-interactive-maps",
+        "checkurl": -1,
+        "name": "Probe for Super Interactive Maps for WordPress"
+    },
+    {
+        "ref": "https://twitter.com/sans_isc/status/1322131189612843010",
+        "cve": "CVE-2020-14882",
+        "pat": "/console/images/%252E%252E%252Fconsole.portal",
+        "checkurl": 6,
+        "name": "Oracle WebLogic RCE"
+    },
+    {
+        "ref": "https://wpscan.com/vulnerability/10471",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/ait-csv-import-export/admin/upload-handler.php",
+        "checkurl": -1,
+        "name": "AIT CSV Import / Export <= 3.0.3 - Unauthenticated Arbitrary File Upload"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/stalker_portal/c/",
+        "checkurl": -1,
+        "name": "Ministra IPTV Stalker Portal abuse attempt"
+    },
+    {
+        "ref": "https://blog.quttera.com/post/exploitation-new-bug-wordpress-duplicator-plugin/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-admin/admin-ajax.php?action=duplicator_download&file=",
+        "checkurl": 6,
+        "name": "Wordpress Duplicator plugin arbitrary file read vuln"
+    },
+    {
+        "ref": "https://blog.sucuri.net/2014/09/slider-revolution-plugin-critical-vulnerability-being-exploited.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-admin/admin-ajax.php?action=revslider_show_image&img=",
+        "checkurl": 6,
+        "name": "Wordpress Slider Revolution plugin arbitrary file read vuln"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/composer.",
+        "checkurl": -1,
+        "name": "Fingerprinting PHP software installed via a call to /composer.*"
+    },
+    {
+        "ref": "http://h.foofus.net/?p=793",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Autodiscover/Autodiscover.xml",
+        "checkurl": -1,
+        "name": "Microsoft Exchange Client Access Server (CAS) Autodiscover Enumeration Vulnerability probe"
+    },
+    {
+        "ref": "https://cxsecurity.com/issue/WLB-2019030198",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/easy-wp-smtp-master/",
+        "checkurl": -1,
+        "name": "Easy WP SMTP plugin RCE"
+    },
+    {
+        "ref": "https://swarm.ptsecurity.com/vulnerabilities-in-mcafee-epolicy-orchestrator/",
+        "cve": "CVE-2020-7318",
+        "pat": "/PolicyMgmt/policyDetailsCard.do?poID=19",
+        "checkurl": -1,
+        "name": "McAfee ePolocyOrcheestrator reflected XSS"
+    },
+    {
+        "ref": "https://vulners.com/myhack58/MYHACK58:62201994757",
+        "cve": "CVE-NOMATCH",
+        "pat": "/seeyon/htmlofficeservlet",
+        "checkurl": -1,
+        "name": "Zhiyuan OA A8 Getshell emote arbitrary file upload vulnerability"
+    },
+    {
+        "ref": "https://vuldb.com/?id.94801",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/ViewLog.asp",
+        "checkurl": -1,
+        "name": "ZyXEL ViewLog.asp command injection vulnerability"
+    },
+    {
+        "ref": "https://www.webhostinghub.com/help/learn/wordpress/wordpress-emergency-password-reset-script",
+        "cve": "CVE-NOMATCH",
+        "pat": "/emergency.php",
+        "checkurl": -1,
+        "name": "Probe for emergency.php WP password reset trick"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/boaform/admin/formLogin?username",
+        "checkurl": -1,
+        "name": "Netlink GPON password guessing"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/typo3conf/ext/systemfile/Classes/Controller/data.php",
+        "checkurl": -1,
+        "name": "Unknown Typo3 systemfile probe"
+    },
+    {
+        "ref": "https://vulners.com/securityvulns/SECURITYVULNS:DOC:26496",
+        "cve": "CVE-NOMATCH",
+        "pat": "/tools.cgi",
+        "checkurl": -1,
+        "name": "IP camera /tools.cgi probe"
+    },
+    {
+        "ref": "https://vulners.com/securityvulns/SECURITYVULNS:DOC:26496",
+        "cve": "CVE-NOMATCH",
+        "pat": "/upload_json.ashx",
+        "checkurl": -1,
+        "name": "kindeditor arbitrary file upload vulnerability"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/43984",
+        "cve": "CVE-NOMATCH",
+        "pat": "/incl/image_test.shtml?camnbr",
+        "checkurl": 6,
+        "name": "Axis SSI - Remote Command Execution / Read Files probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/47407",
+        "cve": "CVE-2019-16679",
+        "pat": "/gila/?c=admin",
+        "checkurl": -1,
+        "name": "Gila CMS < 1.11.1 - Local File Inclusion"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/49390",
+        "cve": "CVE-NOMATCH",
+        "pat": "/auth/requestreset",
+        "checkurl": -1,
+        "name": "Cockpit CMS 0.6.1 - password reset probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/47280",
+        "cve": "CVE-NOMATCH",
+        "pat": "/module/tool_all/select_tool.php",
+        "checkurl": -1,
+        "name": "EyesOfNetwork 5.1 - Authenticated Remote Command Execution probe"
+    },
+    {
+        "ref": "https://pagely.com/blog/unauthenticated-remote-code-execution-in-e-signature-plugin/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-admin/admin-ajax.php?action=sif_upload_file",
+        "checkurl": -1,
+        "name": "WordPress Unauthenticated Remote Code Execution in e-signature plugin probe"
+    },
+    {
+        "ref": "https://blog.csdn.net/csdn_Pade/article/details/112974809",
+        "cve": "CVE-NOMATCH",
+        "pat": "/_ignition/execute-solution",
+        "checkurl": -1,
+        "name": "laravel <= 8.4.2 Debug RC"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/terminals/main",
+        "checkurl": -1,
+        "name": "Unknown /terminals/main probe"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/48149",
+        "cve": "CVE-2019-19356",
+        "pat": "/cgi-bin-igd/netcore_set.cgi",
+        "checkurl": -1,
+        "name": "Netis WF2419 2.2.36123 - Remote Code Execution"
+    },
+    {
+        "ref": "https://twitter.com/elhackernet/status/1351868875714015234",
+        "cve": "CVE-2021-2109",
+        "pat": "/console/consolejndi.portal?_pageLabel=JNDIBindingPageGeneral&_nfpb=true&JNDIBindingPortlethandle=com.bea.console.handles.JndiBindingHandle",
+        "checkurl": 6,
+        "name": "Oracle WebLogic Server RCE via JNDI"
+    },
+    {
+        "ref": "https://darrenmartyn.ie/2021/01/24/visualdoor-sonicwall-ssl-vpn-exploit/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/cgi-bin/jarrewrite.sh",
+        "checkurl": 6,
+        "name": "VisualDoor: SonicWall SSL-VPN Exploit"
+    },
+    {
+        "ref": "https://vulners.com/openvas/OPENVAS:1361412562310114041",
+        "cve": "CVE-NOMATCH",
+        "pat": "/ISAPI/Security/userCheck",
+        "checkurl": -1,
+        "name": "Hikvision IP Camera Default Credentials"
+    },
+    {
+        "ref": "https://www.programmersought.com/article/1033574325/",
+        "cve": "CVE-2017-7504",
+        "pat": "/jbossmq-httpil/HTTPServerILServlet",
+        "checkurl": -1,
+        "name": "JBOSS deserialization vulnerability recurrence"
+    },
+    {
+        "ref": "https://twitter.com/sec715/status/1357985479862329344",
+        "cve": "CVE-NOMATCH",
+        "pat": "/v1/submissions/create",
+        "checkurl": -1,
+        "name": "Apache Spark RCE"
+    },
+    {
+        "ref": "https://gist.github.com/FanqXu/36c5e0070fd8e0b6646993b4e386a6b1",
+        "cve": "CVE-2021-25646",
+        "pat": "/druid/indexer/v1/sampler",
+        "checkurl": -1,
+        "name": "Apache Druid RCE"
+    },
+    {
+        "ref": "https://malpedia.caad.fkie.fraunhofer.de/details/win.systembc",
+        "cve": "CVE-NOMATCH",
+        "pat": "/systembc/password.php",
+        "checkurl": -1,
+        "name": "SystemBC password probe"
+    },
+    {
+        "ref": "https://github.com/HoangKien1020/CVE-2021-23132",
+        "cve": "CVE-2021-23132",
+        "pat": "/error.php?cmd=",
+        "checkurl": 6,
+        "name": "Joomla RCE in com_media Joomla core <=3.9.24"
+    },
+    {
+        "ref": "https://streaming-servers.com/knowledgebase/33/XtreamUI-TROUBLESHOOTING.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/system_api.php",
+        "checkurl": -1,
+        "name": "XStreamUI unknown issue in system-api.php probe"
+    },
+    {
+        "ref": "https://news.knowledia.com/US/en/articles/unknown-zero-day-used-by-moobot-ddos-malware-b082eab74f8127269683ee331d5b14f36bd674dd",
+        "cve": "CVE-NOMATCH",
+        "pat": "/op_type=ping&destination",
+        "checkurl": 6,
+        "name": "Unknown mootbot /op_type CMD injection"
+    },
+    {
+        "ref": "https://www.mageni.net/vulnerability/laravel-telescope-information-disclosure-vulnerability-112808",
+        "cve": "CVE-NOMATCH",
+        "pat": "/telescope/requests",
+        "checkurl": -1,
+        "name": "Laravel Telescope Information Disclosure Vulnerability"
+    },
+    {
+        "ref": "https://www.sitelock.com/blog/passwords-publicly-exposed-by-malware/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/idx_config/",
+        "checkurl": -1,
+        "name": "IndoXploit Shell probe"
+    },
+    {
+        "ref": "https://vulners.com/nessus/ILO_DETECT.NASL",
+        "cve": "CVE-NOMATCH",
+        "pat": "/upnp/BasicDevice.xml",
+        "checkurl": -1,
+        "name": "iLO4 <= 2.73 reveals HW serial and model unauthenticated request"
+    },
+    {
+        "ref": "https://blogs.akamai.com/sitr/2020/06/stealthworker-golang-based-brute-force-malware-still-an-active-threat.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/themes/alternate-lite/inc/customizer.php",
+        "checkurl": -1,
+        "name": "Stealthworker backdoor scan"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/instagram-feed/inc/admin/PluginSilentPicker.php",
+        "checkurl": -1,
+        "name": "Unknown probe for WP Instgram Feed plugin in PluginSilentPicker.php"
+    },
+    {
+        "ref": "https://www.iptvsat-forum.com/threads/xtream-ui-r22f-full-download-update.168/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/system_api.php",
+        "checkurl": -1,
+        "name": "Unknown probe for Xtream"
+    },
+    {
+        "ref": "https://github.com/PAGalaxyLab/VulInfo/blob/master/D-Link/DIR-816/remote_cmd_exec_0/README.md",
+        "cve": "CVE-2019-10040",
+        "pat": "/goform/SystemCommand",
+        "checkurl": -1,
+        "name": "D-Link DIR-816 A2 Remote Command Execute"
+    },
+    {
+        "ref": "https://vulners.com/zdt/1337DAY-ID-14323",
+        "cve": "CVE-NOMATCH",
+        "pat": "/ckfinder/ckfinder.html",
+        "checkurl": -1,
+        "name": "Ckfinder remote file Upload Vulnerability"
+    },
+    {
+        "ref": "https://github.com/ForbiddenProgrammer/CVE-2021-21315-PoC",
+        "cve": "CVE-2021-21315",
+        "pat": "/api/getServices?name",
+        "checkurl": -1,
+        "name": "Node.JS System Information Library RCE"
+    },
+    {
+        "ref": "https://www.exploit-db.com/ghdb/4589",
+        "cve": "CVE-NOMATCH",
+        "pat": "/.ftpconfig",
+        "checkurl": -1,
+        "name": "Probe for /.ftpconfig, left behind by Atom text editor"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/25138",
+        "cve": "CVE-2013-1599",
+        "pat": "/cgi-bin/rtpd.cgi",
+        "checkurl": 6,
+        "name": "D-Link IP Cameras command injection"
+    },
+    {
+        "ref": "https://attackerkb.com/topics/iAOGl5JHyI/cve-2020-25078",
+        "cve": "CVE-2020-25078",
+        "pat": "/config/getuser?index=0",
+        "checkurl": -1,
+        "name": "D-LInk DCS-2530L password disclosure"
+    },
+    {
+        "ref": "https://sypex.net/en/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/sxd.js",
+        "checkurl": -1,
+        "name": "Sypex Dumper /sxd.js probe"
+    },
+    {
+        "ref": "https://blog.sucuri.net/2012/11/psa-sftpftp-password-exposure-via-sftp-config-json.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/sftp-config.json",
+        "checkurl": -1,
+        "name": "SFTP config probe"
+    },
+    {
+        "ref": "https://www.packer.io/guides/automatic-operating-system-installs/preseed_ubuntu",
+        "cve": "CVE-NOMATCH",
+        "pat": "/preseed.cfg",
+        "checkurl": -1,
+        "name": "Debian fingerprint probe via preseed.cfg"
+    },
+    {
+        "ref": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-0921",
+        "cve": "CVE-2006-0921",
+        "pat": "/connector.php?Command=GetFoldersAndFiles",
+        "checkurl": 6,
+        "name": "FCKeditor 2..0 FC directory traversal in GetFoldersAndFiles command"
+    },
+    {
+        "ref": "https://vulners.com/dsquare/E-714",
+        "cve": "CVE-NOMATCH",
+        "pat": "/bscpgraph.jsp",
+        "checkurl": -1,
+        "name": "File disclosure vulnerability in Oracle E-Business bscpgraph.jsp"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wifidog/logincheck/?authtype=web&user=asdf;`",
+        "checkurl": 6,
+        "name": "Wifidog user param command injection in logincheck"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/restapps/applications.php",
+        "checkurl": 6,
+        "name": "FreePBX command injection in user param"
+    },
+    {
+        "ref": "https://packetstormsecurity.com/files/127522/Trixbox-XSS-LFI-SQL-Injection-Code-Execution.html",
+        "cve": "CVE-2014-5112",
+        "pat": "/maint/modules/home/index.php",
+        "checkurl": 6,
+        "name": "Trixbox XSS / LFI / SQL Injection / Code Execution"
+    },
+    {
+        "ref": "https://www.exploit-db.com/raw/49927",
+        "cve": "CVE-2020-11978",
+        "pat": "/api/experimental/dags/example_trigger_target_dag/paused/false",
+        "checkurl": -1,
+        "name": "Apache Airflow 1.10.10 - 'Example Dag' Remote Code Execution"
+    },
+    {
+        "ref": "https://www.joesandbox.com/analysis/369903/0/lighthtml",
+        "cve": "CVE-NOMATCH",
+        "pat": "/fb16/fre.php",
+        "checkurl": -1,
+        "name": "Lokibot C2 check"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/49321",
+        "cve": "CVE-NOMATCH",
+        "pat": "/include/makecvs.php",
+        "checkurl": 6,
+        "name": "TerraMaster TOS 4.2.06 - RCE"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/images/Nxrs4tAtO",
+        "checkurl": -1,
+        "name": "Ursniff C2 probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/tot43/",
+        "checkurl": -1,
+        "name": "Trickbot C2 probe"
+    },
+    {
+        "ref": "https://swarm.ptsecurity.com/unauth-rce-vmware/",
+        "cve": "CVE-2021-21972",
+        "pat": "/ui/vropspluginui/rest/services/uploadova",
+        "checkurl": -1,
+        "name": "VMware vCenter RCE"
+    },
+    {
+        "ref": "https://vuldb.com/?id.169016",
+        "cve": "CVE-2020-25506",
+        "pat": "/cgi-bin/system_mgr.cgi",
+        "checkurl": -1,
+        "name": "D-Link DNS-320 2.06b01 Revision Ax /cgi-bin/system_mgr.cgi command injection"
     }
 ]
