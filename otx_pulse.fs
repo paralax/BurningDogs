@@ -148,7 +148,7 @@ let fileToIndicator (data: byte array) (description: string) : OtxIndicator list
     |> List.map (fun (fn, fntype) -> (fn data, fntype))
     |> List.map (fun (ind, indtype) -> {Type = indtype; indicator = ind; description = description})
 
-(* 
+(*
 let tryDownload(url : string) : byte [] option =
     try
         let client = new Net.WebClient()
@@ -157,9 +157,9 @@ let tryDownload(url : string) : byte [] option =
     | :? Net.WebException as ex -> None
 *)
 
-(* 
-// try this instead http://furuya02.hatenablog.com/entry/20111121/1321834314 
-let myCallback (reader:IO.BinaryReader) url = 
+(*
+// try this instead http://furuya02.hatenablog.com/entry/20111121/1321834314
+let myCallback (reader:IO.BinaryReader) url =
     let rec loop (sofar: byte []) : byte [] =
          let data = reader.ReadBytes(1024)
          match data.Length with
@@ -167,11 +167,11 @@ let myCallback (reader:IO.BinaryReader) url =
          | _ -> loop (Array.append sofar data)
     loop (reader.ReadBytes(1024))
 *)
-        
+
 let tryDownload(url : string) : byte [] option =
     let doFetch callback url =
         let req = WebRequest.Create(Uri(url))
-        req.Timeout <- 5000    
+        req.Timeout <- 5000
         use resp = req.GetResponse()
         use stream = resp.GetResponseStream()
         use reader = new IO.BinaryReader(stream)
@@ -179,17 +179,17 @@ let tryDownload(url : string) : byte [] option =
 
     let myCallback (reader:IO.BinaryReader) len url = reader.ReadBytes(int len)
     let fetchUrl = doFetch myCallback
-    
+
     log 3 ">>>> tryDownload %s" url
 
     try
         Some(fetchUrl url)
     with
-    | :? Net.WebException as ex -> None  
-    | :? System.UriFormatException as ex -> None  
+    | :? Net.WebException as ex -> None
+    | :? System.UriFormatException as ex -> None
     | :? System.ArgumentNullException as ex -> None
     | :? System.ArgumentOutOfRangeException as ex -> None
-    
+
 let createDir(dirname: string) : DirectoryInfo =
     let p = new Diagnostics.Process()
     p.StartInfo.FileName <- "/bin/mkdir"
@@ -224,13 +224,13 @@ let urlToIndicators (urlstr: string) (description: string) : OtxIndicator list =
             | _     -> List.choose id [ ipToIndicator uri.Host ("IP addresses associated with " + description) ]
         match Set.contains (url.Host) exemptions with
         | true  -> []
-        | false -> {Type = "URL"; indicator = urlstr; description = description}::(netlocToIndicator url)        
+        | false -> {Type = "URL"; indicator = urlstr; description = description}::(netlocToIndicator url)
     with
     | :? UriFormatException as ex -> []
     | :? StackOverflowException as ex -> []
     | :? System.ArgumentNullException as ex -> []
 
-    
+
 let getKippoRecords (system : string): CowrieRecord list =
     let convertLine (line:string) : CowrieRecord = JsonConvert.DeserializeObject<CowrieRecord>(line)
     (* we have to do this because records that show downloads don't have the system field, wtf *)
@@ -238,7 +238,7 @@ let getKippoRecords (system : string): CowrieRecord list =
         match r.system with
         | null -> { r with system = ""}
         | _    -> r
-    let rewriteSrcIp (r : CowrieRecord) : CowrieRecord = 
+    let rewriteSrcIp (r : CowrieRecord) : CowrieRecord =
         {r with src_ip = r.src_ip.Replace("::ffff:", "") }
     let records = File.ReadAllLines(config.["kippojson"])
                     |> Array.map convertLine
@@ -246,14 +246,14 @@ let getKippoRecords (system : string): CowrieRecord list =
                     |> List.map rewriteNullSystem
                     |> List.map rewriteSrcIp
                     |> List.filter (fun x -> x.system.Contains(system) || x.eventid.Contains("cowrie.session.file_download"))
-    let sessions = records 
+    let sessions = records
                    |> List.map (fun x -> x.session)
                    |> Set.ofList
                    |> Set.filter (fun x -> x <> null)
     records
     |> List.filter (fun x -> Set.contains x.session sessions = true)
 
-(* we do it this way to make sure we don't block on fetching 
+(* we do it this way to make sure we don't block on fetching
     content from websites that causes a delay, and logs roll over.
     *)
 let telnets = getKippoRecords "Telnet"
@@ -270,7 +270,7 @@ let telnetlogs (date:DateTime): OtxPulse =
               |> Set.toList
               |> List.choose id
     log 3 ">>> read IPs"
-    let urls = records 
+    let urls = records
                |> List.map (fun x -> x.url)
                |> List.filter (fun x -> x <> null && x <> "redir")
                |> Set.ofList
@@ -339,7 +339,7 @@ let kippologs (date:DateTime): OtxPulse =
               |> Set.toList
               |> List.choose id
     log 3 ">>> read IPs"
-    let urls = records 
+    let urls = records
                |> List.map (fun x -> x.url)
                |> List.filter (fun x -> x <> null && x <> "redir")
                |> Set.ofList
@@ -559,6 +559,15 @@ let redislogs (date:DateTime): OtxPulse =
                |> Seq.concat
                |> Set.ofSeq
                |> Set.toList
+    let upstreams = lines
+                    |> Array.filter(fun x -> x.ToLower().Contains("slaveof"))
+                    |> Array.map (fun x -> x.Split(']').[1])
+                    |> Array.map getIp
+                    |> Seq.concat
+                    |> Set.ofSeq
+                    |> Set.map (fun x -> ipToIndicator x "IP injected into Redis honeypot with 'slaveof' command")
+                    |> Set.toList
+                    |> List.choose id
 
     {name = "Redis honeypot logs for " + today;
      Public = true;
@@ -566,7 +575,7 @@ let redislogs (date:DateTime): OtxPulse =
      references = [];
      TLP = "green";
      description = "Redis honeypot authentication attempts from a US /32";
-     indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) (clients @ urls)}
+     indicators = List.filter(fun x -> Set.contains x.indicator exemptions <> true) (clients @ urls @ upstreams)}
 
 let vnclogs (date:DateTime): OtxPulse =
     log 3 ">>> vnclogs"
