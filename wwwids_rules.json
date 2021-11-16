@@ -1400,6 +1400,13 @@
        "name": "Cisco Adaptive Security Appliance - Path Traversal"
     },
     {
+       "ref": "https://www.exploit-db.com/exploits/47572",
+       "cve": " CVE-2019-17558",
+       "pat": "/solr/admin/cores",
+       "checkurl": -1,
+       "name": "Solr 8.2.0 RCE nodes probe"
+    },
+    {
        "ref": "https://www.zdnet.com/article/exploit-code-published-for-two-dangerous-apache-solr-remote-code-execution-flaws/",
        "cve": " CVE-2017-12629",
        "pat": "/solr",
@@ -2266,5 +2273,285 @@
         "pat": "/cgi-bin/system_mgr.cgi",
         "checkurl": -1,
         "name": "D-Link DNS-320 2.06b01 Revision Ax /cgi-bin/system_mgr.cgi command injection"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/45909",
+        "cve": "CVE-2016-1555",
+        "pat": "/boardDataWW.php",
+        "checkurl": -1,
+        "name": "Netgear WN604 before 3.3.3 RCCE in /boardDataWW.php"
+    }, 
+    {
+        "ref": "https://www.tenable.com/blog/cve-2017-7391-vulnerability-in-magento-mass-import-magmi-plugin-exploited-in-the-wild",
+        "cve": "CVE-2017-7391",
+        "pat": "/conf/magmi.ini",
+        "checkurl": -1,
+        "name": "Magento Mass Import (MAGMI) Plugin Fingerprinting"
+    },
+    {
+        "ref": "https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/zero-day-in-magmi-database-client-for-popular-e-commerce-platform-magento-targeted-in-the-wild/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/magmi/web/download_file.php?file=",
+        "checkurl": -1,
+        "name": "Magento Mass Import (MAGMI) Plugin LFI Exploit Attempt"
+    },
+    {
+        "ref": "https://cocojam.jp/wordpress/332",
+        "cve": "CVE-NOMATCH",
+        "pat": "/dup-installer/main.installer.php",
+        "checkurl": -1,
+        "name": "Wordpress Duplicator installer probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/3index.php?f=",
+        "checkurl": 6,
+        "name": "3index.php LFI"
+    },
+    {
+        "ref": "https://twitter.com/GossiTheDog/status/1424673929382268932",
+        "cve": "CVE-2021-34473",
+        "pat": "autodiscover/autodiscover.json",
+        "checkurl": 6,
+        "name": "ProxyShell scanner (OWA vuln)"
+    },
+    {
+        "ref": "https://wordpress.org/support/topic/how-to-stop-lock360-php/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/lock360.php",
+        "checkurl": -1,
+        "name": "/lock360.php backdoor probe"
+    },
+    {
+        "ref": "https://nvd.nist.gov/vuln/detail/CVE-2018-20057",
+        "cve": "CVE-2018-20057",
+        "pat": "/goform/formSysCmd",
+        "checkurl": -1,
+        "name": "DLink formSysCmd RCE"
+    },
+    {
+        "ref": "https://github.com/liferay/liferay-portal/tree/master/modules/apps/headless/headless-delivery",
+        "cve": "CVE-NOMATCH",
+        "pat": "/headless-delivery",
+        "checkurl": -1,
+        "name": "Liferay Portal /headless-delivery fingerprinting"
+    },
+    {
+        "ref": "https://nvd.nist.gov/vuln/detail/CVE-2018-18441",
+        "cve": "CVE-2018-18441",
+        "pat": "/common/info.cgi",
+        "checkurl": -1,
+        "name": "D-Link Devices 'info.cgi' information exposure"
+    },
+    {
+        "ref": "https://community.cloudflare.com/t/community-tip-tools-and-resources/44869",
+        "cve": "CVE-NOMATCH",
+        "pat": "1.1.1.1/cdn-cgi/trace",
+        "checkurl": -1,
+        "name": "Using CFlare DNS /trace endpoint to test proxying IP"
+    },
+    {
+        "ref": "https://wordpress.org/support/topic/can-the-plugin-be-hacked/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/xindex.php?idb=",
+        "checkurl": 6,
+        "name": "Unknown xindex.php RFI in idb param"
+    },
+    {
+        "ref": "https://s3tools.org/kb/item14.htm",
+        "cve": "CVE-NOMATCH",
+        "pat": "s3cmd.ini",
+        "checkurl": -1,
+        "name": "s3cmd.ini AWS S3 config fetch"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/musicplayer/checkgp",
+        "checkurl": -1,
+        "name": "Unknown /musicplayer/checkgp probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/plugins/wp-file-manager/readme.txt",
+        "checkurl": -1,
+        "name": "Fingerprinting WP file manager plugin"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/servlet?m=mod_listener",
+        "checkurl": -1,
+        "name": "Tomcat mod_listener servelet info disclosure"
+    },
+    {
+        "ref": "https://github.com/httpvoid/writeups/blob/main/Confluence-RCE.md",
+        "cve": "CVE-2021-26084",
+        "pat": "/pages/doenterpagevariables.action",
+        "checkurl": -1,
+        "name": "Remote Code Execution on Confluence Servers"
+    },
+    {
+        "ref": "https://github.com/h3v0x/CVE-2021-26084_Confluence",
+        "cve": "CVE-2021-26084",
+        "pat": "/pages/createpage-entervariables.action?SpaceKey=",
+        "checkurl": -1,
+        "name": "Confluence Server Webwork OGNL injection"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/api/v/index/queryOfficePage?officeCode=customHomeLink",
+        "checkurl": -1,
+        "name": "Unknown queryOfficePage probe"
+    },
+    {
+        "ref": "https://www.iot-inspector.com/blog/advisory-multiple-issues-realtek-sdk-iot-supply-chain/",
+        "cve": "CVE-2021-35395",
+        "pat": "/goform/formWsc",
+        "checkurl": -1,
+        "name": "Realtek SDK - multiple home routers - formWsc command injection"
+    },
+    {
+        "ref": "https://twitter.com/arkbird_solg/status/1153966583963951104?lang=en",
+        "cve": "CVE-NOMATCH",
+        "pat": "/recv4.php",
+        "checkurl": -1,
+        "name": "WebMonitor RAT C2 probe"
+    },
+    {
+        "ref": "https://stackoverflow.com/questions/62651830/grok-filter-for-confluence-logs",
+        "cve": "CVE-NOMATCH",
+        "pat": "/login.action?os_destination=%2Findex.action",
+        "checkurl": -1,
+        "name": "Confluence login check"
+    },
+    {
+        "ref": "https://gist.github.com/code-machina/bae5555a771062f2a8225fd4731ae3f7",
+        "cve": "CVE-2018-13379",
+        "pat": "/remote/fgt_lang?lang=",
+        "checkurl": 6,
+        "name": "path traversal vulnerability in the FortiOS SSL VPN web portal"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/48483",
+        "cve": "CVE-2020-7209",
+        "pat": "/linuxki/experimental/vis/kivis.php?type=kitrace",
+        "checkurl": 6,
+        "name": "HP LinuxKI 6.01 - Remote Command Injection"
+    },
+    {
+        "ref": "https://www.zerodayinitiative.com/blog/2020/5/8/details-on-the-oracle-weblogic-vulnerability-being-exploited-in-the-wild",
+        "cve": "CVE-2020-2883",
+        "pat": "/analytics/jbips/messagebroker/as",
+        "checkurl": -1,
+        "name": "Oracle Webkogic Deserialization Bug"
+    },
+    {
+        "ref": "https://blog.nintechnet.com/critical-vulnerability-fixed-in-wordpress-pinterest-automatic-plugin/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-pinterest-automatic/process_form.php",
+        "checkurl": -1,
+        "name": "WordPress Pinterest Automatic plugin configuration injection"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/gbrgbr.php?a=",
+        "checkurl": 6,
+        "name": "Unknown gbrgbr.php command injection vulnerability"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/CGI/Execute",
+        "checkurl": -1,
+        "name": "Unknown Cisco Voip Phone CiscoIPPhoneExecute injection"
+    },
+    {
+        "ref": "https://www.vmware.com/security/advisories/VMSA-2021-0020.html",
+        "cve": "CVE-2021-22005",
+        "pat": "/analytics/telemetry/ph/api/hyper/send?_c&_i",
+        "checkurl": -1,
+        "name": "VMware vCenter file upload and RCE"
+    },
+    {
+        "ref": "https://blog.netlab.360.com/rimasuta-spread-with-ruijie-0day/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wget_test.asp?",
+        "checkurl": 6,
+        "name": "RUIJIE 0day, possible Mirai_peta_Rimasuta attempt"
+    },
+    {
+        "ref": "https://www.hotelesestelar.com/sites/all/libraries/elfinder/README.txt",
+        "cve": "CVE-2019-9194",
+        "pat": "/all/libraries/elfinder/connectors/php/connector.php",
+        "checkurl": -1,
+        "name": "Drupal elFinder command injection vuln"
+    },
+    {
+        "ref": "https://httpd.apache.org/security/vulnerabilities_24.html",
+        "cve": "CVE-2021-41773",
+        "pat": "%2e/",
+        "checkurl": 6,
+        "name": "Apache 2.4.49 path traversal bug"
+    },
+    {
+        "ref": "https://httpd.apache.org/security/vulnerabilities_24.html",
+        "cve": "CVE-2021-42013",
+        "pat": ".%%32%65/",
+        "checkurl": 6,
+        "name": "Apache 2.4.50 path traversal bug"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/yealink/dialplan.xml",
+        "checkurl": 6,
+        "name": "Unknown Yealink dialplan.xml fetch"
+    },
+    {
+        "ref": "https://packetstormsecurity.com/files/162993/OptiLink-ONT1GEW-GPON-2.1.11_X101-Remote-Code-Execution.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/boaform/admin/formLogin",
+        "checkurl": -1,
+        "name": "OptiLink ONT1GEW GPON 2.1.11_X101 Build 1127.190306 - Remote Code Execution (Authenticated)"
+    },
+    {
+        "ref": "https://www.wordfence.com/blog/2021/10/1000000-sites-affected-by-optinmonster-vulnerabilities/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-json/omapp/v1/",
+        "checkurl": -1,
+        "name": "OptiMonster vulnerability probe"
+    },
+    {
+        "ref": "https://github.com/ghost-nemesis/cve-2021-20837-poc",
+        "cve": "CVE-2021-20837",
+        "pat": "/cgi-bin/mt/mt-xmlrpc.cgi",
+        "checkurl": -1,
+        "name": "MovableType RCE in mt-xmlrpc.cgi"
+    },
+    {
+        "ref": "https://support.sitecore.com/kb?id=kb_article_view&sysparm_article=KB1000776",
+        "cve": "CVE-NOMATCH",
+        "pat": "/sitecore/shell/ClientBin/Reporting/Report.ashx",
+        "checkurl": -1,
+        "name": "SiteCore Report.ashx RCE"
+    },
+    {
+        "ref": "https://www.cybersecuritywebtest.com/google-hacking-database/dork-ghdb~6902",
+        "cve": "CVE-NOMATCH",
+        "pat": "/CSS/Miniweb.css",
+        "checkurl": -1,
+        "name": "Rockwell Automation Miniweb probe"
+    },
+    {
+        "ref": "https://vulmon.com/vulnerabilitydetails?qid=CVE-2020-2950",
+        "cve": "CVE-2020-2950",
+        "pat": "/analytics/jbips/",
+        "checkurl": -1,
+        "name": "Oracle-BE AML deserialization flaw"
     }
 ]
