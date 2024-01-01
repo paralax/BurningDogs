@@ -1,8 +1,10 @@
+.fake
 application.config
-paket.lock
-otx_pulse.exe
+c2_pulse.exe
 hmm_honeypot.exe
+owa_puse.exe
+otx_pulse.exe
 packages
 paket-files
-.fake
 Paket.*
+paket.lock

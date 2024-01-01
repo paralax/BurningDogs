@@ -2553,5 +2553,243 @@
         "pat": "/analytics/jbips/",
         "checkurl": -1,
         "name": "Oracle-BE AML deserialization flaw"
+    },
+    {
+        "ref": "https://haxolot.com/posts/2021/manageengine_opmanager_pre_auth_rce/",
+        "cve": "CVE-2021-3287",
+        "pat": "/servlets/com.adventnet.tools.sum.transport.SUMCommunicationServlet",
+        "checkurl": -1,
+        "name": "Pre-Auth RCE in ManageEngine OPManager"
+    },
+    {
+        "ref": "https://www.exploit-db.com/exploits/37166",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/dzs-zoomsounds",
+        "checkurl": -1,
+        "name": "WordPress dzs-zoomsounds Plugins Remote File Upload Vulnerability"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/dispatch.asp",
+        "checkurl": -1,
+        "name": "Unknown /dispatch.asp probe"
+    },
+    {
+        "ref": "http://forum.micasaverde.com/index.php?topic=12137.15",
+        "cve": "CVE-NOMATCH",
+        "pat": "/tmpfs/snap.jpg",
+        "checkurl": -1,
+        "name": "H.264 exploit for /tmpfs/snap.jpg"
+    },
+    {
+        "ref": "https://manualzz.com/doc/60189684/juniper-jsa-series-virtual-appliance-admin-guide",
+        "cve": "CVE-NOMATCH",
+        "pat": "/admin.jsa",
+        "checkurl": -1,
+        "name": "Juniper JSA probe"
+    },
+    {
+        "ref": "https://civicrm.org/blog/totten/advisory-openflashchart-attacks",
+        "cve": "CVE-NOMATCH",
+        "pat": "/php-ofc-library/ofc_upload_image.php",
+        "checkurl": -1,
+        "name": "OpenFlashChart CiviCRM upload vuln probe"
+    },
+    {
+        "ref": "https://www.fastly.com/blog/digging-deeper-into-log4shell-0day-rce-exploit-found-in-log4j",
+        "cve": "CVE-2021-44228",
+        "pat": "jdni:",
+        "checkurl": 6,
+        "name": "Apache Log4j2 <=2.14.1 JNDI RCE"
+    },
+    {
+        "ref": "https://www.programmerall.com/article/85042065389/",
+        "cve": "CVE-NOMATCH",
+        "pat": "/seeyon/thirdpartyController.do.css/..;/ajax.do",
+        "checkurl": -1,
+        "name": "Zhiyuan OA-ajax.do Any file upload vulnerability"
+    },
+    {
+        "ref": "https://vulmon.com/vulnerabilitydetails?qid=CVE-2021-32682&scoretype=cvssv2",
+        "cve": "CVE-2021-32682",
+        "pat": "/elfinder/php/connector",
+        "checkurl": -1,
+        "name": "elFinder Archive Command Injection"
+    },
+    {
+        "ref": "https://pentest-tools.com/blog/detect-zoho-rce-cve-2021-40539",
+        "cve": "CVE-NOMATCH",
+        "pat": "/showLogin.cc",
+        "checkurl": -1,
+        "name": "ManageEngine ADSelfService Plus probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/onebets-ecp/api/v1/floatingads",
+        "checkurl": -1,
+        "name": "Unknown Onebets ECP 'floatingads' API probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/altibaseIntSearch/common/login.jsp",
+        "checkurl": -1,
+        "name": "Unknown Altibase probe for login.jsp"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/elog.cfg",
+        "checkurl": -1,
+        "name": "Easylogger config probe"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/slicemap.php?wall=",
+        "checkurl": -1,
+        "name": "Unknown slicemap.php PHP injection probe"
+    },
+    {
+        "ref": "https://twitter.com/AnnaViolet20/status/1523564632140509184",
+        "cve": "CVE-2022-1388",
+        "pat": "/mgmt/tm/util/bash",
+        "checkurl": -1,
+        "name": "F5 bash cmd injection"
+    },
+    {
+        "ref": "",
+        "cve": "CVE-NOMATCH",
+        "pat": "/owa.zip",
+        "checkurl": -1,
+        "name": "Outlook ZIP backup probe"
+    },
+    {
+        "ref": "https://packetstormsecurity.com/files/165366/Alfa-Team-Shell-Tesla-4.1-Remote-Code-Execution.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/alfacgiapi/perl.alfa",
+        "checkurl": -1,
+        "name": "ALFA TEAM SHELL TESLA 4.1 - 'cmd' Remote Code Execution (Unauthenticated)"
+    },
+    {
+        "ref": "https://telemetr.me/content/sipvoip/3",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Electron/download/windows/",
+        "checkurl": -1,
+        "name": "3cx-management-console Exploit vulnerability"
+    },
+    {
+        "ref": "https://borncity.com/win/2022/09/30/exchange-server-werden-ber-0-day-exploit-angegriffen-29-sept-2022/",
+        "cve": "CVE-2022-41082",
+        "pat": "/owa/auth/RedirSuiteServiceProxy.aspx",
+        "checkurl": -1,
+        "name": "MS Exchange RCE with PowerShell and RedirSuiteServiceProxy"
+    },
+    {
+        "ref": "https://socradar.io/threat-actors-exploit-unpatched-microsoft-exchange-zero-days/",
+        "cve": "CVE-2022-41082",
+        "pat": "/owa/auth/pxh4HG1v.ashx",
+        "checkurl": -1,
+        "name": "MS Exchange RCE with PowerShell dropped webshell pxh4HG1v.ashx probe"
+    },
+    {
+        "ref": "https://github.com/wingo/esmtp/blob/master/sample.esmtprc",
+        "cve": "CVE-NOMATCH",
+        "pat": "/esmtprc",
+        "checkurl": -1,
+        "name": "ESMTP rc file probe"
+    },
+    {
+        "ref": "https://cybersafenv.org/2021/08/13/scanning-for-microsoft-exchange-ediscovery-fri-aug-13th/",
+        "cve": "CVE-2021-42321",
+        "pat": "/ecp/Current/exporttool/microsoft.exchange.ediscovery.exporttool.application",
+        "checkurl": -1,
+        "name": "MS Exchange eDiscovery probe"
+    },
+    {
+        "ref": "https://github.com/lucksec/VMware-CVE-2022-22954",
+        "cve": "CVE-2022-22954",
+        "pat": "/catalog-portal/ui/oauth/verify",
+        "checkurl": -1,
+        "name": "VMware CVE-2022-22954 Workspace ONE Access Freemarker RCE"
+    },
+    {
+        "ref": "https://securitylab.github.com/advisories/GHSL-2020-325_326-nacos/",
+        "cve": "CVE-2021-29441",
+        "pat": "/nacos/v1/cs/configs",
+        "checkurl": -1,
+        "name": "Authentication bypass in Nacos"
+    },
+    {
+        "ref": "https://twitter.com/jas502n/status/1316982337716908033",
+        "cve": "CVE-NOMATCH",
+        "pat": "/eam/vib?id=",
+        "checkurl": -1,
+        "name": "Unauthenticated Arbitrary File Read vulnerability in VMware vCenter"
+    },
+    {
+        "ref": "https://packetstormsecurity.com/files/168328/InTouch-Access-Anywhere-Secure-Gateway-2020-R2-Path-Traversal.html",
+        "cve": "CVE-2022-23854",
+        "pat": "/AccessAnywhere/",
+        "checkurl": -1,
+        "name": "InTouch Access Anywhere Secure Gateway 2020 R2 Path Traversal"
+    },
+    {
+        "ref": "https://github.com/alt3kx/CVE-2021-21985_PoC/blob/main/CVE-2021-21985.nse",
+        "cve": "CVE-2021-21985",
+        "pat": "/ui/h5-vsan/rest/proxy/service/com.vmware.vsan.client.services.capability.VsanCapabilityProvider/getClusterCapabilityData",
+        "checkurl": -1,
+        "name": "VMware vCenter Server CVE-2021-21985 Remote Code Execution Vulnerability"
+    },
+    {
+        "ref": "https://github.com/chroblert/AssetManage/blob/1024c864fe3e0e1b5715ce742476dd2d1b2a67ae/Util/nmap-7.80/scripts/CVE-2019-19781.nse#L44",
+        "cve": "CVE-2019-19781",
+        "pat": "/logon/LogonPoint/tmindex.html",
+        "checkurl": -1,
+        "name": "CITRIX Application Delivery Controller (ADC) potencialmente vulnerables a CVE-2019-19781"
+    },
+    {
+        "ref": "https://blog.sucuri.net/2023/05/vulnerability-in-essential-addons-for-elementor-leads-to-mass-infection.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-content/plugins/hellopress/wp_mna.php",
+        "checkurl": -1,
+        "name": "Probe for fake Hellopress WP plugin - file uploader"
+    },
+    {
+        "ref": "https://www.fortiguard.com/encyclopedia/ips/52884",
+        "cve": "CVE-2023-26801",
+        "pat": "/goform/set_LimitClient_cfg",
+        "checkurl": -1,
+        "name": "LB-LINK.goform.set_LimitClient_cfg.Command.Injection"
+    },
+    {
+        "ref": "https://gist.github.com/blackknight36/9669f6c3cc74a1d15e2f35bda64fcab1",
+        "cve": "CVE-NOMATCH",
+        "pat": "/wp-admin/admin-ajax.php?action=showbiz_ajax_action&client_action=update_plugin",
+        "checkurl": -1,
+        "name": "WP Showbiz update_plugin attempt to upload a file"
+    },
+    {
+        "ref": "https://beaglesecurity.com/blog/vulnerability/dockerrun-aws-configuration-exposure.html",
+        "cve": "CVE-NOMATCH",
+        "pat": "/Dockerrun.aws.json",
+        "checkurl": -1,
+        "name": "Dockerrun AWS Configuration Exposure"
+    },
+    {
+        "ref": "https://unit42.paloaltonetworks.com/cobalt-strike-team-server/",
+        "cve": "CVE-NOMATCH",
+        "pat": "GET stager",
+        "checkurl": -1,
+        "name": "Attempt to get CobaltStrike stager"
+    },
+    {
+        "ref": "https://adapt.to/2019/presentations/adaptto2019-securing-aem-webapps-by-hacking-them-mikhail-egorov.pdf",
+        "cve": "CVE-2016-0957",
+        "pat": "GET /bin/querybuilder.json",
+        "checkurl": -1,
+        "name": "AEM dispatcher bypass"
     }
 ]
